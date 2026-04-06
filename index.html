@@ -1546,8 +1546,8 @@
 
       /* Social link cards */
       .contact-links-grid {
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
         gap: 12px;
       }
 
@@ -2284,15 +2284,7 @@
         </div>
 
         <!-- Social links -->
-        <div
-          class="contact-links-grid"
-          style="
-            grid-column: 1/-1;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-          "
-        >
+        <div class="contact-links-grid">
           <a href="img/John-Masulonis_Resume.pdf" class="contact-link-card">
             <div class="link-card-left">
               <span class="link-platform">Resume</span>
@@ -2388,6 +2380,19 @@
                 Better Fan Experience
               </div>
             </div>
+            <a
+              href="https://bearsandpandas.ca/index.aspx"
+              target="_blank"
+              class="btn-ghost"
+              style="
+                display: inline-block;
+                margin-bottom: 24px;
+                font-size: 13px;
+                padding: 10px 20px;
+              "
+            >
+              View Live Site →
+            </a>
             <div class="case-study-tags">
               <span class="case-study-tag">UX Research</span>
               <span class="case-study-tag">UI Design</span>
