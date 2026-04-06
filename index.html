@@ -1,0 +1,2904 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- ============================================================
+         META & SEO
+    ============================================================ -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="John Masulonis — Senior Designer & Brand Creative based in Raleigh, NC. I design and build thoughtful digital experiences."
+    />
+    <meta
+      name="keywords"
+      content="designer, UX designer, UI designer, web designer, Figma, design systems, wireframing, prototyping, developer, UI design, web design, graphic designer, Raleigh"
+    />
+    <meta name="author" content="John Masulonis" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="John Masulonis — Designer & Developer" />
+    <meta
+      property="og:description"
+      content="I design and build thoughtful digital experiences where careful aesthetics meet clean, purposeful code."
+    />
+    <meta
+      property="og:image"
+      content="https://yourwebsite.com/img/logo_favicon_jm_32x32-8.png"
+    />
+    <meta property="og:url" content="https://yourwebsite.com" />
+    <meta property="og:type" content="website" />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="img/logo_favicon_jm_32x32-8.png"
+    />
+
+    <title>John Masulonis — Senior Designer & Creative Developer</title>
+
+    <!-- ============================================================
+         FONTS
+    ============================================================ -->
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
+      /* ============================================================
+         RESET & BASE
+      ============================================================ */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #0e0d0c;
+        --surface: #161412;
+        --surface2: #1e1b18;
+        --border: rgba(255, 255, 255, 0.07);
+        --primary: #347f6f;
+        --primary-light: #3d9680;
+        --secondary: #f8992c;
+        --tertiary: #534840;
+        --tertiary-light: #6b5c52;
+        --text: #f0ece6;
+        --muted: #6b6560;
+        --display: "Space Grotesk", sans-serif;
+        --body: "Manrope", sans-serif;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--body);
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.6;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      section {
+        scroll-margin-top: 90px;
+      }
+
+      /* ============================================================
+         ANIMATIONS
+      ============================================================ */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(16px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.3;
+        }
+      }
+
+      /* ============================================================
+         NAVIGATION
+      ============================================================ */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        padding: 20px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: rgba(14, 13, 12, 0.85);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+      }
+
+      .nav-logo-img {
+        height: 32px;
+        width: auto;
+        display: block;
+      }
+
+      .nav-logo-text {
+        font-family: var(--display);
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--text);
+      }
+
+      .nav-logo-dot {
+        color: var(--secondary);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 32px;
+        align-items: center;
+      }
+
+      .nav-links a {
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        transition: color 0.2s;
+      }
+
+      .nav-links a:hover {
+        color: var(--text);
+      }
+
+      .nav-cta {
+        background: var(--primary) !important;
+        color: var(--text) !important;
+        padding: 8px 20px;
+        border-radius: 6px;
+        font-weight: 500 !important;
+        transition: background 0.2s !important;
+      }
+
+      .nav-cta:hover {
+        background: var(--primary-light) !important;
+      }
+
+      /* Hamburger button — hidden on desktop */
+      .nav-hamburger {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 44px;
+        height: 44px;
+        background: transparent;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        cursor: pointer;
+        padding: 10px;
+        flex-shrink: 0;
+      }
+
+      .nav-hamburger span {
+        display: block;
+        width: 100%;
+        height: 1.5px;
+        background: var(--text);
+        border-radius: 2px;
+        transition:
+          transform 0.25s,
+          opacity 0.25s;
+      }
+
+      /* Hamburger → X animation */
+      .nav-hamburger.open span:nth-child(1) {
+        transform: translateY(6.5px) rotate(45deg);
+      }
+      .nav-hamburger.open span:nth-child(2) {
+        opacity: 0;
+      }
+      .nav-hamburger.open span:nth-child(3) {
+        transform: translateY(-6.5px) rotate(-45deg);
+      }
+
+      /* Close button inside mobile menu — hidden on desktop */
+      .nav-menu-close {
+        display: none;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 44px;
+        height: 44px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        color: var(--text);
+        font-size: 18px;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* ============================================================
+         HERO
+      ============================================================ */
+      #hero {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        min-height: 80vh;
+        padding-top: 80px;
+        position: relative;
+        overflow: hidden;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 80px 40px 80px;
+      }
+
+      .hero-img-wrap {
+        position: relative;
+        height: 80vh;
+        max-width: 480px;
+      }
+
+      .hero-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top center;
+        display: block;
+        filter: grayscale(100%);
+        opacity: 0.6;
+      }
+
+      .hero-img-fade {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(
+            to right,
+            var(--bg) 0%,
+            transparent 25%,
+            transparent 50%,
+            var(--bg) 100%
+          ),
+          linear-gradient(
+            to bottom,
+            var(--bg) 0%,
+            transparent 20%,
+            transparent 70%,
+            var(--bg) 100%
+          );
+      }
+
+      .hero-content {
+        padding: 60px 60px 60px 20px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        padding: 6px 14px;
+        border-radius: 100px;
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--muted);
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        margin-bottom: 32px;
+        animation: fadeUp 0.6s 0.1s both;
+      }
+
+      .eyebrow-dot {
+        width: 6px;
+        height: 6px;
+        background: var(--primary);
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+      }
+
+      .hero-title {
+        font-family: var(--display);
+        font-size: clamp(52px, 7vw, 84px);
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: -0.03em;
+        margin-bottom: 24px;
+        animation: fadeUp 0.7s 0.2s both;
+      }
+
+      .hero-title .line2 {
+        color: var(--primary);
+      }
+
+      .hero-sub {
+        max-width: 520px;
+        color: var(--muted);
+        font-size: 16px;
+        line-height: 1.7;
+        margin-bottom: 48px;
+        animation: fadeUp 0.7s 0.3s both;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 16px;
+        animation: fadeUp 0.7s 0.4s both;
+      }
+
+      .btn-primary {
+        background: var(--secondary);
+        color: #1a1008;
+        padding: 14px 28px;
+        border-radius: 8px;
+        font-family: var(--display);
+        font-weight: 600;
+        font-size: 14px;
+        text-decoration: none;
+        letter-spacing: -0.01em;
+        transition:
+          transform 0.15s,
+          box-shadow 0.15s;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(248, 153, 44, 0.3);
+      }
+
+      .btn-ghost {
+        background: transparent;
+        color: var(--text);
+        padding: 14px 28px;
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        font-family: var(--display);
+        font-weight: 500;
+        font-size: 14px;
+        text-decoration: none;
+        letter-spacing: -0.01em;
+        transition:
+          border-color 0.2s,
+          background 0.2s;
+      }
+
+      .btn-ghost:hover {
+        border-color: var(--primary);
+        background: rgba(52, 127, 111, 0.08);
+      }
+
+      /* ============================================================
+         BENTO GRID — Shared layout system
+      ============================================================ */
+      .bento-section {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 40px 80px;
+      }
+
+      .bento-label {
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--secondary);
+        margin-bottom: 24px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .bento-label::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--border);
+      }
+
+      .bento-grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-auto-rows: minmax(80px, auto);
+        gap: 12px;
+      }
+
+      /* Column span helpers */
+      .col-3 {
+        grid-column: span 3;
+      }
+      .col-4 {
+        grid-column: span 4;
+      }
+      .col-5 {
+        grid-column: span 5;
+      }
+      .col-6 {
+        grid-column: span 6;
+      }
+      .col-7 {
+        grid-column: span 7;
+      }
+      .col-8 {
+        grid-column: span 8;
+      }
+      .col-12 {
+        grid-column: span 12;
+      }
+
+      .bento-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 32px;
+        position: relative;
+        overflow: hidden;
+        transition:
+          border-color 0.25s,
+          transform 0.25s;
+      }
+
+      .bento-card:hover {
+        border-color: rgba(52, 127, 111, 0.4);
+        transform: translateY(-2px);
+      }
+
+      /* ============================================================
+         JOB CARDS
+      ============================================================ */
+      .job-card {
+        cursor: pointer;
+      }
+
+      .job-card:hover .proj-arrow {
+        background: var(--primary);
+        color: white;
+        border-color: var(--primary);
+      }
+
+      .card-img {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        display: block;
+        background: var(--surface2);
+      }
+
+      .card-img-placeholder {
+        width: 100%;
+        height: 160px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        background: var(--surface2);
+        border: 1px dashed rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--muted);
+        font-size: 12px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .project-card-inner .proj-num {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        color: var(--secondary);
+        text-transform: uppercase;
+        margin-bottom: 12px;
+        display: block;
+      }
+
+      .project-card-inner h3 {
+        font-family: var(--display);
+        font-size: 24px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin-bottom: 12px;
+        line-height: 1.1;
+      }
+
+      .project-card-inner p {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.7;
+        margin-bottom: 24px;
+      }
+
+      .proj-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+
+      .proj-tag {
+        background: rgba(52, 127, 111, 0.12);
+        color: var(--primary-light);
+        border: 1px solid rgba(52, 127, 111, 0.2);
+        padding: 3px 10px;
+        border-radius: 4px;
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.04em;
+      }
+
+      .proj-arrow {
+        position: absolute;
+        top: 28px;
+        right: 28px;
+        width: 36px;
+        height: 36px;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        color: var(--muted);
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
+
+      /* Accent card */
+      .card-accent {
+        background: var(--primary);
+        border-color: transparent;
+      }
+
+      .card-accent:hover {
+        border-color: var(--primary-light);
+      }
+
+      .card-accent h3 {
+        font-family: var(--display);
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin-bottom: 8px;
+      }
+
+      .card-accent p {
+        color: rgba(240, 236, 230, 0.7);
+        font-size: 13px;
+      }
+
+      /* Stat card */
+      .stat-card {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .stat-num {
+        font-family: var(--display);
+        font-size: 52px;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        color: var(--secondary);
+        line-height: 1;
+        margin-bottom: 8px;
+      }
+
+      .stat-label {
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 500;
+      }
+
+      /* Quote / about card */
+      .about-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .about-card::before {
+        content: '"';
+        position: absolute;
+        top: -75px;
+        left: 275px;
+        font-family: var(--display);
+        font-size: 420px;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.06);
+        line-height: 1;
+        pointer-events: none;
+      }
+
+      .about-card blockquote {
+        font-family: var(--display);
+        font-size: 52px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        line-height: 1.3;
+        color: var(--text);
+        margin-bottom: 24px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .about-card blockquote span {
+        color: var(--primary);
+      }
+
+      .about-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .pill {
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        padding: 6px 14px;
+        border-radius: 100px;
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--muted);
+      }
+
+      /* ============================================================
+         CASE STUDY CARD (teaser)
+      ============================================================ */
+      .case-study-card {
+        background: var(--tertiary);
+        border-radius: 16px;
+        padding: 48px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 40px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        transition: background 0.25s;
+      }
+
+      .case-study-card:hover {
+        background: #5e5047;
+      }
+
+      .case-study-card::before {
+        content: "";
+        position: absolute;
+        top: -60px;
+        right: -60px;
+        width: 240px;
+        height: 240px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.04);
+        pointer-events: none;
+      }
+
+      .case-study-card-left {
+        flex: 1;
+      }
+      .case-study-card-right {
+        flex-shrink: 0;
+      }
+
+      .case-study-eyebrow {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--secondary);
+        margin-bottom: 16px;
+      }
+
+      .case-study-title {
+        font-family: var(--display);
+        font-size: clamp(24px, 3vw, 38px);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1.05;
+        margin-bottom: 24px;
+      }
+
+      .case-study-title span {
+        color: var(--secondary);
+      }
+
+      .case-study-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .case-study-tag {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        padding: 4px 12px;
+        border-radius: 4px;
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        color: rgba(240, 236, 230, 0.6);
+      }
+
+      .case-study-cta {
+        font-family: var(--display);
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        color: var(--secondary);
+        white-space: nowrap;
+        transition: transform 0.2s;
+      }
+
+      .case-study-card:hover .case-study-cta {
+        transform: translateX(4px);
+      }
+
+      /* ============================================================
+         CASE STUDY — Fullscreen modal
+      ============================================================ */
+      .cs-modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: var(--bg);
+        z-index: 600;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+        overflow-y: auto;
+      }
+
+      .cs-modal-overlay.open {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .cs-modal-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 100px 40px 80px;
+      }
+
+      .cs-modal-close {
+        position: fixed;
+        top: 24px;
+        right: 24px;
+        width: 44px;
+        height: 44px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--muted);
+        font-size: 20px;
+        z-index: 601;
+        transition:
+          color 0.2s,
+          border-color 0.2s,
+          background 0.2s;
+      }
+
+      .cs-modal-close:hover {
+        color: var(--text);
+        border-color: var(--primary);
+        background: var(--surface2);
+      }
+
+      /* Case study intro grid */
+      .cs-intro {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+
+      .cs-hero {
+        background: var(--tertiary);
+        border-radius: 16px;
+        padding: 48px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 260px;
+      }
+
+      .cs-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .cs-meta-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 28px 32px;
+      }
+
+      .cs-meta-label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--secondary);
+        margin-bottom: 8px;
+      }
+
+      .cs-meta-value {
+        font-family: var(--display);
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--text);
+      }
+
+      .cs-meta-value p {
+        font-family: var(--body);
+        font-size: 13px;
+        font-weight: 400;
+        color: var(--muted);
+        line-height: 1.7;
+        margin-top: 4px;
+      }
+
+      /* Process steps */
+      .cs-steps {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+
+      .cs-step {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 32px;
+      }
+
+      .cs-step-num {
+        font-family: var(--display);
+        font-size: 48px;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.04);
+        line-height: 1;
+        margin-bottom: 16px;
+      }
+
+      .cs-step-title {
+        font-family: var(--display);
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 10px;
+      }
+
+      .cs-step-body {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      /* Case study images */
+      .cs-images-top {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+
+      .cs-images-bottom {
+        margin-bottom: 12px;
+      }
+
+      .cs-images-bottom .cs-img-card .cs-img {
+        min-height: 400px;
+        object-fit: cover;
+      }
+
+      .cs-img-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        overflow: hidden;
+      }
+
+      .cs-img {
+        width: 100%;
+        height: 100%;
+        min-height: 280px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .cs-img-placeholder {
+        width: 100%;
+        min-height: 280px;
+        background: var(--surface2);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 11px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        border: 1px dashed rgba(255, 255, 255, 0.08);
+        border-radius: 16px;
+      }
+
+      /* Outcome bar */
+      .cs-outcome {
+        background: var(--primary);
+        border-radius: 16px;
+        padding: 48px;
+        display: grid;
+        grid-template-columns: 1fr auto 1fr auto 1fr;
+        align-items: center;
+        text-align: center;
+      }
+
+      .cs-outcome-num {
+        font-family: var(--display);
+        font-size: 48px;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        color: var(--secondary);
+        line-height: 1;
+        margin-bottom: 8px;
+      }
+
+      .cs-outcome-label {
+        font-size: 13px;
+        color: rgba(240, 236, 230, 0.7);
+        font-weight: 500;
+      }
+
+      .cs-outcome-divider {
+        width: 1px;
+        height: 60px;
+        background: rgba(255, 255, 255, 0.15);
+        margin: 0 24px;
+      }
+
+      /* ============================================================
+         SKILLS
+      ============================================================ */
+      .skills-card h3 {
+        font-family: var(--display);
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin-bottom: 20px;
+      }
+
+      .skill-bar-row {
+        margin-bottom: 14px;
+      }
+
+      .skill-bar-top {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 6px;
+        font-size: 12px;
+        font-weight: 500;
+      }
+
+      .skill-bar-track {
+        height: 4px;
+        background: var(--surface2);
+        border-radius: 2px;
+        overflow: hidden;
+      }
+
+      .skill-bar-fill {
+        height: 100%;
+        background: var(--primary);
+        border-radius: 2px;
+        transition: width 1s ease;
+      }
+
+      .skill-bar-fill.orange {
+        background: var(--secondary);
+      }
+
+      .skill-pct {
+        color: var(--muted);
+        font-size: 11px;
+      }
+
+      /* ============================================================
+         BRAND & PRINT WORK
+      ============================================================ */
+      .print-scroll-row {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 12px;
+      }
+
+      .print-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        overflow: hidden;
+        cursor: pointer;
+        transition:
+          border-color 0.25s,
+          transform 0.25s;
+        position: relative;
+      }
+
+      .print-card:hover {
+        border-color: rgba(52, 127, 111, 0.4);
+        transform: translateY(-2px);
+      }
+
+      .print-card-img {
+        width: 100%;
+        aspect-ratio: 3/4;
+        object-fit: cover;
+        display: block;
+        background: var(--surface2);
+      }
+
+      .print-card-img-placeholder {
+        width: 100%;
+        aspect-ratio: 3/4;
+        background: var(--surface2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--muted);
+        font-size: 11px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+      }
+
+      .print-card-info {
+        padding: 16px 20px;
+      }
+
+      .print-card-title {
+        font-family: var(--display);
+        font-size: 15px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        margin-bottom: 4px;
+      }
+
+      .print-card-type {
+        font-size: 11px;
+        color: var(--secondary);
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      /* Teal overlay on hover */
+      .print-card-hover {
+        position: absolute;
+        inset: 0;
+        background: rgba(52, 127, 111, 0.85);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.2s;
+        font-family: var(--display);
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        color: white;
+        pointer-events: none;
+      }
+
+      .print-card:hover .print-card-hover {
+        opacity: 1;
+      }
+
+      .print-modal-img {
+        width: 100%;
+        max-height: 420px;
+        object-fit: contain;
+        border-radius: 12px;
+        margin-bottom: 24px;
+        background: var(--surface2);
+        display: block;
+      }
+
+      .print-modal-img-placeholder {
+        width: 100%;
+        height: 280px;
+        border-radius: 12px;
+        margin-bottom: 24px;
+        background: var(--surface2);
+        border: 1px dashed rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--muted);
+        font-size: 12px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      /* ============================================================
+         IMAGE SLIDER (used in print modal)
+      ============================================================ */
+      .slider {
+        position: relative;
+        width: 100%;
+        margin-bottom: 24px;
+        border-radius: 12px;
+        overflow: hidden;
+        background: var(--surface2);
+      }
+
+      .slider-track {
+        display: flex;
+        transition: transform 0.35s ease;
+      }
+
+      .slider-slide {
+        min-width: 100%;
+      }
+
+      .slider-slide img {
+        width: 100%;
+        max-height: 380px;
+        object-fit: contain;
+        display: block;
+        background: var(--surface2);
+      }
+
+      .slider-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 36px;
+        height: 36px;
+        background: rgba(14, 13, 12, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        color: white;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.2s;
+        z-index: 10;
+      }
+
+      .slider-arrow:hover {
+        background: var(--primary);
+        border-color: var(--primary);
+      }
+
+      .slider-arrow.prev {
+        left: 12px;
+      }
+      .slider-arrow.next {
+        right: 12px;
+      }
+      .slider-arrow.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .slider-dots {
+        display: flex;
+        justify-content: center;
+        gap: 6px;
+        padding: 12px 0 4px;
+      }
+
+      .slider-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--muted);
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+      }
+
+      .slider-dot.active {
+        background: var(--secondary);
+        transform: scale(1.3);
+      }
+
+      /* ============================================================
+         JOB / PRINT MODAL (shared small modal)
+      ============================================================ */
+      .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.75);
+        backdrop-filter: blur(6px);
+        z-index: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s ease;
+      }
+
+      .modal-overlay.open {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .modal {
+        background: var(--surface);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        width: 100%;
+        max-width: 640px;
+        max-height: 85vh;
+        overflow-y: auto;
+        padding: 40px;
+        transform: translateY(20px) scale(0.98);
+        transition: transform 0.25s ease;
+        position: relative;
+      }
+
+      .modal-overlay.open .modal {
+        transform: translateY(0) scale(1);
+      }
+
+      .modal-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 36px;
+        height: 36px;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--muted);
+        font-size: 18px;
+        line-height: 1;
+        transition:
+          color 0.2s,
+          border-color 0.2s;
+      }
+
+      .modal-close:hover {
+        color: var(--text);
+        border-color: var(--primary);
+      }
+
+      .modal-img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 12px;
+        margin-bottom: 28px;
+        display: block;
+        background: var(--surface2);
+      }
+
+      .modal-img-placeholder {
+        width: 100%;
+        height: 200px;
+        border-radius: 12px;
+        margin-bottom: 28px;
+        background: var(--surface2);
+        border: 1px dashed rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--muted);
+        font-size: 12px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .modal-eyebrow {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--secondary);
+        margin-bottom: 12px;
+      }
+
+      .modal-title {
+        font-family: var(--display);
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin-bottom: 4px;
+      }
+
+      .modal-company {
+        font-family: var(--display);
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--primary);
+        margin-bottom: 24px;
+      }
+
+      .modal-divider {
+        height: 1px;
+        background: var(--border);
+        margin-bottom: 24px;
+      }
+
+      .modal-section-label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 10px;
+      }
+
+      .modal-body {
+        color: rgba(240, 236, 230, 0.75);
+        font-size: 14px;
+        line-height: 1.8;
+        margin-bottom: 24px;
+      }
+
+      .modal-highlights {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 28px;
+      }
+
+      .modal-highlights li {
+        display: flex;
+        gap: 12px;
+        color: rgba(240, 236, 230, 0.75);
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      .modal-highlights li::before {
+        content: "→";
+        color: var(--primary);
+        flex-shrink: 0;
+        font-weight: 600;
+      }
+
+      .modal-highlights a {
+        color: var(--secondary);
+        text-decoration: none;
+        border-bottom: 1px solid rgba(248, 153, 44, 0.3);
+        transition: border-color 0.2s;
+      }
+
+      .modal-highlights a:hover {
+        border-color: var(--secondary);
+      }
+
+      .modal-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      /* ============================================================
+         CONTACT
+      ============================================================ */
+      #contact {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 40px 120px;
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        gap: 12px;
+      }
+
+      /* Headshot + CTA row */
+      .contact-headshot-row {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        gap: 12px;
+      }
+
+      .contact-headshot-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        overflow: hidden;
+        position: relative;
+        min-height: 300px;
+      }
+
+      .headshot-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top center;
+        display: block;
+        min-height: 300px;
+      }
+
+      .headshot-placeholder {
+        width: 100%;
+        height: 100%;
+        min-height: 300px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        color: var(--muted);
+        font-size: 12px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        border: 1px dashed rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+      }
+
+      .headshot-placeholder-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: var(--surface2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        color: var(--muted);
+      }
+
+      .contact-big {
+        background: var(--primary);
+        border-radius: 16px;
+        padding: 48px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .contact-big h2 {
+        font-family: var(--display);
+        font-size: clamp(36px, 4vw, 56px);
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        line-height: 1;
+        color: var(--secondary);
+        margin-bottom: 24px;
+      }
+
+      .contact-big p {
+        color: rgba(240, 236, 230, 0.75);
+        font-size: 15px;
+        margin-bottom: 32px;
+      }
+
+      .btn-dark {
+        display: inline-block;
+        background: #1a1008;
+        color: var(--secondary);
+        padding: 14px 28px;
+        border-radius: 8px;
+        font-family: var(--display);
+        font-weight: 600;
+        font-size: 14px;
+        text-decoration: none;
+        letter-spacing: -0.01em;
+        align-self: flex-start;
+        transition: background 0.2s;
+      }
+
+      .btn-dark:hover {
+        background: #2d1f0a;
+      }
+
+      /* Social link cards */
+      .contact-links-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .contact-link-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 20px 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-decoration: none;
+        color: var(--text);
+        transition:
+          border-color 0.2s,
+          background 0.2s;
+      }
+
+      .contact-link-card:hover {
+        border-color: var(--primary);
+        background: rgba(52, 127, 111, 0.06);
+      }
+
+      .link-card-left {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .link-platform {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .link-handle {
+        font-family: var(--display);
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+      }
+
+      .link-arrow {
+        color: var(--muted);
+        font-size: 18px;
+        transition:
+          color 0.2s,
+          transform 0.2s;
+      }
+
+      .contact-link-card:hover .link-arrow {
+        color: var(--primary);
+        transform: translate(2px, -2px);
+      }
+
+      /* ============================================================
+         FOOTER
+      ============================================================ */
+      footer {
+        border-top: 1px solid var(--border);
+        padding: 28px 40px;
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      /* ============================================================
+         RESPONSIVE — Tablet (max 900px)
+      ============================================================ */
+      @media (max-width: 900px) {
+        /* Nav */
+        nav {
+          padding: 16px 20px;
+        }
+        .nav-hamburger {
+          display: flex;
+        }
+        .nav-logo-text {
+          display: none;
+        }
+        .nav-menu-close {
+          display: flex;
+        }
+
+        .nav-links {
+          display: none;
+          position: fixed;
+          inset: 0;
+          width: 100vw;
+          height: 100vh;
+          height: 100dvh;
+          background: var(--bg);
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 32px;
+          z-index: 999;
+        }
+
+        .nav-links.open {
+          display: flex;
+        }
+
+        .nav-links a {
+          font-size: 24px;
+          font-family: var(--display);
+          font-weight: 700;
+          letter-spacing: -0.01em;
+          color: var(--text);
+        }
+
+        .nav-cta {
+          background: var(--primary) !important;
+          color: var(--text) !important;
+          padding: 14px 32px !important;
+          border-radius: 8px;
+          font-size: 18px !important;
+        }
+
+        /* Hero */
+        #hero {
+          padding: 120px 20px 60px;
+        }
+        .hero-img-wrap {
+          height: 35vh;
+          margin-top: -80px;
+        }
+        .hero-img {
+          opacity: 0.45;
+        }
+        .hero-img-fade {
+          background:
+            linear-gradient(
+              to bottom,
+              var(--bg) 0%,
+              transparent 15%,
+              transparent 55%,
+              var(--bg) 85%
+            ),
+            linear-gradient(
+              to right,
+              var(--bg) 0%,
+              transparent 20%,
+              transparent 80%,
+              var(--bg) 100%
+            );
+        }
+        .hero-content {
+          padding: 20px 20px 60px;
+        }
+
+        /* Bento grid */
+        .bento-section,
+        #contact {
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+        .bento-grid {
+          grid-template-columns: 1fr;
+        }
+        .col-3,
+        .col-4,
+        .col-5,
+        .col-6,
+        .col-7,
+        .col-8,
+        .col-12 {
+          grid-column: span 1;
+        }
+
+        /* Mobile arrow → + */
+        .proj-arrow {
+          font-size: 0;
+        }
+        .proj-arrow::after {
+          content: "+";
+          font-size: 20px;
+        }
+
+        /* Print swipe carousel */
+        .print-scroll-row {
+          display: flex;
+          overflow-x: auto;
+          scroll-snap-type: x mandatory;
+          -webkit-overflow-scrolling: touch;
+          gap: 12px;
+          padding-bottom: 16px;
+          scrollbar-width: none;
+        }
+        .print-scroll-row::-webkit-scrollbar {
+          display: none;
+        }
+        .print-card {
+          min-width: 70vw;
+          max-width: 70vw;
+          flex-shrink: 0;
+          scroll-snap-align: start;
+        }
+        .print-card-img {
+          aspect-ratio: 3/4;
+          max-height: 200px;
+        }
+        .print-card-img-placeholder {
+          aspect-ratio: 3/4;
+          max-height: 200px;
+        }
+
+        /* Case study */
+        .case-study-card {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .cs-modal-inner {
+          padding: 80px 20px 60px;
+        }
+        .cs-intro {
+          grid-template-columns: 1fr;
+        }
+        .cs-steps {
+          grid-template-columns: 1fr 1fr;
+        }
+        .cs-images-top {
+          grid-template-columns: 1fr;
+        }
+        .cs-outcome {
+          grid-template-columns: 1fr;
+          gap: 24px;
+          padding: 32px;
+        }
+        .cs-outcome-divider {
+          width: 60px;
+          height: 1px;
+          margin: 0 auto;
+        }
+
+        /* Contact */
+        .contact-grid {
+          grid-template-columns: 1fr;
+        }
+        .contact-headshot-row {
+          grid-template-columns: 1fr;
+        }
+        .contact-headshot-card {
+          min-height: 240px;
+        }
+        .headshot-img {
+          min-height: 240px;
+        }
+        .contact-links-grid {
+          grid-template-columns: 1fr 1fr !important;
+        }
+
+        /* Footer */
+        footer {
+          padding: 24px 20px;
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        /* Modal */
+        .modal {
+          padding: 24px;
+        }
+      }
+
+      /* ============================================================
+         RESPONSIVE — Mobile (max 480px)
+      ============================================================ */
+      @media (max-width: 480px) {
+        #hero {
+          grid-template-columns: 1fr;
+        }
+        .hero-actions {
+          flex-direction: column;
+        }
+        .btn-primary,
+        .btn-ghost {
+          text-align: center;
+        }
+        .cs-steps {
+          grid-template-columns: 1fr;
+        }
+        .contact-links-grid {
+          grid-template-columns: 1fr !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ============================================================
+         NAVIGATION
+    ============================================================ -->
+    <nav>
+      <a href="#" class="nav-logo">
+        <img
+          src="img/logo_nav_jm.svg"
+          alt="John Masulonis"
+          class="nav-logo-img"
+          onerror="this.style.display = 'none'"
+        />
+        <span class="nav-logo-text"
+          >John<span class="nav-logo-dot">.</span>Masulonis</span
+        >
+      </a>
+
+      <div class="nav-links" id="navLinks">
+        <button class="nav-menu-close" onclick="toggleNav()">✕</button>
+        <a href="#work">Work</a>
+        <a href="#casestudy">Case Study</a>
+        <a href="#print">Print</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact" class="nav-cta">Get in touch</a>
+      </div>
+
+      <button class="nav-hamburger" id="navHamburger" onclick="toggleNav()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+
+    <!-- ============================================================
+         HERO
+    ============================================================ -->
+    <section id="hero">
+      <div class="hero-img-wrap">
+        <img
+          src="img/hero_bw.jpg"
+          alt="John Masulonis"
+          class="hero-img"
+          onerror="this.style.display = 'none'"
+        />
+        <div class="hero-img-fade"></div>
+      </div>
+      <div class="hero-content">
+        <div class="hero-eyebrow">
+          <span class="eyebrow-dot"></span>
+          Open to remote full-time opportunities
+        </div>
+        <h1 class="hero-title">
+          John Masulonis<br />
+          <span class="line2">Designer &amp; Developer</span>
+        </h1>
+        <p class="hero-sub">
+          Senior designer with a background in branding and print, bringing
+          strong design fundamentals to every digital experience. Based in
+          Raleigh, NC — open to remote opportunities.
+        </p>
+        <div class="hero-actions">
+          <a href="#work" class="btn-primary">View my work</a>
+          <a href="#contact" class="btn-ghost">Let's talk</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CAREER
+    ============================================================ -->
+    <section class="bento-section" id="work">
+      <div class="bento-label">Recent Career</div>
+      <div class="bento-grid">
+        <!-- Job 1: Sidearm Sports -->
+        <div class="bento-card col-7 job-card" onclick="openModal('job1')">
+          <div class="proj-arrow">↗</div>
+          <div class="project-card-inner">
+            <img
+              src="img/portfolio_img_sidearm-sports.png"
+              alt="Sidearm Sports"
+              class="card-img"
+              onerror="
+                this.outerHTML =
+                  '<div class=card-img-placeholder>Add image</div>'
+              "
+            />
+            <span class="proj-num">2022 — 2026</span>
+            <h3>Web Designer</h3>
+            <p>SIDEARM Sports · Remote Full-time</p>
+            <div class="proj-tags">
+              <span class="proj-tag">UI Design</span>
+              <span class="proj-tag">Figma</span>
+              <span class="proj-tag">Design Systems</span>
+              <span class="proj-tag">Accessibility</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quote card -->
+        <div class="bento-card col-5 about-card">
+          <blockquote>
+            I believe good design is invisible — it just
+            <span>feels right</span>.
+          </blockquote>
+        </div>
+
+        <!-- Stat: Years -->
+        <div class="bento-card col-3 stat-card">
+          <div class="stat-num">15+</div>
+          <div class="stat-label">Years of experience</div>
+        </div>
+
+        <!-- Job 2: IBM -->
+        <div class="bento-card col-5 job-card" onclick="openModal('job2')">
+          <div class="proj-arrow">↗</div>
+          <div class="project-card-inner">
+            <img
+              src="img/portfolio_img_IBM.png"
+              alt="IBM"
+              class="card-img"
+              onerror="
+                this.outerHTML =
+                  '<div class=card-img-placeholder>Add image</div>'
+              "
+            />
+            <span class="proj-num">2021 — 2022</span>
+            <h3>Visual Designer</h3>
+            <p>IBM · Full-time</p>
+            <div class="proj-tags">
+              <span class="proj-tag">Branding</span>
+              <span class="proj-tag">Web Design</span>
+              <span class="proj-tag">Sketch</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accent card -->
+        <div class="bento-card col-4 card-accent">
+          <h3>Open to Contract &amp; Full-Time roles</h3>
+          <p>
+            Currently looking for a new role. Let's build something great
+            together.
+          </p>
+        </div>
+
+        <!-- Job 3: Cisco -->
+        <div class="bento-card col-6 job-card" onclick="openModal('job3')">
+          <div class="proj-arrow">↗</div>
+          <div class="project-card-inner">
+            <img
+              src="img/portfolio_img_cisco.png"
+              alt="Cisco"
+              class="card-img"
+              onerror="
+                this.outerHTML =
+                  '<div class=card-img-placeholder>Add image</div>'
+              "
+            />
+            <span class="proj-num">2020 — 2020</span>
+            <h3>Digital Designer</h3>
+            <p>Cisco · Remote Full-time</p>
+            <div class="proj-tags">
+              <span class="proj-tag">HTML 5 Banners</span>
+              <span class="proj-tag">Visual Design</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stat: Projects -->
+        <div class="bento-card col-3 stat-card">
+          <div class="stat-num">20+</div>
+          <div class="stat-label">Projects shipped</div>
+        </div>
+
+        <!-- Job 4: Trimark Digital -->
+        <div class="bento-card col-3 job-card" onclick="openModal('job4')">
+          <div class="proj-arrow">↗</div>
+          <div class="project-card-inner">
+            <img
+              src="img/portfolio_img_trimark-digital.png"
+              alt="Trimark Digital"
+              class="card-img"
+              onerror="
+                this.outerHTML =
+                  '<div class=card-img-placeholder>Add image</div>'
+              "
+            />
+            <span class="proj-num">2018 — 2019</span>
+            <h3>Senior Designer</h3>
+            <p>Trimark Digital · Full-time</p>
+            <div class="proj-tags">
+              <span class="proj-tag">Print</span>
+              <span class="proj-tag">Branding</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CASE STUDY (teaser card)
+    ============================================================ -->
+    <section class="bento-section" id="casestudy">
+      <div class="bento-label">Case Study</div>
+      <div class="case-study-card" onclick="openCaseStudy()">
+        <div class="case-study-card-left">
+          <div class="case-study-eyebrow">
+            UX Redesign · 2025 · SIDEARM Sports
+          </div>
+          <div class="case-study-title">
+            Redesigning <span>University Of Alberta Athletics</span> for a
+            Better Fan Experience
+          </div>
+          <div class="case-study-tags">
+            <span class="case-study-tag">UX Research</span>
+            <span class="case-study-tag">UI Design</span>
+            <span class="case-study-tag">Wireframing</span>
+            <span class="case-study-tag">Prototyping</span>
+          </div>
+        </div>
+        <div class="case-study-card-right">
+          <div class="case-study-cta">Read Case Study →</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         BRAND & PRINT WORK
+    ============================================================ -->
+    <section class="bento-section" id="print">
+      <div class="bento-label">Brand & Print Work</div>
+      <div class="print-scroll-row">
+        <div class="print-card" onclick="openPrintModal('print1')">
+          <img
+            src="img/brand_jerrys-concept.jpg"
+            alt="Brand Identity"
+            class="print-card-img"
+            onerror="
+              this.outerHTML =
+                '<div class=print-card-img-placeholder>Add image</div>'
+            "
+          />
+          <div class="print-card-hover">View project</div>
+          <div class="print-card-info">
+            <div class="print-card-title">Brand Identity</div>
+            <div class="print-card-type">Branding</div>
+          </div>
+        </div>
+
+        <div class="print-card" onclick="openPrintModal('print2')">
+          <img
+            src="img/editorial_petsupermarket.jpg"
+            alt="Editorial Design"
+            class="print-card-img"
+            onerror="
+              this.outerHTML =
+                '<div class=print-card-img-placeholder>Add image</div>'
+            "
+          />
+          <div class="print-card-hover">View project</div>
+          <div class="print-card-info">
+            <div class="print-card-title">Editorial Design</div>
+            <div class="print-card-type">Print</div>
+          </div>
+        </div>
+
+        <div class="print-card" onclick="openPrintModal('print3')">
+          <img
+            src="img/logo_vayuwellness.jpg"
+            alt="Logo Design"
+            class="print-card-img"
+            onerror="
+              this.outerHTML =
+                '<div class=print-card-img-placeholder>Add image</div>'
+            "
+          />
+          <div class="print-card-hover">View project</div>
+          <div class="print-card-info">
+            <div class="print-card-title">Logo Design</div>
+            <div class="print-card-type">Branding</div>
+          </div>
+        </div>
+
+        <div class="print-card" onclick="openPrintModal('print4')">
+          <img
+            src="img/campaign_petsupermarket_event.jpg"
+            alt="Campaign Design"
+            class="print-card-img"
+            onerror="
+              this.outerHTML =
+                '<div class=print-card-img-placeholder>Add image</div>'
+            "
+          />
+          <div class="print-card-hover">View project</div>
+          <div class="print-card-info">
+            <div class="print-card-title">Campaign Design</div>
+            <div class="print-card-type">Print</div>
+          </div>
+        </div>
+
+        <div class="print-card" onclick="openPrintModal('print5')">
+          <img
+            src="img/brand_2015-lakefest.jpg"
+            alt="Brand Collateral"
+            class="print-card-img"
+            onerror="
+              this.outerHTML =
+                '<div class=print-card-img-placeholder>Add image</div>'
+            "
+          />
+          <div class="print-card-hover">View project</div>
+          <div class="print-card-info">
+            <div class="print-card-title">Brand Collateral</div>
+            <div class="print-card-type">Branding</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SKILLS
+    ============================================================ -->
+    <section class="bento-section" id="skills">
+      <div class="bento-label">Skills & Tools</div>
+      <div class="bento-grid">
+        <div class="bento-card col-6 skills-card">
+          <h3>Design</h3>
+          <div class="skill-bar-row">
+            <div class="skill-bar-top">
+              <span>Adobe Creative Suite</span
+              ><span class="skill-pct">100%</span>
+            </div>
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill" style="width: 100%"></div>
+            </div>
+          </div>
+          <div class="skill-bar-row">
+            <div class="skill-bar-top">
+              <span>UI / UX Design</span><span class="skill-pct">95%</span>
+            </div>
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill" style="width: 95%"></div>
+            </div>
+          </div>
+          <div class="skill-bar-row">
+            <div class="skill-bar-top">
+              <span>Brand Identity</span><span class="skill-pct">90%</span>
+            </div>
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill" style="width: 90%"></div>
+            </div>
+          </div>
+          <div class="skill-bar-row">
+            <div class="skill-bar-top">
+              <span>Figma</span><span class="skill-pct">85%</span>
+            </div>
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill" style="width: 85%"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bento-card col-6 skills-card">
+          <h3>Development</h3>
+          <div class="skill-bar-row">
+            <div class="skill-bar-top">
+              <span>HTML / CSS</span><span class="skill-pct">85%</span>
+            </div>
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill orange" style="width: 85%"></div>
+            </div>
+          </div>
+          <div class="skill-bar-row">
+            <div class="skill-bar-top">
+              <span>HTML Email</span><span class="skill-pct">75%</span>
+            </div>
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill orange" style="width: 75%"></div>
+            </div>
+          </div>
+          <div class="skill-bar-row">
+            <div class="skill-bar-top">
+              <span>VS Code</span><span class="skill-pct">80%</span>
+            </div>
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill orange" style="width: 80%"></div>
+            </div>
+          </div>
+          <div class="skill-bar-row">
+            <div class="skill-bar-top">
+              <span>JavaScript</span><span class="skill-pct">25%</span>
+            </div>
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill orange" style="width: 25%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CONTACT
+    ============================================================ -->
+    <section id="contact">
+      <div
+        class="bento-label"
+        style="max-width: 1200px; margin: 0 auto; padding: 0 40px 24px"
+      >
+        Get In Touch
+      </div>
+      <div
+        class="contact-grid"
+        style="max-width: 1200px; margin: 0 auto; padding: 0 40px 120px"
+      >
+        <!-- Headshot + CTA -->
+        <div class="contact-headshot-row">
+          <div class="contact-headshot-card">
+            <img
+              src="img/_Head_Shot.jpg"
+              alt="John Masulonis"
+              class="headshot-img"
+              onerror="
+                this.outerHTML =
+                  '<div class=headshot-placeholder><div class=headshot-placeholder-icon>👤</div><span>Add headshot</span></div>'
+              "
+            />
+          </div>
+          <div class="contact-big">
+            <div>
+              <h2>Let's build something together.</h2>
+              <p>
+                Have a project in mind or just want to say hello? My inbox is
+                always open.
+              </p>
+              <a href="mailto:jmasulonis@mac.com" class="btn-dark"
+                >Send me an email →</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Social links -->
+        <div
+          class="contact-links-grid"
+          style="
+            grid-column: 1/-1;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+          "
+        >
+          <a href="img/John-Masulonis_Resume.pdf" class="contact-link-card">
+            <div class="link-card-left">
+              <span class="link-platform">Resume</span>
+              <span class="link-handle">Download PDF</span>
+            </div>
+            <span class="link-arrow">↗</span>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/johnmasulonis/"
+            class="contact-link-card"
+            target="_blank"
+          >
+            <div class="link-card-left">
+              <span class="link-platform">LinkedIn</span>
+              <span class="link-handle">linkedin.com/in/johnmasulonis</span>
+            </div>
+            <span class="link-arrow">↗</span>
+          </a>
+          <a
+            href="https://jmasulonis.github.io/john-masulonis-resume/index.html"
+            class="contact-link-card"
+            target="_blank"
+          >
+            <div class="link-card-left">
+              <span class="link-platform">Landing Page</span>
+              <span class="link-handle">github.com/johnmasulonis</span>
+            </div>
+            <span class="link-arrow">↗</span>
+          </a>
+          <a
+            href="https://dribbble.com/jmasulonis"
+            class="contact-link-card"
+            target="_blank"
+          >
+            <div class="link-card-left">
+              <span class="link-platform">Dribbble</span>
+              <span class="link-handle">dribbble.com/jmasulonis</span>
+            </div>
+            <span class="link-arrow">↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         FOOTER
+    ============================================================ -->
+    <footer>
+      <span>© 2026 John Masulonis</span>
+      <span>Designed & developed with care</span>
+    </footer>
+
+    <!-- ============================================================
+         JOB / PRINT MODAL (shared)
+    ============================================================ -->
+    <div
+      class="modal-overlay"
+      id="modalOverlay"
+      onclick="handleOverlayClick(event)"
+    >
+      <div class="modal" id="modal">
+        <button class="modal-close" onclick="closeModal()">✕</button>
+        <div id="modal-content"></div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         CASE STUDY — Fullscreen modal
+    ============================================================ -->
+    <div class="cs-modal-overlay" id="csModal">
+      <button class="cs-modal-close" onclick="closeCaseStudy()">✕</button>
+      <div class="cs-modal-inner">
+        <!-- Intro -->
+        <div class="cs-intro">
+          <div class="cs-hero">
+            <div>
+              <div class="case-study-eyebrow">
+                UX Redesign · 2025 · SIDEARM Sports
+              </div>
+              <img
+                src="img/alberta_case-study/imgi_2_main_logo.svg"
+                alt="University of Alberta Athletics"
+                style="
+                  height: 60px;
+                  width: auto;
+                  margin-bottom: 20px;
+                  display: block;
+                  opacity: 0.85;
+                "
+              />
+              <div class="case-study-title">
+                Redesigning <span>University Of Alberta Athletics</span> for a
+                Better Fan Experience
+              </div>
+            </div>
+            <div class="case-study-tags">
+              <span class="case-study-tag">UX Research</span>
+              <span class="case-study-tag">UI Design</span>
+              <span class="case-study-tag">Wireframing</span>
+              <span class="case-study-tag">Prototyping</span>
+            </div>
+          </div>
+          <div class="cs-meta">
+            <div class="cs-meta-card">
+              <div class="cs-meta-label">The Problem</div>
+              <div class="cs-meta-value">
+                The previous website for the University of Alberta Golden Bears
+                and Pandas made it difficult for fans, students, and recruits to
+                quickly access essential content like schedules, scores, and
+                team information — particularly on mobile.
+                <p>
+                  Its fragmented structure and inconsistent visual system
+                  created friction in navigation and weakened alignment with the
+                  broader university brand. As a result, users faced unnecessary
+                  barriers to engaging with athletics content in real time.
+                </p>
+              </div>
+            </div>
+            <div class="cs-meta-card">
+              <div class="cs-meta-label">My Role</div>
+              <div class="cs-meta-value">
+                Solo Designer
+                <p>
+                  Research, wireframing, UI design, and prototyping — end to
+                  end.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Process steps -->
+        <div class="cs-steps">
+          <div class="cs-step">
+            <div class="cs-step-num">01</div>
+            <div class="cs-step-title">Problem</div>
+            <div class="cs-step-body">
+              To identify core pain points, I worked with stakeholders from the
+              University of Alberta to define audience needs and project goals,
+              then benchmarked against leading collegiate programs like Alabama,
+              Georgia, and Ohio State. Combined with a focused audit of the
+              existing site, this revealed key gaps in navigation, content
+              hierarchy, and mobile usability.
+            </div>
+          </div>
+          <div class="cs-step">
+            <div class="cs-step-num">02</div>
+            <div class="cs-step-title">Research</div>
+            <div class="cs-step-body">
+              Research focused on how users access collegiate athletics content,
+              highlighting the importance of fast access to schedules, scores,
+              and team information — especially on mobile. These insights
+              reinforced the need to simplify navigation and prioritize
+              high-demand content.
+            </div>
+          </div>
+          <div class="cs-step">
+            <div class="cs-step-num">03</div>
+            <div class="cs-step-title">Wireframes</div>
+            <div class="cs-step-body">
+              Wireframes focused on restructuring the Golden Bears and Pandas
+              site around primary user goals, prioritizing quick access to
+              schedules, scores, and team information. I simplified navigation
+              and clarified content hierarchy to reduce friction across key user
+              flows, validating structure and usability before applying visual
+              design.
+            </div>
+          </div>
+          <div class="cs-step">
+            <div class="cs-step-num">04</div>
+            <div class="cs-step-title">Final Design</div>
+            <div class="cs-step-body">
+              The final design aligned with the university brand and streamlined
+              access to schedules, scores, and team pages. Key features included
+              a full-window slide-out menu, a scrolling schedule card module,
+              and an animated featured stories section — standardizing
+              hierarchy, reducing friction, and improving mobile usability.
+            </div>
+          </div>
+        </div>
+
+        <!-- Images -->
+        <div class="cs-images-top">
+          <div class="cs-img-card">
+            <img
+              src="img/alberta_case-study/color_type.jpg"
+              alt="Color & Type System"
+              class="cs-img"
+              onerror="
+                this.outerHTML =
+                  '<div class=cs-img-placeholder><span>Color & Type System</span></div>'
+              "
+            />
+          </div>
+          <div class="cs-img-card">
+            <img
+              src="img/alberta_case-study_wireframe.jpg"
+              alt="Wireframes"
+              class="cs-img"
+              onerror="
+                this.outerHTML =
+                  '<div class=cs-img-placeholder><span>Wireframes</span></div>'
+              "
+            />
+          </div>
+        </div>
+        <div class="cs-images-bottom">
+          <div class="cs-img-card">
+            <img
+              src="img/alberta_case-study_mockup2.jpg"
+              alt="Final Design"
+              class="cs-img"
+              onerror="
+                this.outerHTML =
+                  '<div class=cs-img-placeholder><span>Final Mockup</span></div>'
+              "
+            />
+          </div>
+        </div>
+
+        <!-- Outcome -->
+        <div class="cs-outcome">
+          <div class="outcome-stat">
+            <div class="cs-outcome-num">3</div>
+            <div class="cs-outcome-label">Core fan tasks simplified</div>
+          </div>
+          <div class="cs-outcome-divider"></div>
+          <div class="outcome-stat">
+            <div class="cs-outcome-num">Mobile</div>
+            <div class="cs-outcome-label">First design approach</div>
+          </div>
+          <div class="cs-outcome-divider"></div>
+          <div class="outcome-stat">
+            <div class="cs-outcome-num">1</div>
+            <div class="cs-outcome-label">Scalable component system</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         JAVASCRIPT
+    ============================================================ -->
+    <script>
+      // ============================================================
+      // DATA — Career jobs
+      // ============================================================
+      const jobs = {
+        job1: {
+          period: "2022 — 2026",
+          title: "Web Designer",
+          company: "Sidearm Sports",
+          type: "Remote Full-time",
+          image: "img/portfolio_img_sidearm-sports.png",
+          summary:
+            "As Web Designer for Sidearm Sports, I led the design of NCAA athletics platforms reaching millions of fans. I translated university brands into scalable web systems for 20+ varsity teams, collaborated with product, UX, and engineering to evolve design patterns and UI standards, and presented concepts to stakeholders to refine direction. I also ensured accessibility through thoughtful typography, contrast, and structured layouts.",
+          highlights: [
+            '<a href="https://suriverhawks.com/index.aspx" target="_blank">Susquehanna River Hawks</a>',
+            '<a href="https://bearsandpandas.ca/index.aspx" target="_blank">University Of Alberta Golden Bears & Pandas</a>',
+            '<a href="https://gswcanes.com" target="_blank">Augustana College</a>',
+            '<a href="https://gswcanes.com" target="_blank">Georgia Southwestern State University</a>',
+          ],
+          tags: ["UI Design", "Figma", "Design Systems", "Accessibility"],
+        },
+        job2: {
+          period: "2021 — 2022",
+          title: "Visual Designer",
+          company: "IBM",
+          type: "Full-time",
+          showHighlights: false,
+          image: "img/portfolio_img_IBM.png",
+          summary:
+            "As a Visual Designer on the in-house Blue Studio team, I collaborated in an agile environment to design consumer-facing web and product pages, crafting layouts with typography, illustration, iconography, and photography. I also contributed to the Carbon design system, UI toolkits, wireframes, and other design assets to ensure consistency and scalability across products.",
+          highlights: [
+            '<a href="https://jmasulonis.github.io/cisco-infographic/index.html" target="_blank">6 use cases for Cisco Secure Network Access</a>',
+            '<a href="https://jmasulonis.github.io/cisco-sdwan-160x600/index.html" target="_blank">HTML 5 Banners</a>',
+          ],
+          tags: ["Agile Environment", "Web Design", "Sketch"],
+        },
+        job3: {
+          period: "2020 — 2020",
+          title: "Digital Designer",
+          company: "Cisco",
+          type: "Full-time",
+          image: "img/portfolio_img_cisco.png",
+          summary:
+            "At Cisco Systems, I led the visual design of enterprise web pages in collaboration with information architecture, UX, and front-end development teams, ensuring usability and brand consistency at scale. I designed a range of digital assets — including HTML5 banners, icons, infographics, and social media visuals — to support both organic and paid campaigns across multiple platforms.",
+          highlights: [
+            '<a href="https://jmasulonis.github.io/cisco-infographic/index.html" target="_blank">6 use cases for Cisco Secure Network Access</a>',
+            '<a href="https://jmasulonis.github.io/cisco-sdwan-160x600/index.html" target="_blank">HTML 5 Banners</a>',
+          ],
+          tags: ["HTML 5 Banners", "HTML/CSS", "WordPress"],
+        },
+        job4: {
+          period: "2017 — 2018",
+          title: "Senior Designer",
+          company: "Trimark Digital",
+          type: "Full-time",
+          showHighlights: false,
+          image: "img/portfolio_img_trimark-digital.png",
+          summary:
+            "At Trimark as a Senior Designer, I led the conceptualization, management, and execution of a wide range of creative work to meet the strategic goals of clients including Golf Pride, Glass Depot, and Revels Turf and Tractor. I partnered with a cross-functional team of designers and strategists to deliver high-quality, on-brand solutions across digital and marketing channels.",
+          highlights: [
+            "Contributed to brand identity projects for 4 clients",
+            "Prepared production-ready print files and managed relationships with print vendors",
+            "Assisted senior designers on pitch decks and client presentations",
+          ],
+          tags: ["Print", "Branding", "Identity", "Adobe Suite"],
+        },
+      };
+
+      // ============================================================
+      // DATA — Print / brand work
+      // ============================================================
+      const printWorks = {
+        print1: {
+          title: "Brand Identity",
+          type: "Branding",
+          images: [
+            "img/brand_jerrys-concept.jpg",
+            "img/brand_jerrys-concept_guidlines.png",
+          ],
+          description:
+            "I led the development and pitch of Jerry's Art Supplies' identity, centering it on a bold system of colorful paint strokes that reflect the energy and tactile nature of making art. Moving beyond a static logo, I positioned the strokes as a flexible visual language that could scale across packaging, print, and digital touchpoints while maintaining consistency.",
+          tags: ["Logo Design", "Brand Identity", "Typography"],
+        },
+        print2: {
+          title: "Editorial Design",
+          type: "Print",
+          images: [
+            "img/editorial_petsupermarket.jpg",
+            "img/editorial_petsupermarket-2.jpg",
+            "img/editorial_hollysprings_hurrahs.jpg",
+            "img/editorial_jerrys-artarama-sales.jpg",
+            "img/editorial_jerrys-artarama-bigbook.jpg",
+          ],
+          description:
+            "I've developed a range of editorial design work spanning retail catalogs, store circulars, and informational publications, including magazine-style pieces for a city Parks and Recreation department. I focused on organizing dense content into clear, engaging layouts that guide readers through schedules, programs, and product offerings with ease.",
+          tags: ["Print", "Layout", "Editorial"],
+        },
+        print3: {
+          title: "Logo Design",
+          type: "Branding",
+          images: [
+            "img/logo_vayuwellness.jpg",
+            "img/logo_jerrys.jpg",
+            "img/logo_various-concepts.jpg",
+          ],
+          description:
+            "I've led the development of logo and identity concepts across a range of projects, guiding each from initial exploration through final execution. My approach focuses on distilling complex ideas into simple, memorable marks that are both distinctive and functional across a variety of applications.",
+          tags: ["Logo", "Branding", "Identity"],
+        },
+        print4: {
+          title: "Campaign Design",
+          type: "Print",
+          images: [
+            "img/campaign_hollysprings_hollyfest.jpg",
+            "img/campaign_petsupermarket_event.jpg",
+            "img/campaign_hayword-allen_billboard.jpg",
+          ],
+          description:
+            "I led the concept and execution of a range of campaign and out-of-home work, including retail sales events, festival posters, and automotive dealership billboards. Each project focused on distilling messaging down to its most impactful form — balancing bold visuals with clear hierarchy to communicate quickly and effectively across large-scale formats.",
+          tags: ["Campaign", "Print", "OOH"],
+        },
+        print5: {
+          title: "Brand Collateral",
+          type: "Branding",
+          images: [
+            "img/brand_2015-lakefest.jpg",
+            "img/brand_2015-lakefest_lamp-post.jpg",
+            "img/brand_2015-lakefest_poster.jpg",
+            "img/brand_2015-lakefest_badges.jpg",
+          ],
+          description:
+            "Set in Clarksville — Virginia's only lakeside town on the shores of Kerr Lake — this branding collateral concept was created for the town's annual Lakefest, recognized by the Southeast Tourism Society as one of the Top 20 events in the region.",
+          tags: ["Print", "Branding", "Collateral"],
+        },
+      };
+
+      // ============================================================
+      // JOB MODAL
+      // ============================================================
+      function openModal(id) {
+        const job = jobs[id];
+        if (!job) return;
+
+        const imgHtml = job.image
+          ? `<img src="${job.image}" alt="${job.company}" class="modal-img" onerror="this.outerHTML='<div class=modal-img-placeholder>Image not found</div>'">`
+          : `<div class="modal-img-placeholder">No image</div>`;
+
+        const highlightsHtml =
+          job.showHighlights === false
+            ? ""
+            : `
+          <div class="modal-section-label">Key highlights</div>
+          <ul class="modal-highlights">
+            ${job.highlights.map((h) => `<li>${h}</li>`).join("")}
+          </ul>`;
+
+        document.getElementById("modal-content").innerHTML = `
+          ${imgHtml}
+          <div class="modal-eyebrow">${job.period} · ${job.type}</div>
+          <div class="modal-title">${job.title}</div>
+          <div class="modal-company">${job.company}</div>
+          <div class="modal-divider"></div>
+          <div class="modal-section-label">Overview</div>
+          <div class="modal-body">${job.summary}</div>
+          ${highlightsHtml}
+          <div class="modal-section-label">Skills & tools</div>
+          <div class="modal-tags">
+            ${job.tags.map((t) => `<span class="proj-tag">${t}</span>`).join("")}
+          </div>`;
+
+        // Fade image in once loaded
+        const img = document.querySelector("#modal-content .modal-img");
+        if (img) {
+          img.style.opacity = "0";
+          img.style.transition = "opacity 0.3s ease";
+          img.onload = () => (img.style.opacity = "1");
+          if (img.complete) img.style.opacity = "1";
+        }
+
+        document.getElementById("modalOverlay").classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeModal() {
+        document.getElementById("modalOverlay").classList.remove("open");
+        document.body.style.overflow = "";
+        document.querySelector(".modal").style.maxWidth = "640px";
+      }
+
+      function handleOverlayClick(e) {
+        if (e.target === document.getElementById("modalOverlay")) closeModal();
+      }
+
+      // ============================================================
+      // PRINT MODAL
+      // ============================================================
+      function openPrintModal(id) {
+        const work = printWorks[id];
+        if (!work) return;
+
+        const images = work.images || [];
+
+        const slidesHtml = images
+          .map(
+            (src) => `
+          <div class="slider-slide">
+            <img src="${src}" alt="${work.title}" onerror="this.style.display='none'">
+          </div>`,
+          )
+          .join("");
+
+        const dotsHtml =
+          images.length > 1
+            ? `
+          <div class="slider-dots">
+            ${images.map((_, i) => `<div class="slider-dot ${i === 0 ? "active" : ""}" onclick="goToSlide(${i})"></div>`).join("")}
+          </div>`
+            : "";
+
+        const arrowsHtml =
+          images.length > 1
+            ? `
+          <button class="slider-arrow prev hidden" id="sliderPrev" onclick="slideMove(-1)">‹</button>
+          <button class="slider-arrow next" id="sliderNext" onclick="slideMove(1)">›</button>`
+            : "";
+
+        document.getElementById("modal-content").innerHTML = `
+          <div class="slider" id="sliderContainer">
+            <div class="slider-track" id="sliderTrack">${slidesHtml}</div>
+            ${arrowsHtml}
+          </div>
+          ${dotsHtml}
+          <div class="modal-eyebrow">${work.type}</div>
+          <div class="modal-title">${work.title}</div>
+          <div class="modal-divider"></div>
+          <div class="modal-section-label">About this piece</div>
+          <div class="modal-body">${work.description}</div>
+          <div class="modal-section-label">Tags</div>
+          <div class="modal-tags">
+            ${work.tags.map((t) => `<span class="proj-tag">${t}</span>`).join("")}
+          </div>`;
+
+        window._sliderCurrent = 0;
+        window._sliderTotal = images.length;
+
+        // Touch swipe support
+        const slider = document.getElementById("sliderContainer");
+        let touchStartX = 0;
+        slider.addEventListener(
+          "touchstart",
+          (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+          },
+          { passive: true },
+        );
+        slider.addEventListener(
+          "touchend",
+          (e) => {
+            const diff = touchStartX - e.changedTouches[0].screenX;
+            if (Math.abs(diff) > 40) slideMove(diff > 0 ? 1 : -1);
+          },
+          { passive: true },
+        );
+
+        document.getElementById("modalOverlay").classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+
+      function slideMove(dir) {
+        let current = Math.max(
+          0,
+          Math.min(window._sliderCurrent + dir, window._sliderTotal - 1),
+        );
+        goToSlide(current);
+      }
+
+      function goToSlide(index) {
+        window._sliderCurrent = index;
+        const track = document.getElementById("sliderTrack");
+        if (track) track.style.transform = `translateX(-${index * 100}%)`;
+        const prev = document.getElementById("sliderPrev");
+        const next = document.getElementById("sliderNext");
+        if (prev) prev.classList.toggle("hidden", index === 0);
+        if (next)
+          next.classList.toggle("hidden", index === window._sliderTotal - 1);
+        document
+          .querySelectorAll(".slider-dot")
+          .forEach((dot, i) => dot.classList.toggle("active", i === index));
+      }
+
+      // ============================================================
+      // CASE STUDY MODAL
+      // ============================================================
+      function openCaseStudy() {
+        document.getElementById("csModal").classList.add("open");
+        document.body.style.overflow = "hidden";
+
+        // Wire up image zoom clicks
+        document.querySelectorAll(".cs-img").forEach((img) => {
+          img.style.cursor = "zoom-in";
+          img.addEventListener("click", function () {
+            document.getElementById("modal-content").innerHTML =
+              `<img src="${this.src}" alt="${this.alt}" style="width:100%; border-radius:12px; display:block;">`;
+            document.querySelector(".modal").style.maxWidth = "1000px";
+            document.getElementById("modalOverlay").classList.add("open");
+          });
+        });
+      }
+
+      function closeCaseStudy() {
+        document.getElementById("csModal").classList.remove("open");
+        document.body.style.overflow = "";
+      }
+
+      // ============================================================
+      // NAVIGATION
+      // ============================================================
+      function toggleNav() {
+        const nav = document.getElementById("navLinks");
+        const burger = document.getElementById("navHamburger");
+        nav.classList.toggle("open");
+        burger.classList.toggle("open");
+        document.body.style.overflow = nav.classList.contains("open")
+          ? "hidden"
+          : "";
+      }
+
+      // ============================================================
+      // EVENT LISTENERS — run after DOM is ready
+      // ============================================================
+      document.addEventListener("DOMContentLoaded", function () {
+        // Close small modal on overlay click
+        document
+          .getElementById("modalOverlay")
+          .addEventListener("click", function (e) {
+            if (e.target === this) closeModal();
+          });
+
+        // Close case study on overlay click
+        document
+          .getElementById("csModal")
+          .addEventListener("click", function (e) {
+            if (e.target === this) closeCaseStudy();
+          });
+
+        // Escape key closes everything
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") {
+            closeModal();
+            closeCaseStudy();
+            if (document.getElementById("navLinks").classList.contains("open"))
+              toggleNav();
+          }
+        });
+
+        // Close mobile nav when a link is clicked
+        document.querySelectorAll("#navLinks a").forEach((link) => {
+          link.addEventListener("click", function () {
+            document.getElementById("navLinks").classList.remove("open");
+            document.getElementById("navHamburger").classList.remove("open");
+            document.body.style.overflow = "";
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
