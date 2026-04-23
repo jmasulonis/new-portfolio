@@ -674,6 +674,59 @@
         color: var(--muted);
       }
 
+      /* Work samples collapsible */
+      .work-samples-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 12px 16px;
+        cursor: pointer;
+        font-family: var(--display);
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-top: 24px;
+        transition:
+          border-color 0.2s,
+          color 0.2s;
+      }
+      .work-samples-toggle:hover {
+        border-color: var(--primary);
+        color: var(--text);
+      }
+      .work-samples-toggle-icon {
+        transition: transform 0.25s;
+        font-size: 16px;
+      }
+      .work-samples-toggle.open .work-samples-toggle-icon {
+        transform: rotate(45deg);
+      }
+      .work-samples-grid {
+        display: none;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        margin-top: 8px;
+      }
+      .work-samples-grid.open {
+        display: grid;
+      }
+      .work-samples-grid img {
+        width: 100%;
+        aspect-ratio: 4/3;
+        object-fit: cover;
+        border-radius: 8px;
+        transition: opacity 0.2s;
+      }
+      .work-samples-grid img:hover {
+        opacity: 0.85;
+      }
+
       /* ============================================================
          CASE STUDY CARD (teaser)
       ============================================================ */
@@ -2567,12 +2620,13 @@
           type: "Full-time",
           showHighlights: false,
           image: "img/portfolio_img_IBM.png",
+          workSamples: [
+            "img/ibm_leadspace.png",
+            "img/ibm_product-page.jpg",
+            "img/ibm_sample3.jpg",
+          ],
           summary:
             "As a Visual Designer on the in-house Blue Studio team, I collaborated in an agile environment to design consumer-facing web and product pages, crafting layouts with typography, illustration, iconography, and photography. I also contributed to the Carbon design system, UI toolkits, wireframes, and other design assets to ensure consistency and scalability across products.",
-          highlights: [
-            '<a href="https://jmasulonis.github.io/cisco-infographic/index.html" target="_blank">6 use cases for Cisco Secure Network Access</a>',
-            '<a href="https://jmasulonis.github.io/cisco-sdwan-160x600/index.html" target="_blank">HTML 5 Banners</a>',
-          ],
           tags: ["Agile Environment", "Web Design", "Sketch"],
         },
         job3: {
@@ -2690,24 +2744,45 @@
           job.showHighlights === false
             ? ""
             : `
-          <div class="modal-section-label">Key highlights</div>
-          <ul class="modal-highlights">
-            ${job.highlights.map((h) => `<li>${h}</li>`).join("")}
-          </ul>`;
+    <div class="modal-section-label">Key highlights</div>
+    <ul class="modal-highlights">
+      ${job.highlights.map((h) => `<li>${h}</li>`).join("")}
+    </ul>`;
+
+        const workSamplesHtml =
+          job.workSamples && job.workSamples.length
+            ? `
+    <button class="work-samples-toggle" onclick="toggleWorkSamples(this)">
+      View Work Samples
+      <span class="work-samples-toggle-icon">+</span>
+    </button>
+    <div class="work-samples-grid">
+      ${job.workSamples
+        .map(
+          (src) => `
+        <img src="${src}" alt="Work sample" onerror="this.style.display='none'"
+          >
+      `,
+        )
+        .join("")}
+    </div>`
+            : "";
 
         document.getElementById("modal-content").innerHTML = `
-          ${imgHtml}
-          <div class="modal-eyebrow">${job.period} · ${job.type}</div>
-          <div class="modal-title">${job.title}</div>
-          <div class="modal-company">${job.company}</div>
-          <div class="modal-divider"></div>
-          <div class="modal-section-label">Overview</div>
-          <div class="modal-body">${job.summary}</div>
-          ${highlightsHtml}
-          <div class="modal-section-label">Skills & tools</div>
-          <div class="modal-tags">
-            ${job.tags.map((t) => `<span class="proj-tag">${t}</span>`).join("")}
-          </div>`;
+    ${imgHtml}
+    <div class="modal-eyebrow">${job.period} · ${job.type}</div>
+    <div class="modal-title">${job.title}</div>
+    <div class="modal-company">${job.company}</div>
+    <div class="modal-divider"></div>
+    <div class="modal-section-label">Overview</div>
+    <div class="modal-body">${job.summary}</div>
+    ${highlightsHtml}
+    <div class="modal-section-label">Skills & tools</div>
+    <div class="modal-tags">
+      ${job.tags.map((t) => `<span class="proj-tag">${t}</span>`).join("")}
+    </div>
+    ${workSamplesHtml}
+  `;
 
         // Fade image in once loaded
         const img = document.querySelector("#modal-content .modal-img");
@@ -2744,42 +2819,42 @@
         const slidesHtml = images
           .map(
             (src) => `
-          <div class="slider-slide">
-            <img src="${src}" alt="${work.title}" onerror="this.style.display='none'">
-          </div>`,
+                      <div class="slider-slide">
+                        <img src="${src}" alt="${work.title}" onerror="this.style.display='none'">
+                      </div>`,
           )
           .join("");
 
         const dotsHtml =
           images.length > 1
             ? `
-          <div class="slider-dots">
-            ${images.map((_, i) => `<div class="slider-dot ${i === 0 ? "active" : ""}" onclick="goToSlide(${i})"></div>`).join("")}
-          </div>`
+                      <div class="slider-dots">
+                        ${images.map((_, i) => `<div class="slider-dot ${i === 0 ? "active" : ""}" onclick="goToSlide(${i})"></div>`).join("")}
+                      </div>`
             : "";
 
         const arrowsHtml =
           images.length > 1
             ? `
-          <button class="slider-arrow prev hidden" id="sliderPrev" onclick="slideMove(-1)">‹</button>
-          <button class="slider-arrow next" id="sliderNext" onclick="slideMove(1)">›</button>`
+                      <button class="slider-arrow prev hidden" id="sliderPrev" onclick="slideMove(-1)">‹</button>
+                      <button class="slider-arrow next" id="sliderNext" onclick="slideMove(1)">›</button>`
             : "";
 
         document.getElementById("modal-content").innerHTML = `
-          <div class="slider" id="sliderContainer">
-            <div class="slider-track" id="sliderTrack">${slidesHtml}</div>
-            ${arrowsHtml}
-          </div>
-          ${dotsHtml}
-          <div class="modal-eyebrow">${work.type}</div>
-          <div class="modal-title">${work.title}</div>
-          <div class="modal-divider"></div>
-          <div class="modal-section-label">About this piece</div>
-          <div class="modal-body">${work.description}</div>
-          <div class="modal-section-label">Tags</div>
-          <div class="modal-tags">
-            ${work.tags.map((t) => `<span class="proj-tag">${t}</span>`).join("")}
-          </div>`;
+                      <div class="slider" id="sliderContainer">
+                        <div class="slider-track" id="sliderTrack">${slidesHtml}</div>
+                        ${arrowsHtml}
+                      </div>
+                      ${dotsHtml}
+                      <div class="modal-eyebrow">${work.type}</div>
+                      <div class="modal-title">${work.title}</div>
+                      <div class="modal-divider"></div>
+                      <div class="modal-section-label">About this piece</div>
+                      <div class="modal-body">${work.description}</div>
+                      <div class="modal-section-label">Tags</div>
+                      <div class="modal-tags">
+                        ${work.tags.map((t) => `<span class="proj-tag">${t}</span>`).join("")}
+                      </div>`;
 
         window._sliderCurrent = 0;
         window._sliderTotal = images.length;
@@ -2903,6 +2978,17 @@
           });
         });
       });
+      function toggleWorkSamples(btn) {
+        btn.classList.toggle("open");
+        btn.nextElementSibling.classList.toggle("open");
+      }
+
+      function zoomWorkSample(src) {
+        document.getElementById("modal-content").innerHTML =
+          `<img src="${src}" style="width:100%; border-radius:12px; display:block;">`;
+        document.querySelector(".modal").style.maxWidth = "1000px";
+        document.getElementById("modalOverlay").classList.add("open");
+      }
     </script>
   </body>
 </html>
