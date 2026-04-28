@@ -1211,7 +1211,194 @@
         letter-spacing: 0.06em;
         text-transform: uppercase;
       }
+      /* ============================================================
+   EMAIL WORK
+============================================================ */
+      .email-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
 
+      .email-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        overflow: hidden;
+        transition:
+          border-color 0.25s,
+          transform 0.25s;
+      }
+
+      .email-card:hover {
+        border-color: rgba(52, 127, 111, 0.4);
+        transform: translateY(-2px);
+      }
+
+      .email-iframe-wrap {
+        position: relative;
+        width: 100%;
+        height: 420px;
+        overflow: hidden;
+        background: #ffffff;
+      }
+
+      .email-iframe-wrap iframe {
+        width: 182%;
+        height: 182%;
+        border: none;
+        transform: scale(0.55);
+        transform-origin: top left;
+        pointer-events: none;
+      }
+
+      .email-iframe-overlay {
+        position: absolute;
+        inset: 0;
+        cursor: pointer;
+        z-index: 2;
+        transition: background 0.2s;
+      }
+
+      .email-iframe-overlay:hover {
+        background: rgba(52, 127, 111, 0.15);
+      }
+
+      .email-iframe-overlay::after {
+        content: "View Email";
+        position: absolute;
+        bottom: 16px;
+        left: 50%;
+        transform: translateX(-50%) translateY(8px);
+        background: var(--primary);
+        color: white;
+        font-family: var(--display);
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        padding: 8px 16px;
+        border-radius: 6px;
+        opacity: 0;
+        transition:
+          opacity 0.2s,
+          transform 0.2s;
+        white-space: nowrap;
+      }
+
+      .email-iframe-overlay:hover::after {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+
+      .email-card-info {
+        padding: 16px 20px;
+        border-top: 1px solid var(--border);
+      }
+
+      .email-card-title {
+        font-family: var(--display);
+        font-size: 15px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        margin-bottom: 4px;
+      }
+
+      .email-card-type {
+        font-size: 11px;
+        color: var(--secondary);
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      /* Email fullscreen modal */
+      .email-modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(8px);
+        z-index: 800;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s ease;
+      }
+
+      .email-modal-overlay.open {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .email-modal {
+        background: #ffffff;
+        border-radius: 16px;
+        width: 100%;
+        max-width: 640px;
+        max-height: 90vh;
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .email-modal-header {
+        background: var(--surface);
+        padding: 16px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid var(--border);
+        flex-shrink: 0;
+      }
+
+      .email-modal-title {
+        font-family: var(--display);
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text);
+      }
+
+      .email-modal-close {
+        width: 32px;
+        height: 32px;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--muted);
+        font-size: 16px;
+        transition:
+          color 0.2s,
+          border-color 0.2s;
+      }
+
+      .email-modal-close:hover {
+        color: var(--text);
+        border-color: var(--primary);
+      }
+
+      .email-modal iframe {
+        width: 100%;
+        flex: 1;
+        border: none;
+        min-height: 600px;
+      }
+      @media (max-width: 900px) {
+        .email-grid {
+          grid-template-columns: 1fr;
+        }
+        .email-iframe-wrap iframe {
+          width: 480px;
+          transform: scale(0.65);
+        }
+      }
       /* ============================================================
          IMAGE SLIDER (used in print modal)
       ============================================================ */
@@ -1910,6 +2097,7 @@
         <button class="nav-menu-close" onclick="toggleNav()">✕</button>
         <a href="#work">Work</a>
         <a href="#casestudy">Case Study</a>
+        <a href="#email">Email</a>
         <a href="#print">Print</a>
         <a href="#skills">Skills</a>
         <a href="#contact" class="nav-cta">Get in touch</a>
@@ -2116,7 +2304,86 @@
         </div>
       </div>
     </section>
+    <!-- ============================================================
+     EMAIL WORK
+    ============================================================ -->
+    <section class="bento-section" id="email">
+      <div class="bento-label">Email Design</div>
+      <div class="email-grid">
+        <div class="email-card">
+          <div class="email-iframe-wrap">
+            <iframe
+              src="https://jmasulonis.github.io/globalgolf/"
+              scrolling="no"
+              title="Global Golf Email"
+            ></iframe>
+            <div
+              class="email-iframe-overlay"
+              onclick="
+                openEmailModal(
+                  'https://jmasulonis.github.io/globalgolf/',
+                  'Mint Golf Campaign',
+                )
+              "
+            ></div>
+          </div>
+          <div class="email-card-info">
+            <div class="email-card-title">Christmas Golf Club Sale</div>
+            <div class="email-card-type">Promotional Email</div>
+          </div>
+        </div>
 
+        <div class="email-card">
+          <div class="email-iframe-wrap">
+            <iframe
+              src="https://jmasulonis.github.io/advance-auto/ECOMM-9850-Jan-W2-DIY-2.html"
+              scrolling="no"
+              title="Advance Auto Parts Email"
+            ></iframe>
+            <div
+              class="email-iframe-overlay"
+              onclick="
+                openEmailModal(
+                  'https://jmasulonis.github.io/advance-auto/ECOMM-9850-Jan-W2-DIY-2.html',
+                  'Advance Auto Parts Email',
+                )
+              "
+            ></div>
+          </div>
+          <div class="email-card-info">
+            <div class="email-card-title">
+              Advance Auto Parts Loyalty Program Email
+            </div>
+            <div class="email-card-type">Promotional Email</div>
+          </div>
+        </div>
+
+        <div class="email-card">
+          <div class="email-iframe-wrap">
+            <iframe
+              src="https://jmasulonis.github.io/savile-row-company/"
+              scrolling="no"
+              title="Savile Row Company Email"
+            ></iframe>
+            <div
+              class="email-iframe-overlay"
+              onclick="
+                openEmailModal(
+                  'https://jmasulonis.github.io/savile-row-company/',
+                  'Savile Row Company Email',
+                )
+              "
+            ></div>
+          </div>
+          <div class="email-card-info">
+            <div class="email-card-title">
+              Savile Row Company Cyber Monday Email
+            </div>
+            <div class="email-card-type">Promotional Email</div>
+          </div>
+        </div>
+      </div>
+    </section>
     <!-- ============================================================
          BRAND & PRINT WORK
     ============================================================ -->
@@ -2959,11 +3226,19 @@
             if (e.target === this) closeCaseStudy();
           });
 
+        // Close email modal on overlay click
+        document
+          .getElementById("emailModal")
+          .addEventListener("click", function (e) {
+            if (e.target === this) closeEmailModal();
+          });
+
         // Escape key closes everything
         document.addEventListener("keydown", function (e) {
           if (e.key === "Escape") {
             closeModal();
             closeCaseStudy();
+            closeEmailModal();
             if (document.getElementById("navLinks").classList.contains("open"))
               toggleNav();
           }
@@ -2989,6 +3264,33 @@
         document.querySelector(".modal").style.maxWidth = "1000px";
         document.getElementById("modalOverlay").classList.add("open");
       }
+      // ============================================================
+      // EMAIL MODAL
+      // ============================================================
+      function openEmailModal(src, title) {
+        document.getElementById("emailModalFrame").src = src;
+        document.getElementById("emailModalTitle").textContent = title;
+        document.getElementById("emailModal").classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeEmailModal() {
+        document.getElementById("emailModal").classList.remove("open");
+        document.getElementById("emailModalFrame").src = "";
+        document.body.style.overflow = "";
+      }
     </script>
+    <!-- Email Modal -->
+    <div class="email-modal-overlay" id="emailModal">
+      <div class="email-modal">
+        <div class="email-modal-header">
+          <span class="email-modal-title" id="emailModalTitle"></span>
+          <button class="email-modal-close" onclick="closeEmailModal()">
+            ✕
+          </button>
+        </div>
+        <iframe id="emailModalFrame" src="" title="Email preview"></iframe>
+      </div>
+    </div>
   </body>
 </html>
