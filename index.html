@@ -86,15 +86,13 @@
       section {
         scroll-margin-top: 90px;
       }
-      nav,
-      .hero-content,
-      #contact,
-      footer,
       #hero {
-        max-width: 100%;
-        overflow-x: hidden;
+        overflow: hidden;
       }
 
+      .hero-content {
+        overflow: hidden;
+      }
       /* ============================================================
          ANIMATIONS
       ============================================================ */
@@ -1861,6 +1859,11 @@
       .contact-link-card:hover .link-arrow {
         color: var(--primary);
         transform: translate(2px, -2px);
+      }
+
+      #print,
+      #email {
+        overflow: visible;
       }
 
       /* ============================================================
