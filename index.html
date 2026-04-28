@@ -81,11 +81,19 @@
         font-weight: 400;
         line-height: 1.6;
         min-height: 100vh;
-        overflow-x: clip;
       }
 
       section {
         scroll-margin-top: 90px;
+      }
+      nav,
+      .hero-content,
+      .bento-section,
+      #contact,
+      footer,
+      #hero {
+        max-width: 100%;
+        overflow-x: hidden;
       }
 
       /* ============================================================
@@ -1391,7 +1399,22 @@
       }
       @media (max-width: 900px) {
         .email-grid {
-          grid-template-columns: 1fr;
+          display: flex;
+          overflow-x: auto;
+          scroll-snap-type: x mandatory;
+          -webkit-overflow-scrolling: touch;
+          gap: 12px;
+          padding-bottom: 16px;
+          scrollbar-width: none;
+        }
+        .email-grid::-webkit-scrollbar {
+          display: none;
+        }
+        .email-card {
+          min-width: 80vw;
+          max-width: 80vw;
+          flex-shrink: 0;
+          scroll-snap-align: start;
         }
         .email-iframe-wrap iframe {
           width: 250%;
