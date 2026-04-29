@@ -1394,32 +1394,6 @@
         border: none;
         min-height: 600px;
       }
-      @media (max-width: 900px) {
-        .email-grid {
-          display: flex;
-          overflow-x: auto;
-          scroll-snap-type: x mandatory;
-          -webkit-overflow-scrolling: touch;
-          gap: 12px;
-          padding-bottom: 16px;
-          scrollbar-width: none;
-        }
-        .email-grid::-webkit-scrollbar {
-          display: none;
-        }
-        .email-card {
-          min-width: 80vw;
-          max-width: 80vw;
-          flex-shrink: 0;
-          scroll-snap-align: start;
-        }
-        .email-iframe-wrap iframe {
-          width: 250%;
-          height: 250%;
-          transform: scale(0.4);
-          transform-origin: top left;
-        }
-      }
       /* ============================================================
          IMAGE SLIDER (used in print modal)
       ============================================================ */
@@ -2076,6 +2050,36 @@
         /* Modal */
         .modal {
           padding: 24px;
+        }
+        .email-grid {
+          display: flex;
+          overflow-x: auto;
+          scroll-snap-type: x mandatory;
+          -webkit-overflow-scrolling: touch;
+          gap: 12px;
+          padding-bottom: 16px;
+          scrollbar-width: none;
+        }
+        .email-grid::-webkit-scrollbar {
+          display: none;
+        }
+        .email-card {
+          min-width: 80vw;
+          max-width: 80vw;
+          flex-shrink: 0;
+          scroll-snap-align: start;
+        }
+        .email-iframe-wrap iframe {
+          width: 250%;
+          height: 250%;
+          transform: scale(0.4);
+          transform-origin: top left;
+        }
+        #print,
+        #email {
+          overflow: visible !important;
+          padding-left: 20px;
+          padding-right: 0;
         }
       }
 
