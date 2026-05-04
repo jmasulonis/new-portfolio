@@ -1107,6 +1107,7 @@
         display: grid;
         grid-template-columns: repeat(5, 1fr);
         gap: 12px;
+        width: 100%;
       }
 
       .print-card {
@@ -2136,8 +2137,7 @@
         <button class="nav-menu-close" onclick="toggleNav()">✕</button>
         <a href="#work">Recent Career</a>
         <a href="#casestudy">Case Study</a>
-        <a href="#email">Email</a>
-        <a href="#print">Print</a>
+        <a href="#print">Craft and Capabilities</a>
         <a href="#skills">Skills</a>
         <a href="#contact" class="nav-cta">Get in touch</a>
       </div>
@@ -2316,7 +2316,6 @@
         </div>
       </div>
     </section>
-
     <!-- ============================================================
          CASE STUDY (teaser card)
     ============================================================ -->
@@ -2327,9 +2326,31 @@
           <div class="case-study-eyebrow">
             UX/UI Redesign · 2025 · SIDEARM Sports
           </div>
-          <div class="case-study-title">
-            Redesigning <span>University Of Alberta Athletics</span> for a
-            Better Fan Experience
+          <div
+            style="
+              display: grid;
+              grid-template-columns: auto 1fr;
+              gap: 20px;
+              align-items: center;
+              margin-bottom: 24px;
+            "
+          >
+            <img
+              src="img/logo_main.svg"
+              alt="University of Alberta Athletics"
+              style="
+                height: 56px;
+                width: auto;
+                display: block;
+                opacity: 0.85;
+                flex-shrink: 0;
+              "
+              onerror="this.style.display = 'none'"
+            />
+            <div class="case-study-title" style="margin-bottom: 0">
+              Redesigning <span>University Of Alberta Athletics</span> for a
+              Better Fan Experience
+            </div>
           </div>
           <div class="case-study-tags">
             <span class="case-study-tag">UX Research</span>
@@ -2344,173 +2365,184 @@
       </div>
     </section>
     <!-- ============================================================
-     EMAIL WORK
-    ============================================================ -->
-    <section class="bento-section" id="email">
-      <div class="bento-label">Email Design</div>
-      <div class="email-grid">
-        <div class="email-card">
-          <div class="email-iframe-wrap">
-            <iframe
-              src="https://jmasulonis.github.io/globalgolf/"
-              scrolling="no"
-              title="Global Golf Email"
-            ></iframe>
-            <div
-              class="email-iframe-overlay"
-              onclick="
-                openEmailModal(
-                  'https://jmasulonis.github.io/globalgolf/',
-                  'Mint Golf Campaign',
-                )
-              "
-            ></div>
-          </div>
-          <div class="email-card-info">
-            <div class="email-card-title">Christmas Golf Club Sale</div>
-            <div class="email-card-type">Promotional Email</div>
-          </div>
-        </div>
-
-        <div class="email-card">
-          <div class="email-iframe-wrap">
-            <iframe
-              src="https://jmasulonis.github.io/advance-auto/ECOMM-9850-Jan-W2-DIY-2.html"
-              scrolling="no"
-              title="Advance Auto Parts Email"
-            ></iframe>
-            <div
-              class="email-iframe-overlay"
-              onclick="
-                openEmailModal(
-                  'https://jmasulonis.github.io/advance-auto/ECOMM-9850-Jan-W2-DIY-2.html',
-                  'Advance Auto Parts Email',
-                )
-              "
-            ></div>
-          </div>
-          <div class="email-card-info">
-            <div class="email-card-title">
-              Advance Auto Parts Loyalty Program Email
-            </div>
-            <div class="email-card-type">Promotional Email</div>
-          </div>
-        </div>
-
-        <div class="email-card">
-          <div class="email-iframe-wrap">
-            <iframe
-              src="https://jmasulonis.github.io/savile-row-company/"
-              scrolling="no"
-              title="Savile Row Company Email"
-            ></iframe>
-            <div
-              class="email-iframe-overlay"
-              onclick="
-                openEmailModal(
-                  'https://jmasulonis.github.io/savile-row-company/',
-                  'Savile Row Company Email',
-                )
-              "
-            ></div>
-          </div>
-          <div class="email-card-info">
-            <div class="email-card-title">
-              Savile Row Company Cyber Monday Email
-            </div>
-            <div class="email-card-type">Promotional Email</div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- ============================================================
          BRAND & PRINT WORK
     ============================================================ -->
     <section class="bento-section" id="print">
-      <div class="bento-label">Brand & Print Work</div>
-      <div class="print-scroll-row">
-        <div class="print-card" onclick="openPrintModal('print1')">
-          <img
-            src="img/brand_jerrys-concept.jpg"
-            alt="Brand Identity"
-            class="print-card-img"
-            onerror="
-              this.outerHTML =
-                '<div class=print-card-img-placeholder>Add image</div>'
-            "
-          />
-          <div class="print-card-hover">View project</div>
-          <div class="print-card-info">
-            <div class="print-card-type">Branding</div>
-            <div class="print-card-title">Brand Identity</div>
+      <div class="bento-label">Craft & Capabilities</div>
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <div class="print-scroll-row">
+          <div class="print-card" onclick="openPrintModal('print1')">
+            <img
+              src="img/brand_jerrys-concept.jpg"
+              alt="Brand Identity"
+              class="print-card-img"
+              onerror="
+                this.outerHTML =
+                  '<div class=print-card-img-placeholder>Add image</div>'
+              "
+            />
+            <div class="print-card-hover">View project</div>
+            <div class="print-card-info">
+              <div class="print-card-type">Branding</div>
+              <div class="print-card-title">Brand Identity</div>
+            </div>
+          </div>
+
+          <div class="print-card" onclick="openPrintModal('print2')">
+            <img
+              src="img/editorial_petsupermarket.jpg"
+              alt="Editorial Design"
+              class="print-card-img"
+              onerror="
+                this.outerHTML =
+                  '<div class=print-card-img-placeholder>Add image</div>'
+              "
+            />
+            <div class="print-card-hover">View project</div>
+            <div class="print-card-info">
+              <div class="print-card-type">Print</div>
+              <div class="print-card-title">Editorial Design</div>
+            </div>
+          </div>
+
+          <div class="print-card" onclick="openPrintModal('print3')">
+            <img
+              src="img/logo_vayuwellness.jpg"
+              alt="Logo Design"
+              class="print-card-img"
+              onerror="
+                this.outerHTML =
+                  '<div class=print-card-img-placeholder>Add image</div>'
+              "
+            />
+            <div class="print-card-hover">View project</div>
+            <div class="print-card-info">
+              <div class="print-card-type">Branding</div>
+              <div class="print-card-title">Logo Design</div>
+            </div>
+          </div>
+
+          <div class="print-card" onclick="openPrintModal('print4')">
+            <img
+              src="img/campaign_petsupermarket_event.jpg"
+              alt="Campaign Design"
+              class="print-card-img"
+              onerror="
+                this.outerHTML =
+                  '<div class=print-card-img-placeholder>Add image</div>'
+              "
+            />
+            <div class="print-card-hover">View project</div>
+            <div class="print-card-info">
+              <div class="print-card-type">Print</div>
+              <div class="print-card-title">Campaign Design</div>
+            </div>
+          </div>
+
+          <div class="print-card" onclick="openPrintModal('print5')">
+            <img
+              src="img/brand_2015-lakefest.jpg"
+              alt="Brand Collateral"
+              class="print-card-img"
+              onerror="
+                this.outerHTML =
+                  '<div class=print-card-img-placeholder>Add image</div>'
+              "
+            />
+            <div class="print-card-hover">View project</div>
+            <div class="print-card-info">
+              <div class="print-card-type">Branding</div>
+              <div class="print-card-title">Brand Collateral</div>
+            </div>
           </div>
         </div>
-
-        <div class="print-card" onclick="openPrintModal('print2')">
-          <img
-            src="img/editorial_petsupermarket.jpg"
-            alt="Editorial Design"
-            class="print-card-img"
-            onerror="
-              this.outerHTML =
-                '<div class=print-card-img-placeholder>Add image</div>'
+        <!-- Email Design full-width card -->
+        <div
+          class="bento-card col-12 email-bento-card"
+          style="margin-top: 12px"
+        >
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 1fr auto;
+              gap: 40px;
+              align-items: center;
             "
-          />
-          <div class="print-card-hover">View project</div>
-          <div class="print-card-info">
-            <div class="print-card-type">Print</div>
-            <div class="print-card-title">Editorial Design</div>
-          </div>
-        </div>
-
-        <div class="print-card" onclick="openPrintModal('print3')">
-          <img
-            src="img/logo_vayuwellness.jpg"
-            alt="Logo Design"
-            class="print-card-img"
-            onerror="
-              this.outerHTML =
-                '<div class=print-card-img-placeholder>Add image</div>'
-            "
-          />
-          <div class="print-card-hover">View project</div>
-          <div class="print-card-info">
-            <div class="print-card-type">Branding</div>
-            <div class="print-card-title">Logo Design</div>
-          </div>
-        </div>
-
-        <div class="print-card" onclick="openPrintModal('print4')">
-          <img
-            src="img/campaign_petsupermarket_event.jpg"
-            alt="Campaign Design"
-            class="print-card-img"
-            onerror="
-              this.outerHTML =
-                '<div class=print-card-img-placeholder>Add image</div>'
-            "
-          />
-          <div class="print-card-hover">View project</div>
-          <div class="print-card-info">
-            <div class="print-card-type">Print</div>
-            <div class="print-card-title">Campaign Design</div>
-          </div>
-        </div>
-
-        <div class="print-card" onclick="openPrintModal('print5')">
-          <img
-            src="img/brand_2015-lakefest.jpg"
-            alt="Brand Collateral"
-            class="print-card-img"
-            onerror="
-              this.outerHTML =
-                '<div class=print-card-img-placeholder>Add image</div>'
-            "
-          />
-          <div class="print-card-hover">View project</div>
-          <div class="print-card-info">
-            <div class="print-card-type">Branding</div>
-            <div class="print-card-title">Brand Collateral</div>
+          >
+            <div class="project-card-inner">
+              <span class="proj-num">HTML Email · Digital</span>
+              <h3>Marketing Email Campaigns</h3>
+              <p>
+                Designed and built promotional HTML emails for retail and
+                e-commerce clients — combining layout, typography, and brand to
+                drive engagement across inboxes.
+              </p>
+              <div class="proj-tags">
+                <span class="proj-tag">HTML Email</span>
+                <span class="proj-tag">Promotional</span>
+              </div>
+            </div>
+            <div
+              style="
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 10px;
+                flex-shrink: 0;
+              "
+            >
+              <a
+                href="javascript:void(0)"
+                onclick="
+                  event.stopPropagation();
+                  openEmailModal(
+                    'https://jmasulonis.github.io/globalgolf/',
+                    'Christmas Golf Club Sale',
+                  );
+                "
+                class="contact-link-card"
+              >
+                <div class="link-card-left">
+                  <span class="link-platform">Global Golf</span>
+                  <span class="link-handle">Christmas Club Sale</span>
+                </div>
+                <span class="link-arrow">↗</span>
+              </a>
+              <a
+                href="javascript:void(0)"
+                onclick="
+                  event.stopPropagation();
+                  openEmailModal(
+                    'https://jmasulonis.github.io/advance-auto/ECOMM-9850-Jan-W2-DIY-2.html',
+                    'Advance Auto Parts Loyalty Program',
+                  );
+                "
+                class="contact-link-card"
+              >
+                <div class="link-card-left">
+                  <span class="link-platform">Advance Auto Parts</span>
+                  <span class="link-handle">Loyalty Program Email</span>
+                </div>
+                <span class="link-arrow">↗</span>
+              </a>
+              <a
+                href="javascript:void(0)"
+                onclick="
+                  event.stopPropagation();
+                  openEmailModal(
+                    'https://jmasulonis.github.io/savile-row-company/',
+                    'Savile Row Cyber Monday',
+                  );
+                "
+                class="contact-link-card"
+              >
+                <div class="link-card-left">
+                  <span class="link-platform">Savile Row Company</span>
+                  <span class="link-handle">Cyber Monday Email</span>
+                </div>
+                <span class="link-arrow">↗</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
