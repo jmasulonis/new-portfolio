@@ -3045,7 +3045,7 @@
       function unlockScroll() {
         document.body.classList.remove("scroll-locked");
         document.body.style.top = "";
-        window.scrollTo(0, _scrollY);
+        window.scrollTo({ left: 0, top: _scrollY, behavior: "instant" });
       }
 
       // ============================================================
