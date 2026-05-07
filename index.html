@@ -1890,6 +1890,9 @@
         color: var(--primary);
         transform: translate(2px, -2px);
       }
+      .print-card {
+        touch-action: pan-x;
+      }
 
       /* ============================================================
          FOOTER
@@ -2453,7 +2456,14 @@
     ============================================================ -->
     <section class="bento-section" id="craft">
       <div class="bento-label">Craft & Capabilities</div>
-      <div style="display: flex; flex-direction: column; gap: 12px">
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          touch-action: pan-x;
+        "
+      >
         <div class="print-scroll-row">
           <div class="print-card" onclick="openPrintModal('print1')">
             <img
