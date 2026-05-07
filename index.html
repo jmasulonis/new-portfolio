@@ -71,6 +71,7 @@
 
       html {
         scroll-behavior: smooth;
+        /* Prevent Safari rubber-band scroll from causing layout issues */
       }
 
       body {
@@ -83,9 +84,18 @@
         min-height: 100vh;
       }
 
+      /* Body locked state — uses position:fixed approach for iOS Safari
+         compatibility instead of overflow:hidden alone */
+      body.scroll-locked {
+        position: fixed;
+        width: 100%;
+        overflow-y: scroll; /* keeps scrollbar space to prevent layout shift */
+      }
+
       section {
         scroll-margin-top: 90px;
       }
+
       #hero {
         overflow: hidden;
       }
@@ -93,6 +103,7 @@
       .hero-content {
         overflow: hidden;
       }
+
       /* ============================================================
          ANIMATIONS
       ============================================================ */
@@ -132,6 +143,7 @@
         align-items: center;
         background: rgba(14, 13, 12, 0.85);
         backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
         border-bottom: 1px solid var(--border);
       }
 
@@ -826,6 +838,7 @@
 
       /* ============================================================
          CASE STUDY — Fullscreen modal
+         FIX: Safari needs explicit height + proper overflow chain
       ============================================================ */
       .cs-modal-overlay {
         position: fixed;
@@ -835,7 +848,10 @@
         opacity: 0;
         pointer-events: none;
         transition: opacity 0.3s ease;
+        /* FIX: explicit overflow-y on the overlay itself for Safari */
         overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
       }
 
       .cs-modal-overlay.open {
@@ -847,6 +863,8 @@
         max-width: 1200px;
         margin: 0 auto;
         padding: 100px 40px 80px;
+        /* FIX: ensure inner content can grow freely */
+        min-height: 100%;
       }
 
       .cs-modal-close {
@@ -1102,7 +1120,16 @@
 
       /* ============================================================
          BRAND & PRINT WORK
+         FIX: removed overflow:hidden from #print and #email — it was
+         clipping the horizontal scroll containers on mobile
       ============================================================ */
+      #print,
+      #email {
+        /* overflow: visible is the correct default here — do NOT set
+           overflow:hidden or it clips the scroll rows on mobile */
+        overflow: visible;
+      }
+
       .print-scroll-row {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
@@ -1216,8 +1243,9 @@
         letter-spacing: 0.06em;
         text-transform: uppercase;
       }
+
       /* ============================================================
-      EMAIL WORK
+         EMAIL WORK
       ============================================================ */
       .email-grid {
         display: grid;
@@ -1323,6 +1351,7 @@
         inset: 0;
         background: rgba(0, 0, 0, 0.85);
         backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
         z-index: 800;
         display: flex;
         align-items: center;
@@ -1395,6 +1424,7 @@
         border: none;
         min-height: 600px;
       }
+
       .email-card-inner {
         display: grid;
         grid-template-columns: 1fr auto;
@@ -1404,6 +1434,7 @@
       .email-card-inner .contact-link-card {
         width: 100%;
       }
+
       /* ============================================================
          IMAGE SLIDER (used in print modal)
       ============================================================ */
@@ -1493,20 +1524,28 @@
 
       /* ============================================================
          JOB / PRINT MODAL (shared small modal)
+         FIX: Safari requires explicit height constraints on the
+         overlay + scroll container. Using height:100% chain with
+         -webkit-overflow-scrolling:touch and overscroll-behavior.
       ============================================================ */
       .modal-overlay {
         position: fixed;
         inset: 0;
         background: rgba(0, 0, 0, 0.75);
         backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
         z-index: 700;
         display: flex;
-        align-items: center;
+        align-items: flex-start; /* FIX: flex-start so modal can scroll freely on short screens */
         justify-content: center;
         padding: 24px;
         opacity: 0;
         pointer-events: none;
         transition: opacity 0.25s ease;
+        /* FIX: Safari needs overflow on the overlay container */
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
       }
 
       .modal-overlay.open {
@@ -1520,13 +1559,19 @@
         border-radius: 20px;
         width: 100%;
         max-width: 640px;
-        max-height: 85vh;
-        overflow-y: auto;
+        /* FIX: removed max-height + overflow-y from .modal itself —
+           the overlay handles scrolling. The modal expands to its
+           natural height and the overlay scrolls. This fixes the
+           Safari "stuck scroll" bug where an inner element couldn't
+           scroll inside a fixed overlay. */
         padding: 40px;
         transform: translateY(20px) scale(0.98);
         transition: transform 0.25s ease;
         position: relative;
-        -webkit-overflow-scrolling: touch;
+        /* FIX: margin:auto vertically centers short modals but lets
+           tall ones scroll from the top */
+        margin: auto;
+        align-self: flex-start;
       }
 
       .modal-overlay.open .modal {
@@ -1846,11 +1891,6 @@
         transform: translate(2px, -2px);
       }
 
-      #print,
-      #email {
-        overflow: visible;
-      }
-
       /* ============================================================
          FOOTER
       ============================================================ */
@@ -1956,9 +1996,13 @@
           padding-left: 20px;
           padding-right: 20px;
         }
-        #print {
-          padding-right: 0px;
+
+        /* FIX: craft section needs right padding 0 so scroll rows
+           can bleed to the edge, but the label/title still has padding */
+        #craft {
+          padding-right: 0;
         }
+
         .bento-grid {
           grid-template-columns: 1fr;
         }
@@ -1981,14 +2025,24 @@
           font-size: 20px;
         }
 
-        /* Print swipe carousel */
+        /* ── PRINT scroll row — mobile horizontal carousel ──────────
+           FIX: added overscroll-behavior-x:contain so swiping the
+           carousel doesn't accidentally trigger vertical page scroll.
+           Added padding-right so the last card has visible trailing space.
+           The parent #craft section must NOT have overflow:hidden.
+        ─────────────────────────────────────────────────────────── */
         .print-scroll-row {
           display: flex;
           overflow-x: auto;
+          overflow-y: visible;
           scroll-snap-type: x mandatory;
           -webkit-overflow-scrolling: touch;
+          touch-action: pan-x;
+          overscroll-behavior-x: contain;
           gap: 12px;
           padding-bottom: 16px;
+          padding-left: 20px;
+          padding-right: 20px; /* FIX: trailing space so last card isn't clipped */
           scrollbar-width: none;
         }
         .print-scroll-row::-webkit-scrollbar {
@@ -2061,17 +2115,23 @@
           gap: 8px;
         }
 
-        /* Modal */
+        /* Modal — mobile */
         .modal {
           padding: 24px;
         }
+
+        /* FIX: email grid horizontal scroll — same treatment as print */
         .email-grid {
           display: flex;
           overflow-x: auto;
+          overflow-y: visible;
           scroll-snap-type: x mandatory;
           -webkit-overflow-scrolling: touch;
+          overscroll-behavior-x: contain;
           gap: 12px;
           padding-bottom: 16px;
+          padding-left: 20px;
+          padding-right: 20px; /* FIX: trailing space */
           scrollbar-width: none;
         }
         .email-grid::-webkit-scrollbar {
@@ -2089,19 +2149,12 @@
           transform: scale(0.4);
           transform-origin: top left;
         }
-        #print,
-        #email {
-          padding-right: 0;
-        }
-        .print-scroll-row,
-        .email-grid {
-          padding-left: 0;
-          margin-left: 0;
-        }
+
         .email-card-inner {
           grid-template-columns: 1fr;
           gap: 20px;
         }
+
         .case-study-card-left [style*="grid-template-columns"] {
           grid-template-columns: 1fr !important;
           gap: 12px;
@@ -2128,11 +2181,19 @@
         .contact-links-grid {
           grid-template-columns: 1fr !important;
         }
-        #print,
+
+        /* FIX: on smallest screens, craft/email sections need left
+           padding reset to 0 so the scroll rows start flush.
+           The scroll rows themselves add their own padding-left. */
+        #craft,
         #email {
-          overflow: visible !important;
-          padding-left: 20px;
+          padding-left: 0;
           padding-right: 0;
+        }
+        /* The bento-label inside craft still needs indent */
+        #craft .bento-label,
+        #email .bento-label {
+          padding-left: 20px;
         }
       }
     </style>
@@ -2337,6 +2398,7 @@
         </div>
       </div>
     </section>
+
     <!-- ============================================================
          CASE STUDY (teaser card)
     ============================================================ -->
@@ -2385,6 +2447,7 @@
         </div>
       </div>
     </section>
+
     <!-- ============================================================
          BRAND & PRINT WORK
     ============================================================ -->
@@ -2477,6 +2540,7 @@
             </div>
           </div>
         </div>
+
         <!-- Email Design full-width card -->
         <div
           class="bento-card col-12 email-bento-card"
@@ -2649,8 +2713,6 @@
     <section id="contact">
       <div class="bento-label">Get In Touch</div>
       <div class="contact-grid">
-        <!-- style="max-width: 1200px; margin: 0 auto; padding: 0 40px 120px"
-        style="max-width: 1200px; margin: 0 auto; padding: 0 24px" -->
         <!-- Headshot + CTA -->
         <div class="contact-headshot-row">
           <div class="contact-headshot-card">
@@ -2666,9 +2728,9 @@
           </div>
           <div class="contact-big">
             <div>
-              <h2>Let’s talk about <br />what’s next</h2>
+              <h2>Let's talk about <br />what's next</h2>
               <p>
-                I’m currently exploring new opportunities in web and UX/UI, with
+                I'm currently exploring new opportunities in web and UX/UI, with
                 a strong foundation in visual and brand design. Currently open
                 to full-time opportunities, with a preference for remote or
                 flexible work, please feel free to reach out.
@@ -2886,7 +2948,6 @@
           <div class="cs-img-card">
             <img
               src="img/color_type.jpg"
-              s
               alt="Color & Type System"
               class="cs-img"
               onerror="
@@ -2941,10 +3002,42 @@
       </div>
     </div>
 
+    <!-- Email Modal -->
+    <div class="email-modal-overlay" id="emailModal">
+      <div class="email-modal">
+        <div class="email-modal-header">
+          <span class="email-modal-title" id="emailModalTitle"></span>
+          <button class="email-modal-close" onclick="closeEmailModal()">
+            ✕
+          </button>
+        </div>
+        <iframe id="emailModalFrame" src="" title="Email preview"></iframe>
+      </div>
+    </div>
+
     <!-- ============================================================
          JAVASCRIPT
     ============================================================ -->
     <script>
+      // ============================================================
+      // SCROLL LOCK — iOS Safari compatible
+      // Uses position:fixed + scroll position save/restore instead
+      // of overflow:hidden alone (which doesn't work on iOS Safari)
+      // ============================================================
+      let _scrollY = 0;
+
+      function lockScroll() {
+        _scrollY = window.scrollY;
+        document.body.classList.add("scroll-locked");
+        document.body.style.top = `-${_scrollY}px`;
+      }
+
+      function unlockScroll() {
+        document.body.classList.remove("scroll-locked");
+        document.body.style.top = "";
+        window.scrollTo(0, _scrollY);
+      }
+
       // ============================================================
       // DATA — Career jobs
       // ============================================================
@@ -3111,10 +3204,8 @@
     <div class="work-samples-grid">
       ${job.workSamples
         .map(
-          (src) => `
-        <img src="${src}" alt="Work sample" onerror="this.style.display='none'"
-          >
-      `,
+          (src) =>
+            `<img src="${src}" alt="Work sample" onerror="this.style.display='none'">`,
         )
         .join("")}
     </div>`
@@ -3145,14 +3236,17 @@
           if (img.complete) img.style.opacity = "1";
         }
 
-        document.getElementById("modalOverlay").classList.add("open");
-        document.body.style.overflow = "hidden";
+        // Scroll overlay back to top for tall modals
+        const overlay = document.getElementById("modalOverlay");
+        overlay.scrollTop = 0;
+        overlay.classList.add("open");
+        lockScroll();
       }
 
       function closeModal() {
         document.getElementById("modalOverlay").classList.remove("open");
-        document.body.style.overflow = "";
         document.querySelector(".modal").style.maxWidth = "640px";
+        unlockScroll();
       }
 
       function handleOverlayClick(e) {
@@ -3171,42 +3265,42 @@
         const slidesHtml = images
           .map(
             (src) => `
-                      <div class="slider-slide">
-                        <img src="${src}" alt="${work.title}" onerror="this.style.display='none'">
-                      </div>`,
+            <div class="slider-slide">
+              <img src="${src}" alt="${work.title}" onerror="this.style.display='none'">
+            </div>`,
           )
           .join("");
 
         const dotsHtml =
           images.length > 1
             ? `
-                      <div class="slider-dots">
-                        ${images.map((_, i) => `<div class="slider-dot ${i === 0 ? "active" : ""}" onclick="goToSlide(${i})"></div>`).join("")}
-                      </div>`
+            <div class="slider-dots">
+              ${images.map((_, i) => `<div class="slider-dot ${i === 0 ? "active" : ""}" onclick="goToSlide(${i})"></div>`).join("")}
+            </div>`
             : "";
 
         const arrowsHtml =
           images.length > 1
             ? `
-                      <button class="slider-arrow prev hidden" id="sliderPrev" onclick="slideMove(-1)">‹</button>
-                      <button class="slider-arrow next" id="sliderNext" onclick="slideMove(1)">›</button>`
+            <button class="slider-arrow prev hidden" id="sliderPrev" onclick="slideMove(-1)">‹</button>
+            <button class="slider-arrow next" id="sliderNext" onclick="slideMove(1)">›</button>`
             : "";
 
         document.getElementById("modal-content").innerHTML = `
-                      <div class="slider" id="sliderContainer">
-                        <div class="slider-track" id="sliderTrack">${slidesHtml}</div>
-                        ${arrowsHtml}
-                      </div>
-                      ${dotsHtml}
-                      <div class="modal-eyebrow">${work.type}</div>
-                      <div class="modal-title">${work.title}</div>
-                      <div class="modal-divider"></div>
-                      <div class="modal-section-label">About this piece</div>
-                      <div class="modal-body">${work.description}</div>
-                      <div class="modal-section-label">Tags</div>
-                      <div class="modal-tags">
-                        ${work.tags.map((t) => `<span class="proj-tag">${t}</span>`).join("")}
-                      </div>`;
+          <div class="slider" id="sliderContainer">
+            <div class="slider-track" id="sliderTrack">${slidesHtml}</div>
+            ${arrowsHtml}
+          </div>
+          ${dotsHtml}
+          <div class="modal-eyebrow">${work.type}</div>
+          <div class="modal-title">${work.title}</div>
+          <div class="modal-divider"></div>
+          <div class="modal-section-label">About this piece</div>
+          <div class="modal-body">${work.description}</div>
+          <div class="modal-section-label">Tags</div>
+          <div class="modal-tags">
+            ${work.tags.map((t) => `<span class="proj-tag">${t}</span>`).join("")}
+          </div>`;
 
         window._sliderCurrent = 0;
         window._sliderTotal = images.length;
@@ -3230,12 +3324,14 @@
           { passive: true },
         );
 
-        document.getElementById("modalOverlay").classList.add("open");
-        document.body.style.overflow = "hidden";
+        const overlay = document.getElementById("modalOverlay");
+        overlay.scrollTop = 0;
+        overlay.classList.add("open");
+        lockScroll();
       }
 
       function slideMove(dir) {
-        let current = Math.max(
+        const current = Math.max(
           0,
           Math.min(window._sliderCurrent + dir, window._sliderTotal - 1),
         );
@@ -3260,8 +3356,10 @@
       // CASE STUDY MODAL
       // ============================================================
       function openCaseStudy() {
-        document.getElementById("csModal").classList.add("open");
-        document.body.style.overflow = "hidden";
+        const modal = document.getElementById("csModal");
+        modal.scrollTop = 0;
+        modal.classList.add("open");
+        lockScroll();
 
         // Wire up image zoom clicks
         document.querySelectorAll(".cs-img").forEach((img) => {
@@ -3277,7 +3375,7 @@
 
       function closeCaseStudy() {
         document.getElementById("csModal").classList.remove("open");
-        document.body.style.overflow = "";
+        unlockScroll();
       }
 
       // ============================================================
@@ -3288,13 +3386,43 @@
         const burger = document.getElementById("navHamburger");
         nav.classList.toggle("open");
         burger.classList.toggle("open");
-        document.body.style.overflow = nav.classList.contains("open")
-          ? "hidden"
-          : "";
+        if (nav.classList.contains("open")) {
+          lockScroll();
+        } else {
+          unlockScroll();
+        }
       }
 
       // ============================================================
-      // EVENT LISTENERS — run after DOM is ready
+      // EMAIL MODAL
+      // ============================================================
+      function openEmailModal(src, title) {
+        document.getElementById("emailModalFrame").src = src;
+        document.getElementById("emailModalTitle").textContent = title;
+        document.getElementById("emailModal").classList.add("open");
+        lockScroll();
+      }
+
+      function closeEmailModal() {
+        document.getElementById("emailModal").classList.remove("open");
+        document.getElementById("emailModalFrame").src = "";
+        unlockScroll();
+      }
+
+      function toggleWorkSamples(btn) {
+        btn.classList.toggle("open");
+        btn.nextElementSibling.classList.toggle("open");
+      }
+
+      function zoomWorkSample(src) {
+        document.getElementById("modal-content").innerHTML =
+          `<img src="${src}" style="width:100%; border-radius:12px; display:block;">`;
+        document.querySelector(".modal").style.maxWidth = "1000px";
+        document.getElementById("modalOverlay").classList.add("open");
+      }
+
+      // ============================================================
+      // EVENT LISTENERS
       // ============================================================
       document.addEventListener("DOMContentLoaded", function () {
         // Close small modal on overlay click
@@ -3324,8 +3452,11 @@
             closeModal();
             closeCaseStudy();
             closeEmailModal();
-            if (document.getElementById("navLinks").classList.contains("open"))
+            if (
+              document.getElementById("navLinks").classList.contains("open")
+            ) {
               toggleNav();
+            }
           }
         });
 
@@ -3334,48 +3465,10 @@
           link.addEventListener("click", function () {
             document.getElementById("navLinks").classList.remove("open");
             document.getElementById("navHamburger").classList.remove("open");
-            document.body.style.overflow = "";
+            unlockScroll();
           });
         });
       });
-      function toggleWorkSamples(btn) {
-        btn.classList.toggle("open");
-        btn.nextElementSibling.classList.toggle("open");
-      }
-
-      function zoomWorkSample(src) {
-        document.getElementById("modal-content").innerHTML =
-          `<img src="${src}" style="width:100%; border-radius:12px; display:block;">`;
-        document.querySelector(".modal").style.maxWidth = "1000px";
-        document.getElementById("modalOverlay").classList.add("open");
-      }
-      // ============================================================
-      // EMAIL MODAL
-      // ============================================================
-      function openEmailModal(src, title) {
-        document.getElementById("emailModalFrame").src = src;
-        document.getElementById("emailModalTitle").textContent = title;
-        document.getElementById("emailModal").classList.add("open");
-        document.body.style.overflow = "hidden";
-      }
-
-      function closeEmailModal() {
-        document.getElementById("emailModal").classList.remove("open");
-        document.getElementById("emailModalFrame").src = "";
-        document.body.style.overflow = "";
-      }
     </script>
-    <!-- Email Modal -->
-    <div class="email-modal-overlay" id="emailModal">
-      <div class="email-modal">
-        <div class="email-modal-header">
-          <span class="email-modal-title" id="emailModalTitle"></span>
-          <button class="email-modal-close" onclick="closeEmailModal()">
-            ✕
-          </button>
-        </div>
-        <iframe id="emailModalFrame" src="" title="Email preview"></iframe>
-      </div>
-    </div>
   </body>
 </html>
