@@ -1,9 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- ============================================================
-         META & SEO
-    ============================================================ -->
+    <!-- META & SEO -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
@@ -15,8 +13,6 @@
       content="designer, UX designer, UI designer, web designer, Figma, design systems, wireframing, prototyping, developer, UI design, web design, graphic designer, Raleigh"
     />
     <meta name="author" content="John Masulonis" />
-
-    <!-- Open Graph -->
     <meta property="og:title" content="John Masulonis — Designer & Developer" />
     <meta
       property="og:description"
@@ -25,26 +21,20 @@
     <meta property="og:image" content="img/logo_favicon_jm_32x32-8.png" />
     <meta property="og:url" content="https://jmasulonis.netlify.app/" />
     <meta property="og:type" content="website" />
-
-    <!-- Favicon -->
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
       href="img/logo_favicon_jm_32x32-8.png"
     />
-
     <title>John Masulonis — Senior Designer & Developer</title>
 
-    <!-- ============================================================
-         FONTS
-    ============================================================ -->
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap");
 
       /* ============================================================
-         RESET & BASE
-      ============================================================ */
+       RESET & BASE
+    ============================================================ */
       *,
       *::before,
       *::after {
@@ -62,7 +52,6 @@
         --primary-light: #3d9680;
         --secondary: #f8992c;
         --tertiary: #534840;
-        --tertiary-light: #6b5c52;
         --text: #f0ece6;
         --muted: #6b6560;
         --display: "Space Grotesk", sans-serif;
@@ -71,7 +60,6 @@
 
       html {
         scroll-behavior: smooth;
-        /* Prevent Safari rubber-band scroll from causing layout issues */
       }
 
       body {
@@ -84,29 +72,20 @@
         min-height: 100vh;
       }
 
-      /* Body locked state — uses position:fixed approach for iOS Safari
-         compatibility instead of overflow:hidden alone */
+      /* iOS Safari scroll lock — position:fixed approach */
       body.scroll-locked {
         position: fixed;
         width: 100%;
-        overflow-y: scroll; /* keeps scrollbar space to prevent layout shift */
+        overflow-y: scroll;
       }
 
       section {
         scroll-margin-top: 90px;
       }
 
-      #hero {
-        overflow: hidden;
-      }
-
-      .hero-content {
-        overflow: hidden;
-      }
-
       /* ============================================================
-         ANIMATIONS
-      ============================================================ */
+       ANIMATIONS
+    ============================================================ */
       @keyframes fadeUp {
         from {
           opacity: 0;
@@ -117,7 +96,6 @@
           transform: translateY(0);
         }
       }
-
       @keyframes pulse {
         0%,
         100% {
@@ -129,8 +107,8 @@
       }
 
       /* ============================================================
-         NAVIGATION
-      ============================================================ */
+       NAVIGATION
+    ============================================================ */
       nav {
         position: fixed;
         top: 0;
@@ -153,20 +131,17 @@
         gap: 10px;
         text-decoration: none;
       }
-
       .nav-logo-img {
         height: 32px;
         width: auto;
         display: block;
       }
-
       .nav-logo-text {
         font-family: var(--display);
         font-size: 16px;
         font-weight: 600;
         color: var(--text);
       }
-
       .nav-logo-dot {
         color: var(--secondary);
       }
@@ -176,7 +151,6 @@
         gap: 32px;
         align-items: center;
       }
-
       .nav-links a {
         color: var(--muted);
         text-decoration: none;
@@ -185,7 +159,6 @@
         letter-spacing: 0.02em;
         transition: color 0.2s;
       }
-
       .nav-links a:hover {
         color: var(--text);
       }
@@ -193,17 +166,15 @@
       .nav-cta {
         background: var(--primary) !important;
         color: var(--text) !important;
-        padding: 14px 28px;
+        padding: 8px 20px !important;
         border-radius: 8px;
         font-weight: 500 !important;
         transition: background 0.2s !important;
       }
-
       .nav-cta:hover {
         background: var(--primary-light) !important;
       }
 
-      /* Hamburger button — hidden on desktop */
       .nav-hamburger {
         display: none;
         flex-direction: column;
@@ -218,7 +189,6 @@
         padding: 10px;
         flex-shrink: 0;
       }
-
       .nav-hamburger span {
         display: block;
         width: 100%;
@@ -229,8 +199,6 @@
           transform 0.25s,
           opacity 0.25s;
       }
-
-      /* Hamburger → X animation */
       .nav-hamburger.open span:nth-child(1) {
         transform: translateY(6.5px) rotate(45deg);
       }
@@ -241,7 +209,6 @@
         transform: translateY(-6.5px) rotate(-45deg);
       }
 
-      /* Close button inside mobile menu — hidden on desktop */
       .nav-menu-close {
         display: none;
         position: absolute;
@@ -260,25 +227,25 @@
       }
 
       /* ============================================================
-         HERO
-      ============================================================ */
+       HERO
+    ============================================================ */
       #hero {
         display: grid;
         grid-template-columns: 1fr 1fr;
         align-items: center;
         min-height: 80vh;
-        padding-top: 80px;
         position: relative;
-        overflow: hidden;
         max-width: 1200px;
         margin: 0 auto;
-        padding: 80px 40px 80px;
+        padding: 80px 40px;
       }
 
+      /* Clip only the image wrap — never the whole hero (breaks iOS scroll) */
       .hero-img-wrap {
         position: relative;
         height: 80vh;
         max-width: 480px;
+        overflow: hidden;
       }
 
       .hero-img {
@@ -351,7 +318,6 @@
         margin-bottom: 24px;
         animation: fadeUp 0.7s 0.2s both;
       }
-
       .hero-title .line2 {
         color: var(--primary);
       }
@@ -385,10 +351,9 @@
           transform 0.15s,
           box-shadow 0.15s;
       }
-
       .btn-primary:hover {
         transform: translateY(-2px);
-        box-shadow: 0 8px 24px #f8992c4d;
+        box-shadow: 0 8px 24px rgba(248, 153, 44, 0.3);
       }
 
       .btn-ghost {
@@ -406,15 +371,14 @@
           border-color 0.2s,
           background 0.2s;
       }
-
       .btn-ghost:hover {
         border-color: var(--primary);
         background: rgba(52, 127, 111, 0.08);
       }
 
       /* ============================================================
-         BENTO GRID — Shared layout system
-      ============================================================ */
+       BENTO GRID
+    ============================================================ */
       .bento-section {
         max-width: 1200px;
         margin: 0 auto;
@@ -432,7 +396,6 @@
         align-items: center;
         gap: 12px;
       }
-
       .bento-label::after {
         content: "";
         flex: 1;
@@ -447,7 +410,6 @@
         gap: 12px;
       }
 
-      /* Column span helpers */
       .col-3 {
         grid-column: span 3;
       }
@@ -481,19 +443,17 @@
           border-color 0.25s,
           transform 0.25s;
       }
-
       .bento-card:hover {
         border-color: rgba(52, 127, 111, 0.4);
         transform: translateY(-2px);
       }
 
       /* ============================================================
-         JOB CARDS
-      ============================================================ */
+       JOB CARDS
+    ============================================================ */
       .job-card {
         cursor: pointer;
       }
-
       .job-card:hover .proj-arrow {
         background: var(--primary);
         color: white;
@@ -535,7 +495,6 @@
         margin-bottom: 12px;
         display: block;
       }
-
       .project-card-inner h3 {
         font-family: var(--display);
         font-size: 24px;
@@ -544,7 +503,6 @@
         margin-bottom: 12px;
         line-height: 1.1;
       }
-
       .project-card-inner p {
         color: var(--muted);
         font-size: 13px;
@@ -557,7 +515,6 @@
         flex-wrap: wrap;
         gap: 6px;
       }
-
       .proj-tag {
         background: rgba(52, 127, 111, 0.12);
         color: var(--primary-light);
@@ -588,16 +545,13 @@
           color 0.2s;
       }
 
-      /* Accent card */
       .card-accent {
         background: var(--primary);
         border-color: transparent;
       }
-
       .card-accent:hover {
         border-color: var(--primary-light);
       }
-
       .card-accent h3 {
         font-family: var(--display);
         font-size: 20px;
@@ -605,13 +559,11 @@
         letter-spacing: -0.02em;
         margin-bottom: 8px;
       }
-
       .card-accent p {
         color: rgba(240, 236, 230, 0.7);
         font-size: 13px;
       }
 
-      /* Stat card */
       .stat-card {
         text-align: center;
         display: flex;
@@ -619,7 +571,6 @@
         justify-content: center;
         align-items: center;
       }
-
       .stat-num {
         font-family: var(--display);
         font-size: 52px;
@@ -629,14 +580,12 @@
         line-height: 1;
         margin-bottom: 8px;
       }
-
       .stat-label {
         color: var(--muted);
         font-size: 13px;
         font-weight: 500;
       }
 
-      /* Quote / about card */
       .about-card {
         display: flex;
         flex-direction: column;
@@ -644,7 +593,6 @@
         position: relative;
         overflow: hidden;
       }
-
       .about-card::before {
         content: '"';
         position: absolute;
@@ -657,7 +605,6 @@
         line-height: 1;
         pointer-events: none;
       }
-
       .about-card blockquote {
         font-family: var(--display);
         font-size: 52px;
@@ -669,25 +616,8 @@
         position: relative;
         z-index: 1;
       }
-
       .about-card blockquote span {
         color: var(--primary);
-      }
-
-      .about-pills {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-      }
-
-      .pill {
-        background: var(--surface2);
-        border: 1px solid var(--border);
-        padding: 6px 14px;
-        border-radius: 100px;
-        font-size: 12px;
-        font-weight: 500;
-        color: var(--muted);
       }
 
       /* Work samples collapsible */
@@ -744,8 +674,8 @@
       }
 
       /* ============================================================
-         CASE STUDY CARD (teaser)
-      ============================================================ */
+       CASE STUDY CARD (teaser)
+    ============================================================ */
       .case-study-card {
         background: var(--tertiary);
         border-radius: 16px;
@@ -759,11 +689,9 @@
         overflow: hidden;
         transition: background 0.25s;
       }
-
       .case-study-card:hover {
         background: #5e5047;
       }
-
       .case-study-card::before {
         content: "";
         position: absolute;
@@ -783,6 +711,21 @@
         flex-shrink: 0;
       }
 
+      /* Logo + title inline — collapses to stacked on mobile */
+      .case-study-title-row {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 20px;
+        align-items: center;
+        margin-bottom: 24px;
+      }
+      .case-study-logo {
+        height: 56px;
+        width: auto;
+        display: block;
+        opacity: 0.85;
+      }
+
       .case-study-eyebrow {
         font-size: 11px;
         font-weight: 600;
@@ -798,9 +741,8 @@
         font-weight: 700;
         letter-spacing: -0.02em;
         line-height: 1.05;
-        margin-bottom: 24px;
+        margin-bottom: 0;
       }
-
       .case-study-title span {
         color: var(--secondary);
       }
@@ -810,7 +752,6 @@
         flex-wrap: wrap;
         gap: 8px;
       }
-
       .case-study-tag {
         background: rgba(255, 255, 255, 0.08);
         border: 1px solid rgba(255, 255, 255, 0.12);
@@ -831,15 +772,13 @@
         white-space: nowrap;
         transition: transform 0.2s;
       }
-
       .case-study-card:hover .case-study-cta {
         transform: translateX(4px);
       }
 
       /* ============================================================
-         CASE STUDY — Fullscreen modal
-         FIX: Safari needs explicit height + proper overflow chain
-      ============================================================ */
+       CASE STUDY — Fullscreen modal
+    ============================================================ */
       .cs-modal-overlay {
         position: fixed;
         inset: 0;
@@ -848,12 +787,10 @@
         opacity: 0;
         pointer-events: none;
         transition: opacity 0.3s ease;
-        /* FIX: explicit overflow-y on the overlay itself for Safari */
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
         overscroll-behavior: contain;
       }
-
       .cs-modal-overlay.open {
         opacity: 1;
         pointer-events: all;
@@ -863,7 +800,6 @@
         max-width: 1200px;
         margin: 0 auto;
         padding: 100px 40px 80px;
-        /* FIX: ensure inner content can grow freely */
         min-height: 100%;
       }
 
@@ -888,14 +824,12 @@
           border-color 0.2s,
           background 0.2s;
       }
-
       .cs-modal-close:hover {
         color: var(--text);
         border-color: var(--primary);
         background: var(--surface2);
       }
 
-      /* Case study intro grid */
       .cs-intro {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -918,14 +852,12 @@
         flex-direction: column;
         gap: 12px;
       }
-
       .cs-meta-card {
         background: var(--surface);
         border: 1px solid var(--border);
         border-radius: 16px;
         padding: 28px 32px;
       }
-
       .cs-meta-label {
         font-size: 11px;
         font-weight: 600;
@@ -934,14 +866,12 @@
         color: var(--secondary);
         margin-bottom: 8px;
       }
-
       .cs-meta-value {
         font-family: var(--display);
         font-size: 15px;
         font-weight: 600;
         color: var(--text);
       }
-
       .cs-meta-value p {
         font-family: var(--body);
         font-size: 13px;
@@ -951,21 +881,18 @@
         margin-top: 4px;
       }
 
-      /* Process steps */
       .cs-steps {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 12px;
         margin-bottom: 12px;
       }
-
       .cs-step {
         background: var(--surface);
         border: 1px solid var(--border);
         border-radius: 16px;
         padding: 32px;
       }
-
       .cs-step-num {
         font-family: var(--display);
         font-size: 48px;
@@ -974,7 +901,6 @@
         line-height: 1;
         margin-bottom: 16px;
       }
-
       .cs-step-title {
         font-family: var(--display);
         font-size: 16px;
@@ -982,25 +908,21 @@
         color: var(--primary);
         margin-bottom: 10px;
       }
-
       .cs-step-body {
         font-size: 13px;
         color: var(--muted);
         line-height: 1.7;
       }
 
-      /* Case study images */
       .cs-images-top {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 12px;
         margin-bottom: 12px;
       }
-
       .cs-images-bottom {
         margin-bottom: 12px;
       }
-
       .cs-images-bottom .cs-img-card .cs-img {
         min-height: 400px;
         object-fit: cover;
@@ -1012,7 +934,6 @@
         border-radius: 16px;
         overflow: hidden;
       }
-
       .cs-img {
         width: 100%;
         height: 100%;
@@ -1020,7 +941,6 @@
         object-fit: cover;
         display: block;
       }
-
       .cs-img-placeholder {
         width: 100%;
         min-height: 280px;
@@ -1038,7 +958,6 @@
         border-radius: 16px;
       }
 
-      /* Outcome bar */
       .cs-outcome {
         background: var(--primary);
         border-radius: 16px;
@@ -1048,7 +967,6 @@
         align-items: center;
         text-align: center;
       }
-
       .cs-outcome-num {
         font-family: var(--display);
         font-size: 48px;
@@ -1058,13 +976,11 @@
         line-height: 1;
         margin-bottom: 8px;
       }
-
       .cs-outcome-label {
         font-size: 13px;
         color: rgba(240, 236, 230, 0.7);
         font-weight: 500;
       }
-
       .cs-outcome-divider {
         width: 1px;
         height: 60px;
@@ -1073,8 +989,8 @@
       }
 
       /* ============================================================
-         SKILLS
-      ============================================================ */
+       SKILLS
+    ============================================================ */
       .skills-card h3 {
         font-family: var(--display);
         font-size: 18px;
@@ -1082,11 +998,9 @@
         letter-spacing: -0.02em;
         margin-bottom: 20px;
       }
-
       .skill-bar-row {
         margin-bottom: 14px;
       }
-
       .skill-bar-top {
         display: flex;
         justify-content: space-between;
@@ -1094,42 +1008,29 @@
         font-size: 12px;
         font-weight: 500;
       }
-
       .skill-bar-track {
         height: 4px;
         background: var(--surface2);
         border-radius: 2px;
         overflow: hidden;
       }
-
       .skill-bar-fill {
         height: 100%;
         background: var(--primary);
         border-radius: 2px;
         transition: width 1s ease;
       }
-
       .skill-bar-fill.orange {
         background: var(--secondary);
       }
-
       .skill-pct {
         color: var(--muted);
         font-size: 11px;
       }
 
       /* ============================================================
-         BRAND & PRINT WORK
-         FIX: removed overflow:hidden from #print and #email — it was
-         clipping the horizontal scroll containers on mobile
-      ============================================================ */
-      #print,
-      #email {
-        /* overflow: visible is the correct default here — do NOT set
-           overflow:hidden or it clips the scroll rows on mobile */
-        overflow: visible;
-      }
-
+       CRAFT & CAPABILITIES — Print cards
+    ============================================================ */
       .print-scroll-row {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
@@ -1148,7 +1049,6 @@
           transform 0.25s;
         position: relative;
       }
-
       .print-card:hover {
         border-color: rgba(52, 127, 111, 0.4);
         transform: translateY(-2px);
@@ -1161,7 +1061,6 @@
         display: block;
         background: var(--surface2);
       }
-
       .print-card-img-placeholder {
         width: 100%;
         aspect-ratio: 3/4;
@@ -1179,7 +1078,6 @@
       .print-card-info {
         padding: 16px 20px;
       }
-
       .print-card-title {
         font-family: var(--display);
         font-size: 15px;
@@ -1187,7 +1085,6 @@
         letter-spacing: -0.01em;
         margin-bottom: 4px;
       }
-
       .print-card-type {
         font-size: 11px;
         color: var(--secondary);
@@ -1196,7 +1093,6 @@
         text-transform: uppercase;
       }
 
-      /* Teal overlay on hover */
       .print-card-hover {
         position: absolute;
         inset: 0;
@@ -1213,231 +1109,58 @@
         color: white;
         pointer-events: none;
       }
-
       .print-card:hover .print-card-hover {
         opacity: 1;
       }
 
-      .print-modal-img {
-        width: 100%;
-        max-height: 420px;
-        object-fit: contain;
-        border-radius: 12px;
-        margin-bottom: 24px;
-        background: var(--surface2);
-        display: block;
-      }
-
-      .print-modal-img-placeholder {
-        width: 100%;
-        height: 280px;
-        border-radius: 12px;
-        margin-bottom: 24px;
-        background: var(--surface2);
-        border: 1px dashed rgba(255, 255, 255, 0.1);
-        display: flex;
-        align-items: center;
+      /* Carousel prev/next buttons — hidden on desktop, shown on mobile */
+      .carousel-controls {
+        display: none;
         justify-content: center;
-        color: var(--muted);
-        font-size: 12px;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-      }
-
-      /* ============================================================
-         EMAIL WORK
-      ============================================================ */
-      .email-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
         gap: 12px;
+        margin-bottom: 24px;
       }
 
-      .email-card {
+      .carousel-btn {
+        width: 44px;
+        height: 44px;
         background: var(--surface);
         border: 1px solid var(--border);
-        border-radius: 16px;
-        overflow: hidden;
-        transition:
-          border-color 0.25s,
-          transform 0.25s;
-      }
-
-      .email-card:hover {
-        border-color: rgba(52, 127, 111, 0.4);
-        transform: translateY(-2px);
-      }
-
-      .email-iframe-wrap {
-        position: relative;
-        width: 100%;
-        height: 420px;
-        overflow: hidden;
-        background: #ffffff;
-      }
-
-      .email-iframe-wrap iframe {
-        width: 182%;
-        height: 182%;
-        border: none;
-        transform: scale(0.55);
-        transform-origin: top left;
-        pointer-events: none;
-      }
-
-      .email-iframe-overlay {
-        position: absolute;
-        inset: 0;
-        cursor: pointer;
-        z-index: 2;
-        transition: background 0.2s;
-      }
-
-      .email-iframe-overlay:hover {
-        background: rgba(52, 127, 111, 0.15);
-      }
-
-      .email-iframe-overlay::after {
-        content: "View Email";
-        position: absolute;
-        bottom: 16px;
-        left: 50%;
-        transform: translateX(-50%) translateY(8px);
-        background: var(--primary);
-        color: white;
-        font-family: var(--display);
-        font-size: 12px;
-        font-weight: 600;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        padding: 8px 16px;
-        border-radius: 6px;
-        opacity: 0;
-        transition:
-          opacity 0.2s,
-          transform 0.2s;
-        white-space: nowrap;
-      }
-
-      .email-iframe-overlay:hover::after {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-      }
-
-      .email-card-info {
-        padding: 16px 20px;
-        border-top: 1px solid var(--border);
-      }
-
-      .email-card-title {
-        font-family: var(--display);
-        font-size: 15px;
-        font-weight: 600;
-        letter-spacing: -0.01em;
-        margin-bottom: 4px;
-      }
-
-      .email-card-type {
-        font-size: 11px;
-        color: var(--secondary);
-        font-weight: 500;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-      }
-
-      /* Email fullscreen modal */
-      .email-modal-overlay {
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.85);
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
-        z-index: 800;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 24px;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.25s ease;
-      }
-
-      .email-modal-overlay.open {
-        opacity: 1;
-        pointer-events: all;
-      }
-
-      .email-modal {
-        background: #ffffff;
-        border-radius: 16px;
-        width: 100%;
-        max-width: 640px;
-        max-height: 90vh;
-        overflow: hidden;
-        position: relative;
-        display: flex;
-        flex-direction: column;
-      }
-
-      .email-modal-header {
-        background: var(--surface);
-        padding: 16px 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-bottom: 1px solid var(--border);
-        flex-shrink: 0;
-      }
-
-      .email-modal-title {
-        font-family: var(--display);
-        font-size: 14px;
-        font-weight: 600;
+        border-radius: 8px;
         color: var(--text);
-      }
-
-      .email-modal-close {
-        width: 32px;
-        height: 32px;
-        background: var(--surface2);
-        border: 1px solid var(--border);
-        border-radius: 6px;
+        font-size: 20px;
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: var(--muted);
-        font-size: 16px;
         transition:
-          color 0.2s,
+          background 0.2s,
           border-color 0.2s;
       }
-
-      .email-modal-close:hover {
-        color: var(--text);
+      .carousel-btn:hover {
+        background: var(--primary);
         border-color: var(--primary);
       }
 
-      .email-modal iframe {
-        width: 100%;
-        flex: 1;
-        border: none;
-        min-height: 600px;
-      }
-
+      /* Email card inside craft section */
       .email-card-inner {
         display: grid;
         grid-template-columns: 1fr auto;
         gap: 40px;
         align-items: center;
       }
-      .email-card-inner .contact-link-card {
-        width: 100%;
+
+      .email-links-row {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+        flex-shrink: 0;
       }
 
       /* ============================================================
-         IMAGE SLIDER (used in print modal)
-      ============================================================ */
+       IMAGE SLIDER (print modal)
+    ============================================================ */
       .slider {
         position: relative;
         width: 100%;
@@ -1446,16 +1169,13 @@
         overflow: hidden;
         background: var(--surface2);
       }
-
       .slider-track {
         display: flex;
         transition: transform 0.35s ease;
       }
-
       .slider-slide {
         min-width: 100%;
       }
-
       .slider-slide img {
         width: 100%;
         max-height: 380px;
@@ -1482,12 +1202,10 @@
         transition: background 0.2s;
         z-index: 10;
       }
-
       .slider-arrow:hover {
         background: var(--primary);
         border-color: var(--primary);
       }
-
       .slider-arrow.prev {
         left: 12px;
       }
@@ -1505,7 +1223,6 @@
         gap: 6px;
         padding: 12px 0 4px;
       }
-
       .slider-dot {
         width: 6px;
         height: 6px;
@@ -1516,12 +1233,14 @@
           background 0.2s,
           transform 0.2s;
       }
-
       .slider-dot.active {
         background: var(--secondary);
         transform: scale(1.3);
       }
 
+      /* ============================================================
+       JOB / PRINT MODAL
+    ============================================================ */
       .modal-overlay {
         position: fixed;
         inset: 0;
@@ -1536,12 +1255,10 @@
         opacity: 0;
         pointer-events: none;
         transition: opacity 0.25s ease;
-        /* FIX: Safari needs overflow on the overlay container */
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
         overscroll-behavior: contain;
       }
-
       .modal-overlay.open {
         opacity: 1;
         pointer-events: all;
@@ -1560,7 +1277,6 @@
         margin: auto;
         align-self: flex-start;
       }
-
       .modal-overlay.open .modal {
         transform: translateY(0) scale(1);
       }
@@ -1585,7 +1301,6 @@
           color 0.2s,
           border-color 0.2s;
       }
-
       .modal-close:hover {
         color: var(--text);
         border-color: var(--primary);
@@ -1600,7 +1315,6 @@
         display: block;
         background: var(--surface2);
       }
-
       .modal-img-placeholder {
         width: 100%;
         height: 200px;
@@ -1616,7 +1330,6 @@
         letter-spacing: 0.06em;
         text-transform: uppercase;
       }
-
       .modal-eyebrow {
         font-size: 11px;
         font-weight: 600;
@@ -1625,7 +1338,6 @@
         color: var(--secondary);
         margin-bottom: 12px;
       }
-
       .modal-title {
         font-family: var(--display);
         font-size: 28px;
@@ -1633,7 +1345,6 @@
         letter-spacing: -0.02em;
         margin-bottom: 4px;
       }
-
       .modal-company {
         font-family: var(--display);
         font-size: 16px;
@@ -1641,13 +1352,11 @@
         color: var(--primary);
         margin-bottom: 24px;
       }
-
       .modal-divider {
         height: 1px;
         background: var(--border);
         margin-bottom: 24px;
       }
-
       .modal-section-label {
         font-size: 11px;
         font-weight: 600;
@@ -1656,7 +1365,6 @@
         color: var(--muted);
         margin-bottom: 10px;
       }
-
       .modal-body {
         color: rgba(240, 236, 230, 0.75);
         font-size: 14px;
@@ -1671,7 +1379,6 @@
         gap: 10px;
         margin-bottom: 28px;
       }
-
       .modal-highlights li {
         display: flex;
         gap: 12px;
@@ -1679,21 +1386,18 @@
         font-size: 14px;
         line-height: 1.6;
       }
-
       .modal-highlights li::before {
         content: "→";
         color: var(--primary);
         flex-shrink: 0;
         font-weight: 600;
       }
-
       .modal-highlights a {
         color: var(--secondary);
         text-decoration: none;
         border-bottom: 1px solid rgba(248, 153, 44, 0.3);
         transition: border-color 0.2s;
       }
-
       .modal-highlights a:hover {
         border-color: var(--secondary);
       }
@@ -1705,27 +1409,101 @@
       }
 
       /* ============================================================
-         CONTACT
-      ============================================================ */
+       EMAIL MODAL
+    ============================================================ */
+      .email-modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        z-index: 800;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s ease;
+      }
+      .email-modal-overlay.open {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .email-modal {
+        background: #ffffff;
+        border-radius: 16px;
+        width: 100%;
+        max-width: 640px;
+        max-height: 90vh;
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .email-modal-header {
+        background: var(--surface);
+        padding: 16px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid var(--border);
+        flex-shrink: 0;
+      }
+      .email-modal-title {
+        font-family: var(--display);
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text);
+      }
+      .email-modal-close {
+        width: 32px;
+        height: 32px;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--muted);
+        font-size: 16px;
+        transition:
+          color 0.2s,
+          border-color 0.2s;
+      }
+      .email-modal-close:hover {
+        color: var(--text);
+        border-color: var(--primary);
+      }
+      .email-modal iframe {
+        width: 100%;
+        flex: 1;
+        border: none;
+        min-height: 600px;
+      }
+
+      /* ============================================================
+       CONTACT
+    ============================================================ */
       #contact {
         max-width: 1200px;
         margin: 0 auto;
         padding: 0 40px 120px;
       }
-
       .contact-grid {
         display: grid;
         grid-template-columns: 1fr;
         gap: 12px;
       }
 
-      /* Headshot + CTA row */
       .contact-headshot-row {
         display: grid;
         grid-template-columns: 280px 1fr;
         gap: 12px;
       }
-
       .contact-headshot-card {
         background: var(--surface);
         border: 1px solid var(--border);
@@ -1743,7 +1521,6 @@
         display: block;
         min-height: 300px;
       }
-
       .headshot-placeholder {
         width: 100%;
         height: 100%;
@@ -1760,7 +1537,6 @@
         border: 1px dashed rgba(255, 255, 255, 0.1);
         border-radius: 16px;
       }
-
       .headshot-placeholder-icon {
         width: 56px;
         height: 56px;
@@ -1781,7 +1557,6 @@
         flex-direction: column;
         justify-content: center;
       }
-
       .contact-big h2 {
         font-family: var(--display);
         font-size: clamp(36px, 4vw, 56px);
@@ -1791,7 +1566,6 @@
         color: var(--secondary);
         margin-bottom: 24px;
       }
-
       .contact-big p {
         color: rgba(240, 236, 230, 0.75);
         font-size: 15px;
@@ -1812,12 +1586,10 @@
         align-self: flex-start;
         transition: background 0.2s;
       }
-
       .btn-dark:hover {
         background: #2d1f0a;
       }
 
-      /* Social link cards */
       .contact-links-grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
@@ -1838,7 +1610,6 @@
           border-color 0.2s,
           background 0.2s;
       }
-
       .contact-link-card:hover {
         border-color: var(--primary);
         background: rgba(52, 127, 111, 0.06);
@@ -1849,7 +1620,6 @@
         flex-direction: column;
         gap: 2px;
       }
-
       .link-platform {
         font-size: 11px;
         font-weight: 600;
@@ -1857,14 +1627,12 @@
         text-transform: uppercase;
         color: var(--muted);
       }
-
       .link-handle {
         font-family: var(--display);
         font-size: 16px;
         font-weight: 600;
         letter-spacing: -0.01em;
       }
-
       .link-arrow {
         color: var(--muted);
         font-size: 18px;
@@ -1872,18 +1640,14 @@
           color 0.2s,
           transform 0.2s;
       }
-
       .contact-link-card:hover .link-arrow {
         color: var(--primary);
         transform: translate(2px, -2px);
       }
-      .print-card {
-        touch-action: pan-x;
-      }
 
       /* ============================================================
-         FOOTER
-      ============================================================ */
+       FOOTER
+    ============================================================ */
       footer {
         border-top: 1px solid var(--border);
         padding: 28px 40px;
@@ -1896,8 +1660,8 @@
       }
 
       /* ============================================================
-         RESPONSIVE — Tablet (max 900px)
-      ============================================================ */
+       RESPONSIVE — Tablet / Mobile (max 900px)
+    ============================================================ */
       @media (max-width: 900px) {
         /* Nav */
         nav {
@@ -1927,11 +1691,9 @@
           gap: 32px;
           z-index: 999;
         }
-
         .nav-links.open {
           display: flex;
         }
-
         .nav-links a {
           font-size: 24px;
           font-family: var(--display);
@@ -1939,7 +1701,6 @@
           letter-spacing: -0.01em;
           color: var(--text);
         }
-
         .nav-cta {
           background: var(--primary) !important;
           color: var(--text) !important;
@@ -1979,20 +1740,23 @@
         .hero-content {
           padding: 20px 20px 60px;
         }
+        #hero {
+          grid-template-columns: 1fr;
+        }
+        .hero-actions {
+          flex-direction: column;
+        }
+        .btn-primary,
+        .btn-ghost {
+          text-align: center;
+        }
 
-        /* Bento grid */
+        /* Bento */
         .bento-section,
         #contact {
           padding-left: 20px;
           padding-right: 20px;
         }
-
-        /* FIX: craft section needs right padding 0 so scroll rows
-           can bleed to the edge, but the label/title still has padding */
-        #craft {
-          padding-right: 0;
-        }
-
         .bento-grid {
           grid-template-columns: 1fr;
         }
@@ -2005,8 +1769,6 @@
         .col-12 {
           grid-column: span 1;
         }
-
-        /* Mobile arrow → + */
         .proj-arrow {
           font-size: 0;
         }
@@ -2014,20 +1776,14 @@
           content: "+";
           font-size: 20px;
         }
-        .print-scroll-wrapper {
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
-          touch-action: pan-x;
-          padding-left: 20px;
-          padding-right: 20px;
+
+        /* Craft section — no right padding so cards bleed to edge */
+        #craft {
+          padding-right: 0;
+          overflow: visible;
         }
-        /* ── PRINT scroll row — mobile horizontal carousel ──────────
-           FIX: added overscroll-behavior-x:contain so swiping the
-           carousel doesn't accidentally trigger vertical page scroll.
-           Added padding-right so the last card has visible trailing space.
-           The parent #craft section must NOT have overflow:hidden.
-        ─────────────────────────────────────────────────────────── */
+
+        /* Print carousel */
         .print-scroll-row {
           display: flex;
           overflow-x: auto;
@@ -2037,31 +1793,52 @@
           touch-action: pan-x;
           overscroll-behavior-x: contain;
           gap: 12px;
-          padding-bottom: 16px;
+          padding-bottom: 8px;
+          padding-right: 20px;
           scrollbar-width: none;
         }
         .print-scroll-row::-webkit-scrollbar {
           display: none;
         }
+
         .print-card {
           min-width: 70vw;
           max-width: 70vw;
           flex-shrink: 0;
           scroll-snap-align: start;
+          touch-action: pan-x;
         }
-        .print-card-img {
-          aspect-ratio: 3/4;
-          max-height: 200px;
-        }
+        .print-card-img,
         .print-card-img-placeholder {
           aspect-ratio: 3/4;
           max-height: 200px;
+        }
+
+        /* Carousel controls — visible + centered on mobile */
+        .carousel-controls {
+          display: flex;
+        }
+
+        /* Email card stacks on mobile */
+        .email-card-inner {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+        .email-links-row {
+          flex-direction: column;
+        }
+        .email-links-row .contact-link-card {
+          width: 100%;
         }
 
         /* Case study */
         .case-study-card {
           flex-direction: column;
           align-items: flex-start;
+        }
+        .case-study-title-row {
+          grid-template-columns: 1fr;
+          gap: 12px;
         }
         .cs-modal-inner {
           padding: 80px 20px 60px;
@@ -2085,11 +1862,11 @@
           height: 1px;
           margin: 0 auto;
         }
-
-        /* Contact */
-        .contact-grid {
+        .cs-steps {
           grid-template-columns: 1fr;
         }
+
+        /* Contact */
         .contact-headshot-row {
           grid-template-columns: 1fr;
         }
@@ -2100,7 +1877,7 @@
           min-height: 240px;
         }
         .contact-links-grid {
-          grid-template-columns: 1fr 1fr !important;
+          grid-template-columns: 1fr 1fr;
         }
 
         /* Footer */
@@ -2110,93 +1887,21 @@
           gap: 8px;
         }
 
-        /* Modal — mobile */
+        /* Modal */
         .modal {
           padding: 24px;
         }
-
-        /* FIX: email grid horizontal scroll — same treatment as print */
-        .email-grid {
-          display: flex;
-          overflow-x: auto;
-          overflow-y: visible;
-          scroll-snap-type: x mandatory;
-          -webkit-overflow-scrolling: touch;
-          overscroll-behavior-x: contain;
-          gap: 12px;
-          padding-bottom: 16px;
-          padding-left: 20px;
-          padding-right: 20px; /* FIX: trailing space */
-          scrollbar-width: none;
-        }
-        .email-grid::-webkit-scrollbar {
-          display: none;
-        }
-        .email-card {
-          min-width: 70vw;
-          max-width: 70vw;
-          flex-shrink: 0;
-          scroll-snap-align: start;
-        }
-        .email-iframe-wrap iframe {
-          width: 250%;
-          height: 250%;
-          transform: scale(0.4);
-          transform-origin: top left;
-        }
-
-        .email-card-inner {
-          grid-template-columns: 1fr;
-          gap: 20px;
-        }
-
-        .case-study-card-left [style*="grid-template-columns"] {
-          grid-template-columns: 1fr !important;
-          gap: 12px;
-        }
       }
 
-      /* ============================================================
-         RESPONSIVE — Mobile (max 480px)
-      ============================================================ */
       @media (max-width: 480px) {
-        #hero {
-          grid-template-columns: 1fr;
-        }
-        .hero-actions {
-          flex-direction: column;
-        }
-        .btn-primary,
-        .btn-ghost {
-          text-align: center;
-        }
-        .cs-steps {
-          grid-template-columns: 1fr;
-        }
         .contact-links-grid {
-          grid-template-columns: 1fr !important;
-        }
-
-        /* FIX: on smallest screens, craft/email sections need left
-           padding reset to 0 so the scroll rows start flush.
-           The scroll rows themselves add their own padding-left. */
-        #craft,
-        #email {
-          padding-left: 0;
-          padding-right: 0;
-        }
-        /* The bento-label inside craft still needs indent */
-        #craft .bento-label,
-        #email .bento-label {
-          padding-left: 20px;
+          grid-template-columns: 1fr;
         }
       }
     </style>
   </head>
   <body>
-    <!-- ============================================================
-         NAVIGATION
-    ============================================================ -->
+    <!-- NAVIGATION -->
     <nav>
       <a href="#" class="nav-logo">
         <img
@@ -2209,26 +1914,20 @@
           >John<span class="nav-logo-dot">.</span>Masulonis</span
         >
       </a>
-
       <div class="nav-links" id="navLinks">
         <button class="nav-menu-close" onclick="toggleNav()">✕</button>
         <a href="#work">Recent Career</a>
         <a href="#casestudy">Case Study</a>
-        <a href="#craft">Craft & Capabilities</a>
+        <a href="#craft">Craft</a>
         <a href="#skills">Skills</a>
         <a href="#contact" class="nav-cta">Get in touch</a>
       </div>
-
       <button class="nav-hamburger" id="navHamburger" onclick="toggleNav()">
-        <span></span>
-        <span></span>
-        <span></span>
+        <span></span><span></span><span></span>
       </button>
     </nav>
 
-    <!-- ============================================================
-         HERO
-    ============================================================ -->
+    <!-- HERO -->
     <section id="hero">
       <div class="hero-img-wrap">
         <img
@@ -2241,12 +1940,13 @@
       </div>
       <div class="hero-content">
         <div class="hero-eyebrow">
-          <span class="eyebrow-dot"></span>
-          Open to remote full-time opportunities
+          <span class="eyebrow-dot"></span>Open to remote full-time
+          opportunities
         </div>
         <h1 class="hero-title">
-          John Masulonis<br />
-          <span class="line2">Designer &amp; Developer</span>
+          John Masulonis<br /><span class="line2"
+            >Designer &amp; Developer</span
+          >
         </h1>
         <p class="hero-sub">
           Senior digital designer focused on building scalable web experiences
@@ -2262,13 +1962,10 @@
       </div>
     </section>
 
-    <!-- ============================================================
-         CAREER
-    ============================================================ -->
+    <!-- CAREER -->
     <section class="bento-section" id="work">
       <div class="bento-label">Recent Career</div>
       <div class="bento-grid">
-        <!-- Job 1: Sidearm Sports -->
         <div class="bento-card col-7 job-card" onclick="openModal('job1')">
           <div class="proj-arrow">↗</div>
           <div class="project-card-inner">
@@ -2285,15 +1982,14 @@
             <h3>Web Designer</h3>
             <p>SIDEARM Sports · Remote Full-time</p>
             <div class="proj-tags">
-              <span class="proj-tag">UI Design</span>
-              <span class="proj-tag">Figma</span>
-              <span class="proj-tag">Design Systems</span>
-              <span class="proj-tag">Accessibility</span>
+              <span class="proj-tag">UI Design</span
+              ><span class="proj-tag">Figma</span
+              ><span class="proj-tag">Design Systems</span
+              ><span class="proj-tag">Accessibility</span>
             </div>
           </div>
         </div>
 
-        <!-- Quote card -->
         <div class="bento-card col-5 about-card">
           <blockquote>
             I believe good design is invisible — it just
@@ -2301,13 +1997,11 @@
           </blockquote>
         </div>
 
-        <!-- Stat: Years -->
         <div class="bento-card col-3 stat-card">
           <div class="stat-num">15+</div>
           <div class="stat-label">Years of experience</div>
         </div>
 
-        <!-- Job 2: IBM -->
         <div class="bento-card col-5 job-card" onclick="openModal('job2')">
           <div class="proj-arrow">↗</div>
           <div class="project-card-inner">
@@ -2324,14 +2018,13 @@
             <h3>Visual Designer</h3>
             <p>IBM · Full-time</p>
             <div class="proj-tags">
-              <span class="proj-tag">Branding</span>
-              <span class="proj-tag">Web Design</span>
-              <span class="proj-tag">Sketch</span>
+              <span class="proj-tag">Branding</span
+              ><span class="proj-tag">Web Design</span
+              ><span class="proj-tag">Sketch</span>
             </div>
           </div>
         </div>
 
-        <!-- Accent card -->
         <div class="bento-card col-4 card-accent">
           <h3>Open to Contract &amp; Full-Time roles</h3>
           <p>
@@ -2340,7 +2033,6 @@
           </p>
         </div>
 
-        <!-- Job 3: Cisco -->
         <div class="bento-card col-6 job-card" onclick="openModal('job3')">
           <div class="proj-arrow">↗</div>
           <div class="project-card-inner">
@@ -2357,19 +2049,17 @@
             <h3>Digital Designer</h3>
             <p>Cisco · Remote Full-time</p>
             <div class="proj-tags">
-              <span class="proj-tag">HTML 5 Banners</span>
-              <span class="proj-tag">Visual Design</span>
+              <span class="proj-tag">HTML 5 Banners</span
+              ><span class="proj-tag">Visual Design</span>
             </div>
           </div>
         </div>
 
-        <!-- Stat: Projects -->
         <div class="bento-card col-3 stat-card">
           <div class="stat-num">20+</div>
           <div class="stat-label">Projects shipped</div>
         </div>
 
-        <!-- Job 4: Trimark Digital -->
         <div class="bento-card col-3 job-card" onclick="openModal('job4')">
           <div class="proj-arrow">↗</div>
           <div class="project-card-inner">
@@ -2386,17 +2076,15 @@
             <h3>Senior Designer</h3>
             <p>Trimark Digital · Full-time</p>
             <div class="proj-tags">
-              <span class="proj-tag">Print</span>
-              <span class="proj-tag">Branding</span>
+              <span class="proj-tag">Print</span
+              ><span class="proj-tag">Branding</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ============================================================
-         CASE STUDY (teaser card)
-    ============================================================ -->
+    <!-- CASE STUDY -->
     <section class="bento-section" id="casestudy">
       <div class="bento-label">Case Study</div>
       <div class="case-study-card" onclick="openCaseStudy()">
@@ -2404,28 +2092,14 @@
           <div class="case-study-eyebrow">
             UX/UI Redesign · 2025 · SIDEARM Sports
           </div>
-          <div
-            style="
-              display: grid;
-              grid-template-columns: auto 1fr;
-              gap: 20px;
-              align-items: center;
-              margin-bottom: 24px;
-            "
-          >
+          <div class="case-study-title-row">
             <img
               src="img/logo_main.svg"
               alt="University of Alberta Athletics"
-              style="
-                height: 56px;
-                width: auto;
-                display: block;
-                opacity: 0.85;
-                flex-shrink: 0;
-              "
+              class="case-study-logo"
               onerror="this.style.display = 'none'"
             />
-            <div class="case-study-title" style="margin-bottom: 0">
+            <div class="case-study-title">
               Redesigning <span>University Of Alberta Athletics</span> for a
               Better Fan Experience
             </div>
@@ -2443,21 +2117,12 @@
       </div>
     </section>
 
-    <!-- ============================================================
-         BRAND & PRINT WORK
-    ============================================================ -->
+    <!-- CRAFT & CAPABILITIES -->
     <section class="bento-section" id="craft">
       <div class="bento-label">Craft & Capabilities</div>
-      <div
-        class="print-scroll-wrapper"
-        style="
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
-          touch-action: pan-x;
-        "
-      >
-        <div class="print-scroll-row">
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <!-- Print cards — id="print-row" is what scrollCarousel() targets -->
+        <div class="print-scroll-row" id="print-row">
           <div class="print-card" onclick="openPrintModal('print1')">
             <img
               src="img/brand_jerrys-concept.jpg"
@@ -2544,11 +2209,14 @@
           </div>
         </div>
 
-        <!-- Email Design full-width card -->
-        <div
-          class="bento-card col-12 email-bento-card"
-          style="margin-top: 12px"
-        >
+        <!-- Carousel controls — centered below cards, only visible on mobile -->
+        <div class="carousel-controls">
+          <button class="carousel-btn" onclick="scrollCarousel(-1)">‹</button>
+          <button class="carousel-btn" onclick="scrollCarousel(1)">›</button>
+        </div>
+
+        <!-- Email full-width card -->
+        <div class="bento-card">
           <div class="email-card-inner">
             <div class="project-card-inner">
               <span class="proj-num">HTML Email · Digital</span>
@@ -2559,19 +2227,11 @@
                 drive engagement across inboxes.
               </p>
               <div class="proj-tags">
-                <span class="proj-tag">HTML Email</span>
-                <span class="proj-tag">Promotional</span>
+                <span class="proj-tag">HTML Email</span
+                ><span class="proj-tag">Promotional</span>
               </div>
             </div>
-            <div
-              style="
-                display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
-                gap: 10px;
-                flex-shrink: 0;
-              "
-            >
+            <div class="email-links-row">
               <a
                 href="javascript:void(0)"
                 onclick="
@@ -2584,8 +2244,8 @@
                 class="contact-link-card"
               >
                 <div class="link-card-left">
-                  <span class="link-platform">Global Golf</span>
-                  <span class="link-handle">Christmas Club Sale</span>
+                  <span class="link-platform">Global Golf</span
+                  ><span class="link-handle">Christmas Club Sale</span>
                 </div>
                 <span class="link-arrow">↗</span>
               </a>
@@ -2601,8 +2261,8 @@
                 class="contact-link-card"
               >
                 <div class="link-card-left">
-                  <span class="link-platform">Advance Auto Parts</span>
-                  <span class="link-handle">Loyalty Program Email</span>
+                  <span class="link-platform">Advance Auto Parts</span
+                  ><span class="link-handle">Loyalty Program Email</span>
                 </div>
                 <span class="link-arrow">↗</span>
               </a>
@@ -2618,8 +2278,8 @@
                 class="contact-link-card"
               >
                 <div class="link-card-left">
-                  <span class="link-platform">Savile Row Company</span>
-                  <span class="link-handle">Cyber Monday Email</span>
+                  <span class="link-platform">Savile Row Company</span
+                  ><span class="link-handle">Cyber Monday Email</span>
                 </div>
                 <span class="link-arrow">↗</span>
               </a>
@@ -2629,9 +2289,7 @@
       </div>
     </section>
 
-    <!-- ============================================================
-         SKILLS
-    ============================================================ -->
+    <!-- SKILLS -->
     <section class="bento-section" id="skills">
       <div class="bento-label">Skills & Tools</div>
       <div class="bento-grid">
@@ -2671,7 +2329,6 @@
             </div>
           </div>
         </div>
-
         <div class="bento-card col-6 skills-card">
           <h3>Development</h3>
           <div class="skill-bar-row">
@@ -2710,13 +2367,10 @@
       </div>
     </section>
 
-    <!-- ============================================================
-         CONTACT
-    ============================================================ -->
+    <!-- CONTACT -->
     <section id="contact">
       <div class="bento-label">Get In Touch</div>
       <div class="contact-grid">
-        <!-- Headshot + CTA -->
         <div class="contact-headshot-row">
           <div class="contact-headshot-card">
             <img
@@ -2734,9 +2388,9 @@
               <h2>Let's talk about <br />what's next</h2>
               <p>
                 I'm currently exploring new opportunities in web and UX/UI, with
-                a strong foundation in visual and brand design. Currently open
-                to full-time opportunities, with a preference for remote or
-                flexible work, please feel free to reach out.
+                a strong foundation in visual and brand design. Open to
+                full-time opportunities with a preference for remote or flexible
+                work — please feel free to reach out.
               </p>
               <a href="mailto:jmasulonis@mac.com" class="btn-dark"
                 >Send me an email →</a
@@ -2744,8 +2398,6 @@
             </div>
           </div>
         </div>
-
-        <!-- Social links -->
         <div class="contact-links-grid">
           <a
             href="img/John-Masulonis_Resume.pdf"
@@ -2753,8 +2405,8 @@
             target="_blank"
           >
             <div class="link-card-left">
-              <span class="link-platform">Resume</span>
-              <span class="link-handle">Download PDF</span>
+              <span class="link-platform">Resume</span
+              ><span class="link-handle">Download PDF</span>
             </div>
             <span class="link-arrow">↗</span>
           </a>
@@ -2764,8 +2416,8 @@
             target="_blank"
           >
             <div class="link-card-left">
-              <span class="link-platform">LinkedIn</span>
-              <span class="link-handle">linkedin.com/in/johnmasulonis</span>
+              <span class="link-platform">LinkedIn</span
+              ><span class="link-handle">linkedin.com/in/johnmasulonis</span>
             </div>
             <span class="link-arrow">↗</span>
           </a>
@@ -2775,8 +2427,8 @@
             target="_blank"
           >
             <div class="link-card-left">
-              <span class="link-platform">Resume Landing Page</span>
-              <span class="link-handle">github.com/johnmasulonis</span>
+              <span class="link-platform">Resume Landing Page</span
+              ><span class="link-handle">github.com/johnmasulonis</span>
             </div>
             <span class="link-arrow">↗</span>
           </a>
@@ -2786,8 +2438,8 @@
             target="_blank"
           >
             <div class="link-card-left">
-              <span class="link-platform">Dribbble</span>
-              <span class="link-handle">dribbble.com/jmasulonis</span>
+              <span class="link-platform">Dribbble</span
+              ><span class="link-handle">dribbble.com/jmasulonis</span>
             </div>
             <span class="link-arrow">↗</span>
           </a>
@@ -2795,17 +2447,13 @@
       </div>
     </section>
 
-    <!-- ============================================================
-         FOOTER
-    ============================================================ -->
+    <!-- FOOTER -->
     <footer>
       <span>© 2026 John Masulonis</span>
       <span>Designed & developed with care</span>
     </footer>
 
-    <!-- ============================================================
-         JOB / PRINT MODAL (shared)
-    ============================================================ -->
+    <!-- JOB / PRINT MODAL -->
     <div
       class="modal-overlay"
       id="modalOverlay"
@@ -2817,13 +2465,10 @@
       </div>
     </div>
 
-    <!-- ============================================================
-         CASE STUDY — Fullscreen modal
-    ============================================================ -->
+    <!-- CASE STUDY MODAL -->
     <div class="cs-modal-overlay" id="csModal">
       <button class="cs-modal-close" onclick="closeCaseStudy()">✕</button>
       <div class="cs-modal-inner">
-        <!-- Intro -->
         <div class="cs-intro">
           <div class="cs-hero">
             <div>
@@ -2857,9 +2502,8 @@
                 font-size: 13px;
                 padding: 10px 20px;
               "
+              >View Live Site →</a
             >
-              View Live Site →
-            </a>
             <div class="case-study-tags">
               <span class="case-study-tag">UX Research</span>
               <span class="case-study-tag">UI Design</span>
@@ -2878,8 +2522,7 @@
                 <p>
                   Its fragmented structure and inconsistent visual system
                   created friction in navigation and weakened alignment with the
-                  broader university brand. As a result, users faced unnecessary
-                  barriers to engaging with athletics content in real time.
+                  broader university brand.
                 </p>
               </div>
             </div>
@@ -2895,8 +2538,6 @@
             </div>
           </div>
         </div>
-
-        <!-- Process steps -->
         <div class="cs-steps">
           <div class="cs-step">
             <div class="cs-step-num">01</div>
@@ -2905,9 +2546,7 @@
               To identify core pain points, I worked with stakeholders from the
               University of Alberta to define audience needs and project goals,
               then benchmarked against leading collegiate programs like Alabama,
-              Georgia, and Ohio State. Combined with a focused audit of the
-              existing site, this revealed key gaps in navigation, content
-              hierarchy, and mobile usability.
+              Georgia, and Ohio State.
             </div>
           </div>
           <div class="cs-step">
@@ -2916,21 +2555,16 @@
             <div class="cs-step-body">
               Research focused on how users access collegiate athletics content,
               highlighting the importance of fast access to schedules, scores,
-              and team information — especially on mobile. These insights
-              reinforced the need to simplify navigation and prioritize
-              high-demand content.
+              and team information — especially on mobile.
             </div>
           </div>
           <div class="cs-step">
             <div class="cs-step-num">03</div>
             <div class="cs-step-title">Wireframes</div>
             <div class="cs-step-body">
-              Wireframes focused on restructuring the Golden Bears and Pandas
-              site around primary user goals, prioritizing quick access to
-              schedules, scores, and team information. I simplified navigation
-              and clarified content hierarchy to reduce friction across key user
-              flows, validating structure and usability before applying visual
-              design.
+              Wireframes focused on restructuring the site around primary user
+              goals, prioritizing quick access to schedules, scores, and team
+              information while simplifying navigation.
             </div>
           </div>
           <div class="cs-step">
@@ -2938,15 +2572,12 @@
             <div class="cs-step-title">Final Design</div>
             <div class="cs-step-body">
               The final design aligned with the university brand and streamlined
-              access to schedules, scores, and team pages. Key features included
-              a full-window slide-out menu, a scrolling schedule card module,
-              and an animated featured stories section — standardizing
-              hierarchy, reducing friction, and improving mobile usability.
+              access to schedules, scores, and team pages with a full-window
+              slide-out menu, scrolling schedule card module, and animated
+              featured stories section.
             </div>
           </div>
         </div>
-
-        <!-- Images -->
         <div class="cs-images-top">
           <div class="cs-img-card">
             <img
@@ -2984,8 +2615,6 @@
             />
           </div>
         </div>
-
-        <!-- Outcome -->
         <div class="cs-outcome">
           <div class="outcome-stat">
             <div class="cs-outcome-num">3</div>
@@ -3005,7 +2634,7 @@
       </div>
     </div>
 
-    <!-- Email Modal -->
+    <!-- EMAIL MODAL -->
     <div class="email-modal-overlay" id="emailModal">
       <div class="email-modal">
         <div class="email-modal-header">
@@ -3018,14 +2647,10 @@
       </div>
     </div>
 
-    <!-- ============================================================
-         JAVASCRIPT
-    ============================================================ -->
     <script>
       // ============================================================
       // SCROLL LOCK — iOS Safari compatible
-      // Uses position:fixed + scroll position save/restore instead
-      // of overflow:hidden alone (which doesn't work on iOS Safari)
+      // position:fixed + scroll save/restore instead of overflow:hidden
       // ============================================================
       let _scrollY = 0;
 
@@ -3042,7 +2667,7 @@
       }
 
       // ============================================================
-      // DATA — Career jobs
+      // DATA — Jobs
       // ============================================================
       const jobs = {
         job1: {
@@ -3110,7 +2735,7 @@
       };
 
       // ============================================================
-      // DATA — Print / brand work
+      // DATA — Print works
       // ============================================================
       const printWorks = {
         print1: {
@@ -3135,7 +2760,7 @@
             "img/editorial_jerrys-artarama-bigbook.jpg",
           ],
           description:
-            "I've developed a range of editorial design work spanning retail catalogs, store circulars, and informational publications, including magazine-style pieces for a city Parks and Recreation department. I focused on organizing dense content into clear, engaging layouts that guide readers through schedules, programs, and product offerings with ease.",
+            "I've developed a range of editorial design work spanning retail catalogs, store circulars, and informational publications, including magazine-style pieces for a city Parks and Recreation department.",
           tags: ["Print", "Layout", "Editorial"],
         },
         print3: {
@@ -3147,7 +2772,7 @@
             "img/logo_various-concepts.jpg",
           ],
           description:
-            "I've led the development of logo and identity concepts across a range of projects, guiding each from initial exploration through final execution. My approach focuses on distilling complex ideas into simple, memorable marks that are both distinctive and functional across a variety of applications.",
+            "I've led the development of logo and identity concepts across a range of projects, guiding each from initial exploration through final execution. My approach focuses on distilling complex ideas into simple, memorable marks that are both distinctive and functional.",
           tags: ["Logo", "Branding", "Identity"],
         },
         print4: {
@@ -3159,7 +2784,7 @@
             "img/campaign_hayword-allen_billboard.jpg",
           ],
           description:
-            "I led the concept and execution of a range of campaign and out-of-home work, including retail sales events, festival posters, and automotive dealership billboards. Each project focused on distilling messaging down to its most impactful form — balancing bold visuals with clear hierarchy to communicate quickly and effectively across large-scale formats.",
+            "I led the concept and execution of a range of campaign and out-of-home work, including retail sales events, festival posters, and automotive dealership billboards.",
           tags: ["Campaign", "Print", "OOH"],
         },
         print5: {
@@ -3192,45 +2817,33 @@
           job.showHighlights === false
             ? ""
             : `
-    <div class="modal-section-label">Key highlights</div>
-    <ul class="modal-highlights">
-      ${job.highlights.map((h) => `<li>${h}</li>`).join("")}
-    </ul>`;
+        <div class="modal-section-label">Key highlights</div>
+        <ul class="modal-highlights">${job.highlights.map((h) => `<li>${h}</li>`).join("")}</ul>`;
 
         const workSamplesHtml =
           job.workSamples && job.workSamples.length
             ? `
-    <button class="work-samples-toggle" onclick="toggleWorkSamples(this)">
-      View Work Samples
-      <span class="work-samples-toggle-icon">+</span>
-    </button>
-    <div class="work-samples-grid">
-      ${job.workSamples
-        .map(
-          (src) =>
-            `<img src="${src}" alt="Work sample" onerror="this.style.display='none'">`,
-        )
-        .join("")}
-    </div>`
+        <button class="work-samples-toggle" onclick="toggleWorkSamples(this)">
+          View Work Samples <span class="work-samples-toggle-icon">+</span>
+        </button>
+        <div class="work-samples-grid">
+          ${job.workSamples.map((src) => `<img src="${src}" alt="Work sample" onerror="this.style.display='none'">`).join("")}
+        </div>`
             : "";
 
         document.getElementById("modal-content").innerHTML = `
-    ${imgHtml}
-    <div class="modal-eyebrow">${job.period} · ${job.type}</div>
-    <div class="modal-title">${job.title}</div>
-    <div class="modal-company">${job.company}</div>
-    <div class="modal-divider"></div>
-    <div class="modal-section-label">Overview</div>
-    <div class="modal-body">${job.summary}</div>
-    ${highlightsHtml}
-    <div class="modal-section-label">Skills & tools</div>
-    <div class="modal-tags">
-      ${job.tags.map((t) => `<span class="proj-tag">${t}</span>`).join("")}
-    </div>
-    ${workSamplesHtml}
-  `;
+        ${imgHtml}
+        <div class="modal-eyebrow">${job.period} · ${job.type}</div>
+        <div class="modal-title">${job.title}</div>
+        <div class="modal-company">${job.company}</div>
+        <div class="modal-divider"></div>
+        <div class="modal-section-label">Overview</div>
+        <div class="modal-body">${job.summary}</div>
+        ${highlightsHtml}
+        <div class="modal-section-label">Skills & tools</div>
+        <div class="modal-tags">${job.tags.map((t) => `<span class="proj-tag">${t}</span>`).join("")}</div>
+        ${workSamplesHtml}`;
 
-        // Fade image in once loaded
         const img = document.querySelector("#modal-content .modal-img");
         if (img) {
           img.style.opacity = "0";
@@ -3239,7 +2852,6 @@
           if (img.complete) img.style.opacity = "1";
         }
 
-        // Scroll overlay back to top for tall modals
         const overlay = document.getElementById("modalOverlay");
         overlay.scrollTop = 0;
         overlay.classList.add("open");
@@ -3256,6 +2868,11 @@
         if (e.target === document.getElementById("modalOverlay")) closeModal();
       }
 
+      function toggleWorkSamples(btn) {
+        btn.classList.toggle("open");
+        btn.nextElementSibling.classList.toggle("open");
+      }
+
       // ============================================================
       // PRINT MODAL
       // ============================================================
@@ -3268,47 +2885,44 @@
         const slidesHtml = images
           .map(
             (src) => `
-            <div class="slider-slide">
-              <img src="${src}" alt="${work.title}" onerror="this.style.display='none'">
-            </div>`,
+        <div class="slider-slide">
+          <img src="${src}" alt="${work.title}" onerror="this.style.display='none'">
+        </div>`,
           )
           .join("");
 
         const dotsHtml =
           images.length > 1
             ? `
-            <div class="slider-dots">
-              ${images.map((_, i) => `<div class="slider-dot ${i === 0 ? "active" : ""}" onclick="goToSlide(${i})"></div>`).join("")}
-            </div>`
+        <div class="slider-dots">
+          ${images.map((_, i) => `<div class="slider-dot ${i === 0 ? "active" : ""}" onclick="goToSlide(${i})"></div>`).join("")}
+        </div>`
             : "";
 
         const arrowsHtml =
           images.length > 1
             ? `
-            <button class="slider-arrow prev hidden" id="sliderPrev" onclick="slideMove(-1)">‹</button>
-            <button class="slider-arrow next" id="sliderNext" onclick="slideMove(1)">›</button>`
+        <button class="slider-arrow prev hidden" id="sliderPrev" onclick="slideMove(-1)">‹</button>
+        <button class="slider-arrow next" id="sliderNext" onclick="slideMove(1)">›</button>`
             : "";
 
         document.getElementById("modal-content").innerHTML = `
-          <div class="slider" id="sliderContainer">
-            <div class="slider-track" id="sliderTrack">${slidesHtml}</div>
-            ${arrowsHtml}
-          </div>
-          ${dotsHtml}
-          <div class="modal-eyebrow">${work.type}</div>
-          <div class="modal-title">${work.title}</div>
-          <div class="modal-divider"></div>
-          <div class="modal-section-label">About this piece</div>
-          <div class="modal-body">${work.description}</div>
-          <div class="modal-section-label">Tags</div>
-          <div class="modal-tags">
-            ${work.tags.map((t) => `<span class="proj-tag">${t}</span>`).join("")}
-          </div>`;
+        <div class="slider" id="sliderContainer">
+          <div class="slider-track" id="sliderTrack">${slidesHtml}</div>
+          ${arrowsHtml}
+        </div>
+        ${dotsHtml}
+        <div class="modal-eyebrow">${work.type}</div>
+        <div class="modal-title">${work.title}</div>
+        <div class="modal-divider"></div>
+        <div class="modal-section-label">About this piece</div>
+        <div class="modal-body">${work.description}</div>
+        <div class="modal-section-label">Tags</div>
+        <div class="modal-tags">${work.tags.map((t) => `<span class="proj-tag">${t}</span>`).join("")}</div>`;
 
         window._sliderCurrent = 0;
         window._sliderTotal = images.length;
 
-        // Touch swipe support
         const slider = document.getElementById("sliderContainer");
         let touchStartX = 0;
         slider.addEventListener(
@@ -3334,11 +2948,12 @@
       }
 
       function slideMove(dir) {
-        const current = Math.max(
-          0,
-          Math.min(window._sliderCurrent + dir, window._sliderTotal - 1),
+        goToSlide(
+          Math.max(
+            0,
+            Math.min(window._sliderCurrent + dir, window._sliderTotal - 1),
+          ),
         );
-        goToSlide(current);
       }
 
       function goToSlide(index) {
@@ -3356,6 +2971,19 @@
       }
 
       // ============================================================
+      // PRINT CAROUSEL CONTROLS
+      // scrollCarousel(dir) — targets #print-row directly
+      // ============================================================
+      function scrollCarousel(dir) {
+        const row = document.getElementById("print-row");
+        if (!row) return;
+        const card = row.querySelector(".print-card");
+        if (!card) return;
+        const cardWidth = card.offsetWidth + 12; // 12 = gap
+        row.scrollBy({ left: dir * cardWidth, behavior: "smooth" });
+      }
+
+      // ============================================================
       // CASE STUDY MODAL
       // ============================================================
       function openCaseStudy() {
@@ -3364,7 +2992,6 @@
         modal.classList.add("open");
         lockScroll();
 
-        // Wire up image zoom clicks
         document.querySelectorAll(".cs-img").forEach((img) => {
           img.style.cursor = "zoom-in";
           img.addEventListener("click", function () {
@@ -3379,21 +3006,6 @@
       function closeCaseStudy() {
         document.getElementById("csModal").classList.remove("open");
         unlockScroll();
-      }
-
-      // ============================================================
-      // NAVIGATION
-      // ============================================================
-      function toggleNav() {
-        const nav = document.getElementById("navLinks");
-        const burger = document.getElementById("navHamburger");
-        nav.classList.toggle("open");
-        burger.classList.toggle("open");
-        if (nav.classList.contains("open")) {
-          lockScroll();
-        } else {
-          unlockScroll();
-        }
       }
 
       // ============================================================
@@ -3412,58 +3024,44 @@
         unlockScroll();
       }
 
-      function toggleWorkSamples(btn) {
-        btn.classList.toggle("open");
-        btn.nextElementSibling.classList.toggle("open");
-      }
-
-      function zoomWorkSample(src) {
-        document.getElementById("modal-content").innerHTML =
-          `<img src="${src}" style="width:100%; border-radius:12px; display:block;">`;
-        document.querySelector(".modal").style.maxWidth = "1000px";
-        document.getElementById("modalOverlay").classList.add("open");
+      // ============================================================
+      // NAVIGATION
+      // ============================================================
+      function toggleNav() {
+        const nav = document.getElementById("navLinks");
+        const burger = document.getElementById("navHamburger");
+        nav.classList.toggle("open");
+        burger.classList.toggle("open");
+        nav.classList.contains("open") ? lockScroll() : unlockScroll();
       }
 
       // ============================================================
       // EVENT LISTENERS
       // ============================================================
       document.addEventListener("DOMContentLoaded", function () {
-        // Close small modal on overlay click
         document
           .getElementById("modalOverlay")
           .addEventListener("click", function (e) {
             if (e.target === this) closeModal();
           });
-
-        // Close case study on overlay click
         document
           .getElementById("csModal")
           .addEventListener("click", function (e) {
             if (e.target === this) closeCaseStudy();
           });
-
-        // Close email modal on overlay click
         document
           .getElementById("emailModal")
           .addEventListener("click", function (e) {
             if (e.target === this) closeEmailModal();
           });
-
-        // Escape key closes everything
         document.addEventListener("keydown", function (e) {
-          if (e.key === "Escape") {
-            closeModal();
-            closeCaseStudy();
-            closeEmailModal();
-            if (
-              document.getElementById("navLinks").classList.contains("open")
-            ) {
-              toggleNav();
-            }
-          }
+          if (e.key !== "Escape") return;
+          closeModal();
+          closeCaseStudy();
+          closeEmailModal();
+          if (document.getElementById("navLinks").classList.contains("open"))
+            toggleNav();
         });
-
-        // Close mobile nav when a link is clicked
         document.querySelectorAll("#navLinks a").forEach((link) => {
           link.addEventListener("click", function () {
             document.getElementById("navLinks").classList.remove("open");
