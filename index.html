@@ -1118,7 +1118,7 @@
         display: none;
         justify-content: center;
         gap: 12px;
-        margin-bottom: 24px;
+        margin-top: 16px;
       }
 
       .carousel-btn {
@@ -1777,10 +1777,18 @@
           font-size: 20px;
         }
 
-        /* Craft section — no right padding so cards bleed to edge */
+        /* Craft section — no left/right padding so scroll row fills edge to edge */
         #craft {
+          padding-left: 0;
           padding-right: 0;
           overflow: visible;
+        }
+
+        /* Keep the label and email card indented */
+        #craft > .bento-label,
+        #craft > div > .bento-card {
+          margin-left: 20px;
+          margin-right: 20px;
         }
 
         /* Print carousel */
@@ -1789,12 +1797,14 @@
           overflow-x: auto;
           overflow-y: visible;
           scroll-snap-type: x mandatory;
+          scroll-padding-left: 20px;
           -webkit-overflow-scrolling: touch;
           touch-action: pan-x;
           overscroll-behavior-x: contain;
           gap: 12px;
+          padding-left: 20px;
+          padding-right: 20px;
           padding-bottom: 8px;
-          /* padding-right: 20px; add some right padding so last card can scroll fully into view */
           scrollbar-width: none;
         }
         .print-scroll-row::-webkit-scrollbar {
@@ -2979,8 +2989,13 @@
         if (!row) return;
         const card = row.querySelector(".print-card");
         if (!card) return;
-        const cardWidth = card.offsetWidth + 12; // 12 = gap
-        row.scrollBy({ left: dir * cardWidth, behavior: "smooth" });
+        const cardWidth = card.offsetWidth + 12;
+        const maxScroll = row.scrollWidth - row.clientWidth;
+        const newPos = Math.min(
+          Math.max(row.scrollLeft + dir * cardWidth, 0),
+          maxScroll,
+        );
+        row.scrollTo({ left: newPos, behavior: "smooth" });
       }
 
       // ============================================================
