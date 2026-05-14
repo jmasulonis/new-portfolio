@@ -3005,7 +3005,7 @@
         const modal = document.getElementById("csModal");
         modal.scrollTop = 0;
         modal.classList.add("open");
-        lockScroll();
+        document.body.style.overflow = "hidden"; // simpler lock — CS modal scrolls itself
 
         document.querySelectorAll(".cs-img").forEach((img) => {
           img.style.cursor = "zoom-in";
@@ -3020,7 +3020,7 @@
 
       function closeCaseStudy() {
         document.getElementById("csModal").classList.remove("open");
-        unlockScroll();
+        document.body.style.overflow = "";
       }
 
       // ============================================================
