@@ -1,0 +1,2258 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Fishin' Pig UX/UI Redesign — A self-initiated concept redesign by John Masulonis spanning research, IA, design system and high fidelity across five pages."
+    />
+    <title>Fishin' Pig — UX/UI Redesign | John Masulonis</title>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Lato:wght@400;700&family=Manrope:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #0e0d0c;
+        --surface: #161412;
+        --surface2: #1e1b18;
+        --border: rgba(255, 255, 255, 0.07);
+        --primary: #347f6f;
+        --primary-light: #3d9680;
+        --secondary: #f8992c;
+        --tertiary: #534840;
+        --text: #f0ece6;
+        --muted: #6b6560;
+        --display: "Space Grotesk", sans-serif;
+        --body: "Manrope", sans-serif;
+        --fp-mahogany: #6a3a26;
+        --fp-pink: #e55a81;
+        --fp-gold: #b07d1a;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--body);
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.6;
+        min-height: 100vh;
+      }
+
+      /* ============================================================
+       DISCLAIMER BANNER
+    ============================================================ */
+      .disclaimer-banner {
+        background: var(--surface2);
+        border-bottom: 1px solid var(--border);
+        padding: 10px 40px;
+        text-align: center;
+        font-size: 12px;
+        color: var(--muted);
+        letter-spacing: 0.02em;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 200;
+      }
+
+      /* ============================================================
+       NAV
+    ============================================================ */
+      nav {
+        position: fixed;
+        top: 37px;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        padding: 20px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: rgba(14, 13, 12, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+      }
+      .nav-logo-img {
+        height: 32px;
+        width: auto;
+        display: block;
+      }
+      .nav-logo-text {
+        font-family: var(--display);
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--text);
+      }
+      .nav-logo-dot {
+        color: var(--secondary);
+      }
+
+      .nav-back {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+      .nav-back:hover {
+        color: var(--text);
+      }
+
+      /* ============================================================
+       LAYOUT
+    ============================================================ */
+      .page-wrap {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 157px 40px 80px;
+      }
+
+      /* Every top-level section gets breathing room */
+      .page-wrap > section,
+      .page-wrap > header {
+        margin-bottom: 60px;
+      }
+
+      .section-label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--secondary);
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .section-label::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--border);
+      }
+
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 40px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .grid-3 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 12px;
+      }
+
+      /* ============================================================
+       HERO (page header)
+    ============================================================ */
+      .hero {
+        background: var(--tertiary);
+        border-radius: 16px;
+        padding: 64px 48px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: -80px;
+        right: -80px;
+        width: 320px;
+        height: 320px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.03);
+        pointer-events: none;
+      }
+
+      .hero-eyebrow {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--secondary);
+        margin-bottom: 20px;
+      }
+
+      .hero-title-row {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        margin-bottom: 24px;
+        flex-wrap: wrap;
+      }
+
+      .hero-logo {
+        height: 64px;
+        width: auto;
+        display: block;
+      }
+
+      h1.hero-title {
+        font-family: var(--display);
+        font-size: clamp(40px, 5vw, 72px);
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        line-height: 1;
+        margin-bottom: 0;
+      }
+      h1.hero-title span {
+        color: var(--secondary);
+      }
+
+      .hero-sub {
+        color: rgba(240, 236, 230, 0.75);
+        font-size: 16px;
+        line-height: 1.7;
+        max-width: 680px;
+        margin-bottom: 40px;
+      }
+
+      .meta-row {
+        display: flex;
+        gap: 32px;
+        flex-wrap: wrap;
+      }
+      .meta-item {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .meta-label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .meta-value {
+        font-family: var(--display);
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text);
+      }
+
+      .btn-prototype {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--primary);
+        color: var(--text);
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-family: var(--display);
+        font-size: 13px;
+        font-weight: 600;
+        text-decoration: none;
+        letter-spacing: -0.01em;
+        margin-top: 4px;
+        transition: background 0.2s;
+      }
+      .btn-prototype:hover {
+        background: var(--primary-light);
+      }
+
+      /* ============================================================
+       PROBLEM
+    ============================================================ */
+      .problem-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+        align-items: start;
+      }
+
+      h2.problem-title {
+        font-family: var(--display);
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1.2;
+        margin-bottom: 20px;
+      }
+
+      .problem-body {
+        color: rgba(240, 236, 230, 0.75);
+        font-size: 14px;
+        line-height: 1.8;
+      }
+
+      .problem-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .problem-list li {
+        display: flex;
+        gap: 12px;
+        color: rgba(240, 236, 230, 0.75);
+        font-size: 14px;
+        line-height: 1.6;
+        padding: 14px 16px;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+      }
+
+      .problem-list li::before {
+        content: "→";
+        color: var(--secondary);
+        flex-shrink: 0;
+        font-weight: 600;
+      }
+
+      /* ============================================================
+       RESEARCH
+    ============================================================ */
+      article.research-card h3 {
+        font-family: var(--display);
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin-bottom: 16px;
+        color: var(--primary-light);
+      }
+
+      article.research-card p {
+        color: rgba(240, 236, 230, 0.75);
+        font-size: 13px;
+        line-height: 1.8;
+        margin-bottom: 16px;
+      }
+
+      article.research-card ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      article.research-card ul li {
+        display: flex;
+        gap: 10px;
+        color: rgba(240, 236, 230, 0.7);
+        font-size: 13px;
+        line-height: 1.5;
+      }
+
+      article.research-card ul li::before {
+        content: "·";
+        color: var(--secondary);
+        flex-shrink: 0;
+        font-weight: 700;
+      }
+
+      .research-callout {
+        margin-top: 16px;
+        font-size: 12px;
+      }
+
+      article.research-card p.research-callout {
+        color: var(--secondary);
+      }
+
+      /* ============================================================
+       INFORMATION ARCHITECTURE
+    ============================================================ */
+      .ia-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        align-items: start;
+      }
+
+      .ia-intro {
+        color: rgba(240, 236, 230, 0.75);
+        font-size: 14px;
+        line-height: 1.8;
+        margin-bottom: 28px;
+      }
+
+      .ia-nav-group {
+        margin-bottom: 24px;
+      }
+
+      .ia-nav-label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 10px;
+      }
+
+      .ia-nav-items {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .ia-nav-item {
+        background: rgba(52, 127, 111, 0.12);
+        color: var(--primary-light);
+        border: 1px solid rgba(52, 127, 111, 0.2);
+        padding: 6px 14px;
+        border-radius: 6px;
+        font-family: var(--display);
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .ia-nav-item.utility {
+        background: rgba(248, 153, 44, 0.1);
+        color: var(--secondary);
+        border-color: rgba(248, 153, 44, 0.2);
+      }
+
+      .ia-decisions {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .ia-decision {
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 16px 20px;
+      }
+
+      h3.ia-decision-title {
+        font-family: var(--display);
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 6px;
+      }
+
+      .ia-decision-body {
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      /* ============================================================
+       WIREFRAMES
+    ============================================================ */
+      .img-placeholder {
+        width: 100%;
+        background: var(--surface2);
+        border: 1px dashed rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 12px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .img-placeholder.tall {
+        min-height: 480px;
+      }
+      .img-placeholder.medium {
+        min-height: 320px;
+      }
+
+      .img-placeholder-icon {
+        font-size: 32px;
+        opacity: 0.3;
+      }
+
+      .wireframe-decisions {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+        margin-top: 12px;
+      }
+
+      .wireframe-decision {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 24px;
+      }
+
+      .wireframe-decision-num {
+        font-family: var(--display);
+        font-size: 36px;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.04);
+        line-height: 1;
+        margin-bottom: 12px;
+        aria-hidden: true;
+      }
+
+      h3.wireframe-decision-title {
+        font-family: var(--display);
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--primary-light);
+        margin-bottom: 8px;
+      }
+
+      .wireframe-decision-body {
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      /* ============================================================
+       DESIGN SYSTEM
+    ============================================================ */
+      h3.ds-section-title {
+        font-family: var(--display);
+        font-size: 16px;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        margin-bottom: 16px;
+        color: var(--text);
+      }
+
+      .color-swatches {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+      }
+
+      .swatch {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .swatch-dot {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .swatch-label {
+        font-size: 10px;
+        color: var(--muted);
+        letter-spacing: 0.04em;
+        text-align: center;
+      }
+
+      .type-sample {
+        margin-bottom: 16px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid var(--border);
+      }
+      .type-sample:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .type-name {
+        font-size: 11px;
+        color: var(--muted);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+      }
+      .type-display {
+        font-size: 28px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+        color: var(--text);
+      }
+      .type-body-sample {
+        font-size: 14px;
+        color: rgba(240, 236, 230, 0.75);
+        line-height: 1.6;
+      }
+
+      .ds-stat-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+
+      .ds-stat {
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .ds-stat-num {
+        font-family: var(--display);
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--secondary);
+        line-height: 1;
+        margin-bottom: 6px;
+      }
+      .ds-stat-label {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      /* ============================================================
+       HI-FI CAROUSEL
+    ============================================================ */
+      .hifi-carousel {
+        position: relative;
+        border-radius: 16px;
+        overflow: hidden;
+        background: var(--surface2);
+      }
+
+      .hifi-track {
+        display: flex;
+        transition: transform 0.4s ease;
+      }
+
+      .hifi-slide {
+        min-width: 100%;
+        position: relative;
+      }
+
+      .hifi-slide-inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        padding: 40px;
+        align-items: center;
+      }
+
+      .hifi-slide-info {
+        padding-right: 20px;
+      }
+
+      .hifi-slide-num {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--secondary);
+        margin-bottom: 12px;
+      }
+
+      h3.hifi-slide-title {
+        font-family: var(--display);
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin-bottom: 16px;
+        line-height: 1.1;
+      }
+
+      .hifi-slide-body {
+        color: rgba(240, 236, 230, 0.7);
+        font-size: 13px;
+        line-height: 1.8;
+      }
+
+      .hifi-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 44px;
+        height: 44px;
+        background: rgba(14, 13, 12, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        color: white;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          border-color 0.2s;
+        z-index: 10;
+      }
+      .hifi-arrow:hover {
+        background: var(--primary);
+        border-color: var(--primary);
+      }
+      .hifi-arrow.prev {
+        left: 16px;
+      }
+      .hifi-arrow.next {
+        right: 16px;
+      }
+      .hifi-arrow.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .hifi-dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        padding: 20px 0 8px;
+      }
+
+      .hifi-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--muted);
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+      }
+      .hifi-dot.active {
+        background: var(--secondary);
+        transform: scale(1.3);
+      }
+
+      /* ============================================================
+       RESULTS TABLE
+    ============================================================ */
+      .results-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .results-table tr {
+        border-bottom: 1px solid var(--border);
+      }
+      .results-table tr:last-child {
+        border-bottom: none;
+      }
+
+      .results-table td {
+        padding: 14px 16px;
+        font-size: 13px;
+        line-height: 1.6;
+        vertical-align: top;
+      }
+
+      .results-table td:first-child {
+        color: rgba(240, 236, 230, 0.5);
+        width: 45%;
+        border-right: 1px solid var(--border);
+      }
+
+      .results-table td:last-child {
+        color: var(--text);
+        padding-left: 24px;
+      }
+      .results-table td:last-child::before {
+        content: "→ ";
+        color: var(--primary);
+        font-weight: 600;
+      }
+
+      /* ============================================================
+       RECOMMENDATIONS
+    ============================================================ */
+      .rec-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+
+      article.rec-card {
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 24px;
+      }
+
+      .rec-num {
+        font-family: var(--display);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--secondary);
+        margin-bottom: 10px;
+      }
+
+      h3.rec-title {
+        font-family: var(--display);
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        margin-bottom: 8px;
+        color: var(--text);
+      }
+
+      .rec-body {
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      /* ============================================================
+       REFLECTION
+    ============================================================ */
+      .reflection-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      article.reflection-item {
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 28px;
+        height: 100%;
+      }
+
+      h3.reflection-title {
+        font-family: var(--display);
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--primary-light);
+        margin-bottom: 10px;
+      }
+
+      .reflection-body {
+        font-size: 13px;
+        color: rgba(240, 236, 230, 0.7);
+        line-height: 1.8;
+      }
+
+      /* ============================================================
+       FINAL THOUGHT
+    ============================================================ */
+      .final-thought {
+        background: var(--fp-mahogany);
+        border-radius: 16px;
+        padding: 56px 48px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .final-thought::before {
+        content: '"';
+        position: absolute;
+        top: -40px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: var(--display);
+        font-size: 320px;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.04);
+        line-height: 1;
+        pointer-events: none;
+      }
+
+      .final-thought blockquote {
+        font-family: var(--display);
+        font-size: clamp(20px, 2.5vw, 30px);
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        line-height: 1.4;
+        color: var(--text);
+        max-width: 800px;
+        margin: 0 auto 24px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .final-thought blockquote span {
+        color: var(--secondary);
+      }
+
+      .final-thought cite {
+        font-size: 12px;
+        color: rgba(240, 236, 230, 0.5);
+        font-style: normal;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      /* ============================================================
+       PAGE FOOTER
+    ============================================================ */
+      .page-footer {
+        display: flex;
+        justify-content: center;
+        padding: 48px 0 0;
+      }
+
+      .btn-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        color: var(--text);
+        padding: 14px 28px;
+        border-radius: 10px;
+        font-family: var(--display);
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        transition:
+          border-color 0.2s,
+          background 0.2s;
+      }
+      .btn-back:hover {
+        border-color: var(--primary);
+        background: rgba(52, 127, 111, 0.08);
+      }
+
+      .ia-nav-items,
+      .ia-decisions,
+      .wireframe-decisions,
+      .rec-grid,
+      .reflection-grid,
+      .hifi-dots {
+        list-style: none;
+      }
+
+      /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+      @media (max-width: 900px) {
+        nav {
+          padding: 16px 20px;
+        }
+        .disclaimer-banner {
+          padding: 10px 20px;
+          font-size: 11px;
+        }
+        .page-wrap {
+          padding: 157px 20px 60px;
+        }
+
+        .grid-2,
+        .grid-3,
+        .problem-grid,
+        .ia-grid,
+        .reflection-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .wireframe-decisions {
+          grid-template-columns: 1fr 1fr;
+        }
+        .rec-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .ds-stat-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        .hifi-slide-inner {
+          grid-template-columns: 1fr;
+        }
+        .hifi-slide-info {
+          padding-right: 0;
+        }
+
+        .hero {
+          padding: 40px 24px;
+        }
+        .card {
+          padding: 24px;
+        }
+        .final-thought {
+          padding: 40px 24px;
+        }
+        .hero-title-row {
+          gap: 16px;
+        }
+        .hero-logo {
+          height: 48px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .wireframe-decisions,
+        .rec-grid {
+          grid-template-columns: 1fr;
+        }
+        .ds-stat-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- DISCLAIMER -->
+    <p class="disclaimer-banner" role="note">
+      This is a self-initiated concept project. It is not affiliated with,
+      endorsed by, or connected to The Fishin' Pig or any of its parent
+      companies.
+    </p>
+
+    <!-- NAVIGATION -->
+    <nav aria-label="Site navigation">
+      <a href="#" class="nav-logo">
+        <img
+          src="img/logo_nav_jm.svg"
+          alt="John Masulonis"
+          class="nav-logo-img"
+          onerror="this.style.display = 'none'"
+        />
+        <span class="nav-logo-text"
+          >John<span class="nav-logo-dot">.</span>Masulonis</span
+        >
+      </a>
+      <a href="index.html" class="nav-back" aria-label="Back to portfolio"
+        >← Back to Portfolio</a
+      >
+    </nav>
+
+    <main class="page-wrap">
+      <!-- ============================================================
+         HERO
+    ============================================================ -->
+      <header class="hero">
+        <p class="hero-eyebrow">
+          UX/UI Redesign Concept · 2026 · Self-Initiated
+        </p>
+        <div class="hero-title-row">
+          <img
+            src="img/logo_pigfish_wbbq-sf-sc_horizontal_nosubtext.png"
+            alt="The Fishin' Pig logo"
+            class="hero-logo"
+            onerror="this.style.display = 'none'"
+          />
+          <h1 class="hero-title">The Fishin' <span>Pig</span></h1>
+        </div>
+        <p class="hero-sub">
+          A self-initiated concept redesign of a Virginia-based BBQ and seafood
+          restaurant chain spanning the full UX process — from competitive
+          research and information architecture through a token-based design
+          system and responsive high fidelity design across five pages.
+        </p>
+        <dl class="meta-row">
+          <div class="meta-item">
+            <dt class="meta-label">Role</dt>
+            <dd class="meta-value">Solo UX/UI Designer</dd>
+          </div>
+          <div class="meta-item">
+            <dt class="meta-label">Timeline</dt>
+            <dd class="meta-value">6 Weeks</dd>
+          </div>
+          <div class="meta-item">
+            <dt class="meta-label">Tools</dt>
+            <dd class="meta-value">Figma · Foodiesfeed · Pexels · Unsplash</dd>
+          </div>
+          <div class="meta-item">
+            <dt class="meta-label">Scope</dt>
+            <dd class="meta-value">Research → High Fidelity</dd>
+          </div>
+          <div class="meta-item">
+            <dd>
+              <a
+                href="https://www.figma.com/proto/yQ5StWndN8DLQlLQpWzyzL/Fishin--Pig-%E2%80%94-UX-UI-Redesign-2026?page-id=1%3A8&node-id=170-1663&viewport=-3069%2C242%2C0.5&t=cb3zoZnLPul5e42q-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=170%3A1663"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-prototype"
+                >View Prototype →</a
+              >
+            </dd>
+          </div>
+        </dl>
+      </header>
+
+      <!-- ============================================================
+         THE PROBLEM
+    ============================================================ -->
+      <section aria-labelledby="problem-heading">
+        <h2 class="section-label" id="problem-heading">The Problem</h2>
+        <div class="card">
+          <div class="problem-grid">
+            <div>
+              <h2 class="problem-title">
+                Two websites. Six locations. Zero unified experience.
+              </h2>
+              <p class="problem-body">
+                The Fishin' Pig operates two separate websites — fishinpig.com
+                built on Wix and fishinpigrva.com built on PopMenu — with no
+                unified brand experience, inconsistent navigation, and broken
+                online ordering on two of six locations.<br /><br />Customers
+                searching for their nearest Fishin' Pig encounter a fragmented
+                brand that undersells what is genuinely a beloved regional
+                restaurant. The existing sites bury weekly specials, make
+                catering difficult to find, and offer no consistent path to
+                ordering online.
+              </p>
+              <div style="display: flex; gap: 12px; margin-top: 20px">
+                <div style="flex: 1">
+                  <p
+                    style="
+                      font-size: 11px;
+                      font-weight: 600;
+                      letter-spacing: 0.08em;
+                      text-transform: uppercase;
+                      color: var(--muted);
+                      margin-bottom: 8px;
+                    "
+                  >
+                    Before — fishinpig.com
+                  </p>
+                  <figure
+                    style="height: 240px; overflow: hidden; border-radius: 10px"
+                  >
+                    <img
+                      src="img/fp_before_wix.jpg"
+                      alt="Existing Fishin' Pig Wix website"
+                      style="
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        object-position: center top;
+                      "
+                    />
+                  </figure>
+                </div>
+                <div style="flex: 1">
+                  <p
+                    style="
+                      font-size: 11px;
+                      font-weight: 600;
+                      letter-spacing: 0.08em;
+                      text-transform: uppercase;
+                      color: var(--muted);
+                      margin-bottom: 8px;
+                    "
+                  >
+                    Before — fishinpigrva.com
+                  </p>
+                  <figure
+                    style="height: 240px; overflow: hidden; border-radius: 10px"
+                  >
+                    <img
+                      src="img/fp_before_popmenu.jpg"
+                      alt="Existing Fishin' Pig PopMenu website"
+                      style="
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        object-position: center top;
+                      "
+                    />
+                  </figure>
+                </div>
+              </div>
+            </div>
+            <ul class="problem-list" aria-label="Key problems identified">
+              <li>
+                Two websites on two platforms with different visual identities
+              </li>
+              <li>
+                Online ordering unavailable for Richmond with no explanation or
+                alternative
+              </li>
+              <li>
+                No communication about ordering availability — users left
+                stranded
+              </li>
+              <li>Weekly specials and catering buried in navigation</li>
+              <li>No unified location finder across both sites</li>
+              <li>Inconsistent photography and brand voice</li>
+              <li>
+                Six separate Instagram accounts with no unified brand strategy
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+         RESEARCH
+    ============================================================ -->
+      <section aria-labelledby="research-heading">
+        <h2 class="section-label" id="research-heading">Research</h2>
+        <div class="grid-3">
+          <article class="card research-card">
+            <h3>Competitive Analysis</h3>
+            <p>
+              Benchmarked three direct competitors to understand industry
+              standards for ordering flow, navigation, and brand consistency.
+            </p>
+            <ul>
+              <li>
+                City BBQ — strong ordering flow, location-aware menu,
+                proprietary app
+              </li>
+              <li>
+                Tupelo Honey — excellent typography, location-aware dropdown,
+                warm brand voice
+              </li>
+              <li>
+                Q39 — closest structural match — video hero, location module,
+                catering section
+              </li>
+            </ul>
+            <p class="research-callout">
+              Key takeaway: All three had unified websites, clear ordering
+              flows, and strong brand consistency. Fishin' Pig had none of
+              these.
+            </p>
+          </article>
+
+          <article class="card research-card">
+            <h3>User Personas</h3>
+            <p>
+              Five distinct personas identified based on the brand's customer
+              base and location context.
+            </p>
+            <ul>
+              <li>The Hungry Local — regular, needs quick ordering</li>
+              <li>The New Visitor — unfamiliar, needs discovery and trust</li>
+              <li>The Returning Fan — loyal, interested in specials</li>
+              <li>
+                The Vacationer — passing through, needs geographic context
+              </li>
+              <li>The Catering Inquirer — planning an event, needs pricing</li>
+            </ul>
+          </article>
+
+          <article class="card research-card">
+            <h3>Asset Audit</h3>
+            <p>
+              A thorough audit of both existing sites revealed significant
+              inconsistencies in brand assets and typography.
+            </p>
+            <ul>
+              <li>Multiple logo variations — no clear primary version</li>
+              <li>Mahogany #6A3A26 identified as primary brand color</li>
+              <li>American Captain font — licensing issues for web use</li>
+              <li>Weak photography — professional shoot recommended</li>
+              <li>"Catch n' Release in the Grease" — key brand asset</li>
+              <li>Shorty's Famous Breading — authentic sub-brand story</li>
+            </ul>
+          </article>
+        </div>
+        <div
+          style="
+            display: flex;
+            overflow-x: auto;
+            gap: 12px;
+            margin-top: 8px;
+            padding-bottom: 8px;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+          "
+          aria-label="Research screenshots"
+        >
+          <div
+            style="
+              display: flex;
+              overflow-x: auto;
+              gap: 12px;
+              margin-top: 8px;
+              padding-bottom: 8px;
+              scrollbar-width: none;
+              -webkit-overflow-scrolling: touch;
+            "
+            aria-label="Research screenshots"
+          >
+            <figure
+              style="
+                flex: 0 0 calc(33.333% - 8px);
+                height: 240px;
+                overflow: hidden;
+                border-radius: 12px;
+                background: var(--surface2);
+              "
+            >
+              <img
+                src="img/fp_research_01.png"
+                alt="Competitive analysis research"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center top;
+                "
+              />
+            </figure>
+            <figure
+              style="
+                flex: 0 0 calc(33.333% - 8px);
+                height: 240px;
+                overflow: hidden;
+                border-radius: 12px;
+                background: var(--surface2);
+              "
+            >
+              <img
+                src="img/fp_research_02.png"
+                alt="User personas research"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center top;
+                "
+              />
+            </figure>
+            <figure
+              style="
+                flex: 0 0 calc(33.333% - 8px);
+                height: 240px;
+                overflow: hidden;
+                border-radius: 12px;
+                background: var(--surface2);
+              "
+            >
+              <img
+                src="img/fp_research_03.png"
+                alt="Asset audit research"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center top;
+                "
+              />
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+         INFORMATION ARCHITECTURE
+    ============================================================ -->
+      <section aria-labelledby="ia-heading">
+        <h2 class="section-label" id="ia-heading">Information Architecture</h2>
+        <div class="card">
+          <div class="ia-grid">
+            <div>
+              <p class="ia-intro">
+                Three rounds of IA iteration led to a final navigation structure
+                that unified both sites into one coherent experience — elevating
+                the content users actually need and burying nothing critical.
+              </p>
+
+              <div class="ia-nav-group">
+                <p class="ia-nav-label">Primary Navigation</p>
+                <ul class="ia-nav-items" aria-label="Primary navigation items">
+                  <li class="ia-nav-item">Home</li>
+                  <li class="ia-nav-item">Menu</li>
+                  <li class="ia-nav-item">Locations</li>
+                  <li class="ia-nav-item">Catering</li>
+                  <li class="ia-nav-item">Specials</li>
+                  <li class="ia-nav-item">About</li>
+                </ul>
+              </div>
+
+              <div class="ia-nav-group">
+                <p class="ia-nav-label">Utility Cluster</p>
+                <ul class="ia-nav-items" aria-label="Utility navigation items">
+                  <li class="ia-nav-item utility">Order Now</li>
+                  <li class="ia-nav-item utility">Account</li>
+                  <li class="ia-nav-item utility">Shop</li>
+                </ul>
+              </div>
+
+              <div class="ia-nav-group">
+                <p class="ia-nav-label">Location Architecture</p>
+                <ul class="ia-nav-items" aria-label="Location architecture">
+                  <li class="ia-nav-item">Master Locations Page</li>
+                  <li class="ia-nav-item">Individual Location Pages</li>
+                </ul>
+              </div>
+              <figure
+                style="
+                  margin-top: 20px;
+                  height: 240px;
+                  overflow: hidden;
+                  border-radius: 10px;
+                  background: var(--surface2);
+                "
+              >
+                <img
+                  src="img/fp_ia.png"
+                  alt="Information architecture diagram"
+                  style="
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center top;
+                  "
+                />
+              </figure>
+            </div>
+
+            <ul class="ia-decisions" aria-label="Key IA decisions">
+              <li class="ia-decision">
+                <h3 class="ia-decision-title">
+                  Locations given prominent nav placement
+                </h3>
+                <p class="ia-decision-body">
+                  The most common user need after ordering. Previously buried or
+                  inconsistent across both sites.
+                </p>
+              </li>
+              <li class="ia-decision">
+                <h3 class="ia-decision-title">
+                  Catering elevated to primary navigation
+                </h3>
+                <p class="ia-decision-body">
+                  Previously a buried link. Elevated to primary nav with a full
+                  dedicated page.
+                </p>
+              </li>
+              <li class="ia-decision">
+                <h3 class="ia-decision-title">
+                  Specials as a dedicated nav item
+                </h3>
+                <p class="ia-decision-body">
+                  Previously impossible to find. Tuesday Rib Night, Wednesday
+                  Kids Eat Free, Thursday Catfish Night all surfaced.
+                </p>
+              </li>
+              <li class="ia-decision">
+                <h3 class="ia-decision-title">
+                  Order Now as persistent utility button
+                </h3>
+                <p class="ia-decision-body">
+                  Always visible, never buried — a persistent CTA that follows
+                  the user through every page.
+                </p>
+              </li>
+              <li class="ia-decision">
+                <h3 class="ia-decision-title">Two-tier location structure</h3>
+                <p class="ia-decision-body">
+                  Master page for discovery, individual pages for depth —
+                  serving two distinct user intents simultaneously.
+                </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+         WIREFRAMES
+    ============================================================ -->
+      <section aria-labelledby="wireframes-heading">
+        <h2 class="section-label" id="wireframes-heading">Wireframes</h2>
+        <div class="card">
+          <p
+            style="
+              color: rgba(240, 236, 230, 0.75);
+              font-size: 14px;
+              line-height: 1.8;
+              margin-bottom: 28px;
+            "
+          >
+            Low fidelity wireframes for every homepage section before touching
+            color, typography or photography. The homepage spans 11 sections —
+            from a rotating story hero to a community-driven UGC gallery.
+          </p>
+          <div class="grid-2" style="gap: 12px">
+            <figure
+              style="
+                height: 480px;
+                overflow-y: scroll;
+                border-radius: 12px;
+                -webkit-overflow-scrolling: touch;
+              "
+            >
+              <img
+                src="img/fp_wireframe_homepage.png"
+                alt="Fishin' Pig homepage mockup"
+                style="width: 100%; display: block"
+              />
+            </figure>
+            <figure
+              style="
+                height: 480px;
+                overflow: hidden;
+                border-radius: 12px;
+                background: var(--surface2);
+              "
+            >
+              <img
+                src="img/fp_wireframe_locations.png"
+                alt="Location card states wireframe"
+                style="width: 100%; display: block; margin-top: -5 00px"
+              />
+            </figure>
+          </div>
+        </div>
+
+        <ul class="wireframe-decisions" aria-label="Key wireframe decisions">
+          <li class="wireframe-decision">
+            <p class="wireframe-decision-num" aria-hidden="true">01</p>
+            <h3 class="wireframe-decision-title">
+              Single Contextual CTA Per Slide
+            </h3>
+            <p class="wireframe-decision-body">
+              Each hero slide has one specific action — View Menu, Our Story,
+              Book Catering, Notify Me. Reduces cognitive load and improves
+              conversion clarity.
+            </p>
+          </li>
+          <li class="wireframe-decision">
+            <p class="wireframe-decision-num" aria-hidden="true">02</p>
+            <h3 class="wireframe-decision-title">Nine Location Card States</h3>
+            <p class="wireframe-decision-body">
+              Standard, Unavailable and Coming Soon × Default, Hover and
+              Selected. The unavailable state communicates ordering limitations
+              without implying the location is closed.
+            </p>
+          </li>
+          <li class="wireframe-decision">
+            <p class="wireframe-decision-num" aria-hidden="true">03</p>
+            <h3 class="wireframe-decision-title">
+              Horizontal Scroll on Mobile
+            </h3>
+            <p class="wireframe-decision-body">
+              Specials, location cards and menu items use horizontal scroll with
+              a card peek pattern rather than stacking vertically — preserving
+              page length on mobile.
+            </p>
+          </li>
+          <li class="wireframe-decision">
+            <p class="wireframe-decision-num" aria-hidden="true">04</p>
+            <h3 class="wireframe-decision-title">Around the World Section</h3>
+            <p class="wireframe-decision-body">
+              Buried gallery content elevated to a prominent homepage section —
+              reframed as a community moment with location tags and a mascot
+              submission strip.
+            </p>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ============================================================
+         DESIGN SYSTEM
+    ============================================================ -->
+      <section aria-labelledby="ds-heading">
+        <h2 class="section-label" id="ds-heading">Design System</h2>
+        <div class="grid-2">
+          <div class="card">
+            <h3 class="ds-section-title">Color System</h3>
+            <ul class="color-swatches" aria-label="Brand color swatches">
+              <li class="swatch">
+                <span
+                  class="swatch-dot"
+                  style="background: #6a3a26"
+                  role="img"
+                  aria-label="Mahogany"
+                ></span
+                ><span class="swatch-label">Mahogany<br />#6A3A26</span>
+              </li>
+              <li class="swatch">
+                <span
+                  class="swatch-dot"
+                  style="background: #e55a81"
+                  role="img"
+                  aria-label="Brand Pink"
+                ></span
+                ><span class="swatch-label">Brand Pink<br />#E55A81</span>
+              </li>
+              <li class="swatch">
+                <span
+                  class="swatch-dot"
+                  style="background: #b07d1a"
+                  role="img"
+                  aria-label="Gold"
+                ></span
+                ><span class="swatch-label">Gold<br />#B07D1A</span>
+              </li>
+              <li class="swatch">
+                <span
+                  class="swatch-dot"
+                  style="
+                    background: #1a1a1a;
+                    border-color: rgba(255, 255, 255, 0.15);
+                  "
+                  role="img"
+                  aria-label="Neutral Dark"
+                ></span
+                ><span class="swatch-label">Neutral Dark<br />#1A1A1A</span>
+              </li>
+              <li class="swatch">
+                <span
+                  class="swatch-dot"
+                  style="background: #ffffff"
+                  role="img"
+                  aria-label="White"
+                ></span
+                ><span class="swatch-label">White<br />#FFFFFF</span>
+              </li>
+            </ul>
+            <p
+              style="
+                font-size: 12px;
+                color: var(--muted);
+                margin-bottom: 20px;
+                line-height: 1.7;
+              "
+            >
+              Every color combination checked against WCAG 2.1 before being
+              added to the semantic layer. White on mahogany — AAA compliant.
+              Brand pink standardized for the first time across all touchpoints.
+            </p>
+
+            <h3 class="ds-section-title">Typography</h3>
+            <div class="type-sample">
+              <p class="type-name">Display — Barlow Condensed</p>
+              <p
+                class="type-display"
+                style="
+                  font-family: &quot;Barlow Condensed&quot;, sans-serif;
+                  font-weight: 800;
+                "
+              >
+                Catch n' Release
+              </p>
+            </div>
+            <div class="type-sample">
+              <p class="type-name">Body — Lato</p>
+              <p
+                class="type-body-sample"
+                style="font-family: &quot;Lato&quot;, sans-serif"
+              >
+                Finest from Land to Sea — warm, readable, complements the bold
+                display treatment.
+              </p>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 class="ds-section-title">Token Architecture</h3>
+            <p
+              style="
+                font-size: 13px;
+                color: rgba(240, 236, 230, 0.7);
+                line-height: 1.8;
+                margin-bottom: 24px;
+              "
+            >
+              A two-layer token structure — primitive tokens (raw values)
+              referenced by semantic tokens (named purposes). Changing the
+              primary brand color once updates every button, border and
+              background simultaneously.
+            </p>
+
+            <dl
+              class="ds-stat-grid"
+              style="margin-bottom: 24px"
+              aria-label="Design system stats"
+            >
+              <div class="ds-stat">
+                <dt class="ds-stat-label">Text styles</dt>
+                <dd class="ds-stat-num">24</dd>
+              </div>
+              <div class="ds-stat">
+                <dt class="ds-stat-label">Spacing tokens</dt>
+                <dd class="ds-stat-num">14</dd>
+              </div>
+              <div class="ds-stat">
+                <dt class="ds-stat-label">Shadow styles</dt>
+                <dd class="ds-stat-num">9</dd>
+              </div>
+              <div class="ds-stat">
+                <dt class="ds-stat-label">Location card variants</dt>
+                <dd class="ds-stat-num">9</dd>
+              </div>
+              <div class="ds-stat">
+                <dt class="ds-stat-label">Button types</dt>
+                <dd class="ds-stat-num">5</dd>
+              </div>
+              <div class="ds-stat">
+                <dt class="ds-stat-label">Pages designed</dt>
+                <dd class="ds-stat-num">5</dd>
+              </div>
+            </dl>
+
+            <h3 class="ds-section-title">Component Library</h3>
+            <p style="font-size: 12px; color: var(--muted); line-height: 1.7">
+              Buttons · Pills · Input fields · Navigation (Desktop + Mobile) ·
+              Location Cards · Special Cards · Menu Cards · Quick Action Strip ·
+              Footer — all built on top of the token system with boolean
+              properties for variants.
+            </p>
+          </div>
+        </div>
+        <div
+          class="card"
+          style="padding: 0; overflow: hidden; margin-top: 12px"
+        >
+          <img
+            src="img/fp_design_system.png"
+            alt="Fishin' Pig design system in Figma"
+            style="width: 100%; display: block; border-radius: 16px"
+          />
+        </div>
+      </section>
+
+      <!-- ============================================================
+         HIGH FIDELITY CAROUSEL
+    ============================================================ -->
+      <section aria-labelledby="hifi-heading">
+        <h2 class="section-label" id="hifi-heading">High Fidelity</h2>
+
+        <div
+          class="hifi-carousel"
+          id="hifiCarousel"
+          role="region"
+          aria-label="High fidelity mockups carousel"
+          aria-live="polite"
+        >
+          <div class="hifi-track" id="hifiTrack">
+            <article class="hifi-slide">
+              <div class="hifi-slide-inner">
+                <div class="hifi-slide-info">
+                  <p class="hifi-slide-num">01 / 05 — Homepage</p>
+                  <h3 class="hifi-slide-title">
+                    The Complete Brand Story in a Single Scroll
+                  </h3>
+                  <p class="hifi-slide-body">
+                    The homepage tells the complete Fishin' Pig brand story —
+                    from the rotating hero to the community-driven Around the
+                    World section. The dark mahogany navigation establishes
+                    immediate brand authority. Alternating light and dark
+                    section rhythm creates visual interest while guiding the
+                    user through a deliberate content hierarchy.
+                  </p>
+                </div>
+                <figure
+                  style="
+                    height: 480px;
+                    overflow-y: scroll;
+                    border-radius: 12px;
+                    -webkit-overflow-scrolling: touch;
+                  "
+                >
+                  <img
+                    src="img/fp_homepage.jpg"
+                    alt="Fishin' Pig homepage mockup"
+                    style="width: 100%; display: block"
+                  />
+                </figure>
+              </div>
+            </article>
+
+            <article class="hifi-slide">
+              <div class="hifi-slide-inner">
+                <div class="hifi-slide-info">
+                  <p class="hifi-slide-num">02 / 05 — Master Locations</p>
+                  <h3 class="hifi-slide-title">Discovery at a Glance</h3>
+                  <p class="hifi-slide-body">
+                    The master Locations page serves users who need to find
+                    their nearest Fishin' Pig quickly. An embedded map with six
+                    location cards — each in the appropriate state (Standard,
+                    Unavailable, or Coming Soon) — gives users an immediate,
+                    honest picture of what's available near them.
+                  </p>
+                </div>
+                <figure
+                  style="
+                    height: 480px;
+                    overflow-y: scroll;
+                    border-radius: 12px;
+                    -webkit-overflow-scrolling: touch;
+                  "
+                >
+                  <img
+                    src="img/fp_locations.jpg"
+                    alt="Fishin' Pig locations page mockup"
+                    style="width: 100%; display: block"
+                  />
+                </figure>
+              </div>
+            </article>
+
+            <article class="hifi-slide">
+              <div class="hifi-slide-inner">
+                <div class="hifi-slide-info">
+                  <p class="hifi-slide-num">03 / 05 — Individual Location</p>
+                  <h3 class="hifi-slide-title">
+                    Farmville — Depth for the Curious User
+                  </h3>
+                  <p class="hifi-slide-body">
+                    Individual location pages serve users who want to go deeper
+                    — see the space, check location-specific specials, and get
+                    directions. The Farmville page demonstrates the full
+                    template including the pitmaster profile, location gallery,
+                    and hours module.
+                  </p>
+                </div>
+                <figure
+                  style="
+                    height: 480px;
+                    overflow-y: scroll;
+                    border-radius: 12px;
+                    -webkit-overflow-scrolling: touch;
+                  "
+                >
+                  <img
+                    src="img/fp_farmville.jpg"
+                    alt="Fishin' Pig Farmville location mockup"
+                    style="width: 100%; display: block"
+                  />
+                </figure>
+              </div>
+            </article>
+
+            <article class="hifi-slide">
+              <div class="hifi-slide-inner">
+                <div class="hifi-slide-info">
+                  <p class="hifi-slide-num">04 / 05 — Coming Soon</p>
+                  <h3 class="hifi-slide-title">
+                    Clarksville — Turning Absence into Opportunity
+                  </h3>
+                  <p class="hifi-slide-body">
+                    The Clarksville Coming Soon page transforms an opening
+                    announcement into a lead capture moment — a Notify Me form,
+                    a What to Expect section, and anticipation-building copy
+                    that turns the new location into an event rather than a
+                    footnote.
+                  </p>
+                </div>
+                <figure
+                  style="
+                    height: 480px;
+                    overflow-y: scroll;
+                    border-radius: 12px;
+                    -webkit-overflow-scrolling: touch;
+                  "
+                >
+                  <img
+                    src="img/fp_clarksville.jpg"
+                    alt="Fishin' Pig Clarksville location mockup"
+                    style="width: 100%; display: block"
+                  />
+                </figure>
+              </div>
+            </article>
+
+            <article class="hifi-slide">
+              <div class="hifi-slide-inner">
+                <div class="hifi-slide-info">
+                  <p class="hifi-slide-num">05 / 05 — Catering</p>
+                  <h3 class="hifi-slide-title">
+                    Structured Around the Decision Journey
+                  </h3>
+                  <p class="hifi-slide-body">
+                    The catering page answers each question a prospective
+                    customer would have in sequence — What type of event → How
+                    does it work → What's the menu → Get a quote. Event type
+                    cards use the same photo-forward treatment as the Weekly
+                    Specials cards for visual consistency.
+                  </p>
+                </div>
+                <figure
+                  style="
+                    height: 480px;
+                    overflow-y: scroll;
+                    border-radius: 12px;
+                    -webkit-overflow-scrolling: touch;
+                  "
+                >
+                  <img
+                    src="img/fp_catering.jpg"
+                    alt="Fishin' Pig catering page mockup"
+                    style="width: 100%; display: block"
+                  />
+                </figure>
+              </div>
+            </article>
+          </div>
+
+          <button
+            class="hifi-arrow prev hidden"
+            id="hifiPrev"
+            onclick="hifiMove(-1)"
+            aria-label="Previous slide"
+          >
+            ‹
+          </button>
+          <button
+            class="hifi-arrow next"
+            id="hifiNext"
+            onclick="hifiMove(1)"
+            aria-label="Next slide"
+          >
+            ›
+          </button>
+        </div>
+
+        <div
+          class="hifi-dots"
+          role="tablist"
+          aria-label="Carousel slide indicators"
+        >
+          <button
+            class="hifi-dot active"
+            onclick="hifiGoTo(0)"
+            role="tab"
+            aria-selected="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            class="hifi-dot"
+            onclick="hifiGoTo(1)"
+            role="tab"
+            aria-selected="false"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            class="hifi-dot"
+            onclick="hifiGoTo(2)"
+            role="tab"
+            aria-selected="false"
+            aria-label="Slide 3"
+          ></button>
+          <button
+            class="hifi-dot"
+            onclick="hifiGoTo(3)"
+            role="tab"
+            aria-selected="false"
+            aria-label="Slide 4"
+          ></button>
+          <button
+            class="hifi-dot"
+            onclick="hifiGoTo(4)"
+            role="tab"
+            aria-selected="false"
+            aria-label="Slide 5"
+          ></button>
+        </div>
+      </section>
+
+      <!-- ============================================================
+         RESULTS
+    ============================================================ -->
+      <section aria-labelledby="results-heading">
+        <h2 class="section-label" id="results-heading">Results</h2>
+        <div class="grid-2">
+          <div class="card">
+            <h3 class="ds-section-title" style="margin-bottom: 20px">
+              Problem → Solution
+            </h3>
+            <table class="results-table">
+              <caption class="visually-hidden">
+                Problems identified and solutions implemented
+              </caption>
+              <tbody>
+                <tr>
+                  <td>Two fragmented websites</td>
+                  <td>One unified design system covering all six locations</td>
+                </tr>
+                <tr>
+                  <td>Broken ordering with no communication</td>
+                  <td>
+                    Nine card variants handle every ordering state with honest
+                    copy
+                  </td>
+                </tr>
+                <tr>
+                  <td>Buried specials and catering</td>
+                  <td>
+                    Specials elevated to homepage. Catering elevated to primary
+                    nav
+                  </td>
+                </tr>
+                <tr>
+                  <td>No unified location experience</td>
+                  <td>Two-tier architecture serving every user intent</td>
+                </tr>
+                <tr>
+                  <td>Inconsistent brand pink</td>
+                  <td>
+                    #E55A81 standardized with ADA compliant usage guidelines
+                  </td>
+                </tr>
+                <tr>
+                  <td>No community engagement</td>
+                  <td>
+                    Around the World transforms buried gallery into a community
+                    moment
+                  </td>
+                </tr>
+                <tr>
+                  <td>Clarksville with no digital presence</td>
+                  <td>Coming Soon page with Notify Me lead capture</td>
+                </tr>
+                <tr>
+                  <td>No responsive mobile experience</td>
+                  <td>Full responsive design across all five pages</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="card">
+            <h3 class="ds-section-title" style="margin-bottom: 20px">
+              Metrics to Track Post-Launch
+            </h3>
+            <ul class="problem-list" aria-label="Metrics to track">
+              <li>Online ordering conversion rate</li>
+              <li>Catering inquiry form submissions</li>
+              <li>VIP email signup rate</li>
+              <li>Clarksville Notify Me signups</li>
+              <li>Bounce rate reduction on location pages</li>
+              <li>Time on site</li>
+              <li>Local SEO rankings</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+         RECOMMENDATIONS
+    ============================================================ -->
+      <section aria-labelledby="rec-heading">
+        <h2 class="section-label" id="rec-heading">Recommendations</h2>
+        <ul class="rec-grid">
+          <li>
+            <article class="rec-card">
+              <p class="rec-num">01</p>
+              <h3 class="rec-title">Professional Photography Shoot</h3>
+              <p class="rec-body">
+                The single highest impact improvement available — food,
+                exteriors, atmosphere and team portraits across all six
+                locations in a single shoot day.
+              </p>
+            </article>
+          </li>
+          <li>
+            <article class="rec-card">
+              <p class="rec-num">02</p>
+              <h3 class="rec-title">Platform Consolidation</h3>
+              <p class="rec-body">
+                Consolidate onto WordPress with a white label ordering
+                integration such as ChowNow or PopMenu — solving unified brand,
+                single CMS, and consistent ordering flow.
+              </p>
+            </article>
+          </li>
+          <li>
+            <article class="rec-card">
+              <p class="rec-num">03</p>
+              <h3 class="rec-title">Unified Instagram Strategy</h3>
+              <p class="rec-body">
+                Consolidate six location accounts to one brand account managed
+                centrally — enabling Instagram API integration for the Around
+                the World section.
+              </p>
+            </article>
+          </li>
+          <li>
+            <article class="rec-card">
+              <p class="rec-num">04</p>
+              <h3 class="rec-title">Content Governance</h3>
+              <p class="rec-body">
+                Branded social media templates, centrally managed content
+                calendar, brand guidelines document and a DAM system for
+                centralized asset storage.
+              </p>
+            </article>
+          </li>
+          <li>
+            <article class="rec-card">
+              <p class="rec-num">05</p>
+              <h3 class="rec-title">Clarksville Opening Campaign</h3>
+              <p class="rec-body">
+                Pre-opening email sequence, social media countdown, and
+                exclusive opening day offer for Notify Me subscribers — turning
+                the launch into an event.
+              </p>
+            </article>
+          </li>
+          <li>
+            <article class="rec-card">
+              <p class="rec-num">06</p>
+              <h3 class="rec-title">SEO & Structured Data</h3>
+              <p class="rec-body">
+                Schema.org LocalBusiness markup on all location pages — address,
+                hours, phone and geo coordinates — directly improving Google
+                Maps visibility and local rankings.
+              </p>
+            </article>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ============================================================
+         REFLECTION
+    ============================================================ -->
+      <section aria-labelledby="reflection-heading">
+        <h2 class="section-label" id="reflection-heading">Reflection</h2>
+        <ul class="reflection-grid">
+          <li>
+            <article class="reflection-item">
+              <h3 class="reflection-title">
+                Design systems are worth the investment
+              </h3>
+              <p class="reflection-body">
+                Building the token architecture before touching high fidelity
+                felt slow at first. But every high fidelity decision became
+                faster and more consistent because of it. Changing the primary
+                brand color once updated everything simultaneously.
+              </p>
+            </article>
+          </li>
+          <li>
+            <article class="reflection-item">
+              <h3 class="reflection-title">Research changes everything</h3>
+              <p class="reflection-body">
+                The discovery that Fishin' Pig had two separate websites, six
+                separate Instagram accounts and inconsistent brand pink across
+                all of them fundamentally shaped every design decision. Without
+                that research the redesign would have been surface level —
+                prettier but not meaningfully better.
+              </p>
+            </article>
+          </li>
+          <li>
+            <article class="reflection-item">
+              <h3 class="reflection-title">Constraints are creative fuel</h3>
+              <p class="reflection-body">
+                Working without a professional photography budget, without white
+                versions of the logos, without licensed fonts forced creative
+                solutions — Screen blend mode for logo reversal, Barlow
+                Condensed as a Google Fonts alternative, placeholder photography
+                with a documented shoot recommendation.
+              </p>
+            </article>
+          </li>
+          <li>
+            <article class="reflection-item">
+              <h3 class="reflection-title">Content strategy is UX</h3>
+              <p class="reflection-body">
+                The decision to elevate the Around the World gallery, surface
+                the weekly specials, and give catering a dedicated page weren't
+                visual decisions — they were content strategy decisions. Where
+                content lives determines whether users find it.
+              </p>
+            </article>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ============================================================
+         FINAL THOUGHT
+    ============================================================ -->
+      <section aria-labelledby="final-heading">
+        <h2 class="visually-hidden" id="final-heading">Final Thought</h2>
+        <div class="final-thought">
+          <blockquote>
+            The Fishin' Pig is a genuinely great brand hiding behind a website
+            that doesn't do it justice. The Memphis heritage, the Shorty's
+            Famous breading story, the community of fans wearing the merch
+            around the world — <span>all of it is there.</span> It just needed a
+            design system, a unified experience and someone to tell the story
+            properly.
+          </blockquote>
+          <cite>John Masulonis — UX/UI Designer</cite>
+        </div>
+      </section>
+
+      <!-- PAGE FOOTER -->
+      <footer class="page-footer">
+        <a href="index.html" class="btn-back">← Back to Portfolio</a>
+      </footer>
+    </main>
+
+    <style>
+      /* Visually hidden but accessible to screen readers */
+      .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+    </style>
+
+    <script>
+      let hifiCurrent = 0;
+      const hifiTotal = 5;
+
+      function hifiMove(dir) {
+        hifiGoTo(Math.max(0, Math.min(hifiCurrent + dir, hifiTotal - 1)));
+      }
+
+      function hifiGoTo(index) {
+        hifiCurrent = index;
+        document.getElementById("hifiTrack").style.transform =
+          `translateX(-${index * 100}%)`;
+
+        document
+          .getElementById("hifiPrev")
+          .classList.toggle("hidden", index === 0);
+        document
+          .getElementById("hifiNext")
+          .classList.toggle("hidden", index === hifiTotal - 1);
+
+        document.querySelectorAll(".hifi-dot").forEach((dot, i) => {
+          dot.classList.toggle("active", i === index);
+          dot.setAttribute("aria-selected", i === index ? "true" : "false");
+        });
+      }
+
+      const carousel = document.getElementById("hifiCarousel");
+      let touchStartX = 0;
+      carousel.addEventListener(
+        "touchstart",
+        (e) => {
+          touchStartX = e.touches[0].clientX;
+        },
+        { passive: true },
+      );
+      carousel.addEventListener(
+        "touchend",
+        (e) => {
+          const diff = touchStartX - e.changedTouches[0].clientX;
+          if (Math.abs(diff) > 40) hifiMove(diff > 0 ? 1 : -1);
+        },
+        { passive: true },
+      );
+    </script>
+  </body>
+</html>

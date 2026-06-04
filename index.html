@@ -35,9 +35,6 @@
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap");
 
-      /* ============================================================
-       RESET & BASE
-    ============================================================ */
       *,
       *::before,
       *::after {
@@ -75,7 +72,6 @@
         min-height: 100vh;
       }
 
-      /* iOS Safari scroll lock — position:fixed approach */
       body.scroll-locked {
         position: fixed;
         width: 100%;
@@ -86,9 +82,6 @@
         scroll-margin-top: 90px;
       }
 
-      /* ============================================================
-       ANIMATIONS
-    ============================================================ */
       @keyframes fadeUp {
         from {
           opacity: 0;
@@ -243,7 +236,6 @@
         padding: 80px 40px;
       }
 
-      /* Clip only the image wrap — never the whole hero (breaks iOS scroll) */
       .hero-img-wrap {
         position: relative;
         height: 80vh;
@@ -623,7 +615,6 @@
         color: var(--primary);
       }
 
-      /* Work samples collapsible */
       .work-samples-toggle {
         display: flex;
         align-items: center;
@@ -677,7 +668,7 @@
       }
 
       /* ============================================================
-       CASE STUDY CARD (teaser)
+       CASE STUDY TEASER CARD
     ============================================================ */
       .case-study-card {
         background: var(--tertiary);
@@ -691,6 +682,9 @@
         position: relative;
         overflow: hidden;
         transition: background 0.25s;
+        /* Reset any link styles */
+        text-decoration: none;
+        color: inherit;
       }
       .case-study-card:hover {
         background: #5e5047;
@@ -709,12 +703,12 @@
 
       .case-study-card-left {
         flex: 1;
+        min-width: 0;
       }
       .case-study-card-right {
         flex-shrink: 0;
       }
 
-      /* Logo + title inline — collapses to stacked on mobile */
       .case-study-title-row {
         display: grid;
         grid-template-columns: auto 1fr;
@@ -740,10 +734,10 @@
 
       .case-study-title {
         font-family: var(--display);
-        font-size: clamp(24px, 3vw, 38px);
+        font-size: clamp(20px, 2.5vw, 34px);
         font-weight: 700;
         letter-spacing: -0.02em;
-        line-height: 1.05;
+        line-height: 1.1;
         margin-bottom: 0;
       }
       .case-study-title span {
@@ -780,7 +774,100 @@
       }
 
       /* ============================================================
-       CASE STUDY — Fullscreen modal
+       CASE STUDY CAROUSEL
+    ============================================================ */
+      .cs-carousel-wrap {
+        position: relative;
+      }
+
+      .cs-carousel-track {
+        display: flex;
+        transition: transform 0.4s ease;
+        width: 100%;
+        /* No overflow:hidden here — we control clipping on the section */
+      }
+
+      .cs-carousel-slide {
+        width: 100%;
+        min-width: 100%;
+        flex: 0 0 100%;
+      }
+
+      /* Clipping wrapper — separate from position:relative so arrows
+       can be positioned relative to cs-carousel-wrap without being clipped */
+      .cs-carousel-clip {
+        overflow: hidden;
+        border-radius: 16px;
+        background: var(--bg);
+      }
+      .cs-carousel-track {
+        display: flex;
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        width: 100%;
+      }
+
+      .cs-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 40px;
+        height: 40px;
+        background: rgba(14, 13, 12, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 8px;
+        color: var(--text);
+        font-size: 20px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+        transition:
+          background 0.2s,
+          border-color 0.2s,
+          opacity 0.2s;
+      }
+      .cs-arrow:hover {
+        background: var(--primary);
+        border-color: var(--primary);
+      }
+      .cs-arrow-prev {
+        left: 12px;
+      }
+      .cs-arrow-next {
+        right: 12px;
+      }
+      .cs-arrow-hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .cs-dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 16px;
+      }
+
+      .cs-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--muted);
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+      }
+      .cs-dot-active {
+        background: var(--secondary);
+        transform: scale(1.3);
+      }
+
+      /* ============================================================
+       CASE STUDY FULLSCREEN MODAL
     ============================================================ */
       .cs-modal-overlay {
         position: fixed;
@@ -1034,7 +1121,7 @@
       }
 
       /* ============================================================
-       CRAFT & CAPABILITIES — Print cards
+       CRAFT & CAPABILITIES
     ============================================================ */
       .print-scroll-row {
         display: grid;
@@ -1118,14 +1205,12 @@
         opacity: 1;
       }
 
-      /* Carousel prev/next buttons — hidden on desktop, shown on mobile */
       .carousel-controls {
         display: none;
         justify-content: center;
         gap: 12px;
         margin-bottom: 24px;
       }
-
       .carousel-btn {
         width: 44px;
         height: 44px;
@@ -1147,14 +1232,12 @@
         border-color: var(--primary);
       }
 
-      /* Email card inside craft section */
       .email-card-inner {
         display: grid;
         grid-template-columns: 1fr auto;
         gap: 40px;
         align-items: center;
       }
-
       .email-links-row {
         display: flex;
         flex-direction: row;
@@ -1406,7 +1489,6 @@
       .modal-highlights a:hover {
         border-color: var(--secondary);
       }
-
       .modal-tags {
         display: flex;
         flex-wrap: wrap;
@@ -1665,10 +1747,9 @@
       }
 
       /* ============================================================
-       RESPONSIVE — Tablet / Mobile (max 900px)
+       RESPONSIVE
     ============================================================ */
       @media (max-width: 900px) {
-        /* Nav */
         nav {
           padding: 16px 20px;
         }
@@ -1714,9 +1795,9 @@
           font-size: 18px !important;
         }
 
-        /* Hero */
         #hero {
           padding: 120px 20px 60px;
+          grid-template-columns: 1fr;
         }
         .hero-img-wrap {
           height: 35vh;
@@ -1745,9 +1826,6 @@
         .hero-content {
           padding: 20px 20px 60px;
         }
-        #hero {
-          grid-template-columns: 1fr;
-        }
         .hero-actions {
           flex-direction: column;
         }
@@ -1756,7 +1834,6 @@
           text-align: center;
         }
 
-        /* Bento */
         .bento-section,
         #contact {
           padding-left: 20px;
@@ -1782,21 +1859,17 @@
           font-size: 20px;
         }
 
-        /* Craft section — no left/right padding so scroll row fills edge to edge */
         #craft {
           padding-left: 0;
           padding-right: 0;
           overflow: visible;
         }
-
-        /* Keep the label and email card indented */
         #craft > .bento-label,
         #craft > div > .bento-card {
           margin-left: 20px;
           margin-right: 20px;
         }
 
-        /* Print carousel */
         .print-scroll-row {
           display: flex;
           overflow-x: auto;
@@ -1829,12 +1902,10 @@
           max-height: 200px;
         }
 
-        /* Carousel controls — visible + centered on mobile */
         .carousel-controls {
           display: flex;
         }
 
-        /* Email card stacks on mobile */
         .email-card-inner {
           grid-template-columns: 1fr;
           gap: 20px;
@@ -1846,7 +1917,7 @@
           width: 100%;
         }
 
-        /* Case study */
+        /* Case study card stacks on mobile */
         .case-study-card {
           flex-direction: column;
           align-items: flex-start;
@@ -1855,6 +1926,11 @@
           grid-template-columns: 1fr;
           gap: 12px;
         }
+        /* Hide carousel arrows on mobile — card is full width */
+        .cs-arrow {
+          display: none;
+        }
+
         .cs-modal-inner {
           padding: 80px 20px 60px;
         }
@@ -1862,7 +1938,7 @@
           grid-template-columns: 1fr;
         }
         .cs-steps {
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: 1fr;
         }
         .cs-images-top {
           grid-template-columns: 1fr;
@@ -1877,11 +1953,7 @@
           height: 1px;
           margin: 0 auto;
         }
-        .cs-steps {
-          grid-template-columns: 1fr;
-        }
 
-        /* Contact */
         .contact-headshot-row {
           grid-template-columns: 1fr;
         }
@@ -1895,14 +1967,11 @@
           grid-template-columns: 1fr 1fr;
         }
 
-        /* Footer */
         footer {
           padding: 24px 20px;
           flex-direction: column;
           gap: 8px;
         }
-
-        /* Modal */
         .modal {
           padding: 24px;
         }
@@ -2102,33 +2171,116 @@
     <!-- CASE STUDY -->
     <section class="bento-section" id="casestudy">
       <div class="bento-label">Case Study</div>
-      <div class="case-study-card" onclick="openCaseStudy()">
-        <div class="case-study-card-left">
-          <div class="case-study-eyebrow">
-            UX/UI Redesign · 2025 · SIDEARM Sports
-          </div>
-          <div class="case-study-title-row">
-            <img
-              src="img/logo_main.svg"
-              alt="University of Alberta Athletics"
-              class="case-study-logo"
-              onerror="this.style.display = 'none'"
-            />
-            <div class="case-study-title">
-              Redesigning <span>University Of Alberta Athletics</span> for a
-              Better Fan Experience
+
+      <div class="cs-carousel-wrap">
+        <!-- Clip wrapper keeps border-radius clean without clipping arrows -->
+        <div class="cs-carousel-clip">
+          <div class="cs-carousel-track" id="csCarouselTrack">
+            <!-- Slide 1: University of Alberta — opens fullscreen modal -->
+            <div class="cs-carousel-slide">
+              <div class="case-study-card" onclick="openCaseStudy()">
+                <div class="case-study-card-left">
+                  <div class="case-study-eyebrow">
+                    UX/UI Redesign · 2025 · SIDEARM Sports
+                  </div>
+                  <div class="case-study-title-row">
+                    <img
+                      src="img/logo_main.svg"
+                      alt="University of Alberta Athletics"
+                      class="case-study-logo"
+                      onerror="this.style.display = 'none'"
+                    />
+                    <div class="case-study-title">
+                      Redesigning
+                      <span>University Of Alberta Athletics</span> for a Better
+                      Fan Experience
+                    </div>
+                  </div>
+                  <div class="case-study-tags">
+                    <span class="case-study-tag">UX Research</span>
+                    <span class="case-study-tag">UI Design</span>
+                    <span class="case-study-tag">Wireframing</span>
+                    <span class="case-study-tag">Prototyping</span>
+                  </div>
+                </div>
+                <div class="case-study-card-right">
+                  <div class="case-study-cta">Read Case Study →</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 2: Fishin' Pig — links to dedicated page -->
+            <div class="cs-carousel-slide">
+              <a
+                href="fishin-bbq-case-study.html"
+                target="_blank"
+                class="case-study-card"
+              >
+                <div class="case-study-card-left">
+                  <div class="case-study-eyebrow">
+                    UX/UI Redesign · 2026 · Self-Initiated
+                  </div>
+                  <div class="case-study-title-row">
+                    <img
+                      src="img/fp_logo.png"
+                      alt="The Fishin' Pig"
+                      class="case-study-logo"
+                      onerror="this.style.display = 'none'"
+                    />
+                    <div class="case-study-title">
+                      Redesigning <span>The Fishin' Pig</span> — A Full UX
+                      Process from Research to High Fidelity
+                    </div>
+                  </div>
+                  <div class="case-study-tags">
+                    <span class="case-study-tag">UX Research</span>
+                    <span class="case-study-tag">Design System</span>
+                    <span class="case-study-tag">Wireframing</span>
+                    <span class="case-study-tag">High Fidelity</span>
+                    <span class="case-study-tag">Prototyping</span>
+                  </div>
+                </div>
+                <div class="case-study-card-right">
+                  <div class="case-study-cta">Read Case Study →</div>
+                </div>
+              </a>
             </div>
           </div>
-          <div class="case-study-tags">
-            <span class="case-study-tag">UX Research</span>
-            <span class="case-study-tag">UI Design</span>
-            <span class="case-study-tag">Wireframing</span>
-            <span class="case-study-tag">Prototyping</span>
-          </div>
         </div>
-        <div class="case-study-card-right">
-          <div class="case-study-cta">Read Case Study →</div>
-        </div>
+
+        <!-- Arrows outside the clip wrapper so they aren't clipped -->
+        <button
+          class="cs-arrow cs-arrow-prev cs-arrow-hidden"
+          id="csPrev"
+          onclick="csMove(-1)"
+          aria-label="Previous"
+        >
+          ‹
+        </button>
+        <button
+          class="cs-arrow cs-arrow-next"
+          id="csNext"
+          onclick="csMove(1)"
+          aria-label="Next"
+        >
+          ›
+        </button>
+      </div>
+
+      <!-- Dots -->
+      <div class="cs-dots">
+        <button
+          class="cs-dot cs-dot-active"
+          id="csDot0"
+          onclick="csGoTo(0)"
+          aria-label="Alberta case study"
+        ></button>
+        <button
+          class="cs-dot"
+          id="csDot1"
+          onclick="csGoTo(1)"
+          aria-label="Fishin Pig case study"
+        ></button>
       </div>
     </section>
 
@@ -2136,7 +2288,6 @@
     <section class="bento-section" id="craft">
       <div class="bento-label">Craft & Capabilities</div>
       <div style="display: flex; flex-direction: column; gap: 12px">
-        <!-- Print cards — id="print-row" is what scrollCarousel() targets -->
         <div class="print-scroll-row" id="print-row">
           <div class="print-card" onclick="openPrintModal('print1')">
             <img
@@ -2154,7 +2305,6 @@
               <div class="print-card-title">Brand Identity</div>
             </div>
           </div>
-
           <div class="print-card" onclick="openPrintModal('print2')">
             <img
               src="img/editorial_petsupermarket.jpg"
@@ -2171,7 +2321,6 @@
               <div class="print-card-title">Editorial Design</div>
             </div>
           </div>
-
           <div class="print-card" onclick="openPrintModal('print3')">
             <img
               src="img/logo_vayuwellness.jpg"
@@ -2188,7 +2337,6 @@
               <div class="print-card-title">Logo Design</div>
             </div>
           </div>
-
           <div class="print-card" onclick="openPrintModal('print4')">
             <img
               src="img/campaign_petsupermarket_event.jpg"
@@ -2205,7 +2353,6 @@
               <div class="print-card-title">Campaign Design</div>
             </div>
           </div>
-
           <div class="print-card" onclick="openPrintModal('print5')">
             <img
               src="img/brand_2015-lakefest.jpg"
@@ -2224,13 +2371,11 @@
           </div>
         </div>
 
-        <!-- Carousel controls — centered below cards, only visible on mobile -->
         <div class="carousel-controls">
           <button class="carousel-btn" onclick="scrollCarousel(-1)">‹</button>
           <button class="carousel-btn" onclick="scrollCarousel(1)">›</button>
         </div>
 
-        <!-- Email full-width card -->
         <div class="bento-card">
           <div class="email-card-inner">
             <div class="project-card-inner">
@@ -2480,7 +2625,7 @@
       </div>
     </div>
 
-    <!-- CASE STUDY MODAL -->
+    <!-- CASE STUDY FULLSCREEN MODAL -->
     <div class="cs-modal-overlay" id="csModal">
       <button class="cs-modal-close" onclick="closeCaseStudy()">✕</button>
       <div class="cs-modal-inner">
@@ -2664,8 +2809,7 @@
 
     <script>
       // ============================================================
-      // SCROLL LOCK — iOS Safari compatible
-      // position:fixed + scroll save/restore instead of overflow:hidden
+      // SCROLL LOCK
       // ============================================================
       let _scrollY = 0;
 
@@ -2894,7 +3038,6 @@
       function openPrintModal(id) {
         const work = printWorks[id];
         if (!work) return;
-
         const images = work.images || [];
 
         const slidesHtml = images
@@ -2986,8 +3129,7 @@
       }
 
       // ============================================================
-      // PRINT CAROUSEL CONTROLS
-      // scrollCarousel(dir) — targets #print-row directly
+      // PRINT CAROUSEL
       // ============================================================
       function scrollCarousel(dir) {
         const row = document.getElementById("print-row");
@@ -3004,13 +3146,62 @@
       }
 
       // ============================================================
-      // CASE STUDY MODAL
+      // CASE STUDY CAROUSEL
+      // ============================================================
+      let csCurrent = 0;
+      const csTotal = 2;
+
+      function csMove(dir) {
+        csGoTo(Math.max(0, Math.min(csCurrent + dir, csTotal - 1)));
+      }
+
+      function csGoTo(index) {
+        csCurrent = index;
+        document.getElementById("csCarouselTrack").style.transform =
+          `translateX(-${index * 100}%)`;
+        document
+          .getElementById("csPrev")
+          .classList.toggle("cs-arrow-hidden", index === 0);
+        document
+          .getElementById("csNext")
+          .classList.toggle("cs-arrow-hidden", index === csTotal - 1);
+        document
+          .getElementById("csDot0")
+          .classList.toggle("cs-dot-active", index === 0);
+        document
+          .getElementById("csDot1")
+          .classList.toggle("cs-dot-active", index === 1);
+      }
+
+      // Touch swipe on case study carousel
+      const csCarousel = document.querySelector(".cs-carousel-clip");
+      let csTouchStartX = 0;
+      if (csCarousel) {
+        csCarousel.addEventListener(
+          "touchstart",
+          (e) => {
+            csTouchStartX = e.touches[0].clientX;
+          },
+          { passive: true },
+        );
+        csCarousel.addEventListener(
+          "touchend",
+          (e) => {
+            const diff = csTouchStartX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 40) csMove(diff > 0 ? 1 : -1);
+          },
+          { passive: true },
+        );
+      }
+
+      // ============================================================
+      // CASE STUDY FULLSCREEN MODAL
       // ============================================================
       function openCaseStudy() {
         const modal = document.getElementById("csModal");
         modal.scrollTop = 0;
         modal.classList.add("open");
-        document.body.style.overflow = "hidden"; // simpler lock — CS modal scrolls itself
+        document.body.style.overflow = "hidden";
 
         document.querySelectorAll(".cs-img").forEach((img) => {
           img.style.cursor = "zoom-in";
