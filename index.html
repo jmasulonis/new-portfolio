@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- META & SEO -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
@@ -35,6 +34,9 @@
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap");
 
+      /* ============================================================
+       RESET & BASE
+    ============================================================ */
       *,
       *::before,
       *::after {
@@ -72,6 +74,7 @@
         min-height: 100vh;
       }
 
+      /* iOS Safari scroll lock */
       body.scroll-locked {
         position: fixed;
         width: 100%;
@@ -82,6 +85,9 @@
         scroll-margin-top: 90px;
       }
 
+      /* ============================================================
+       ANIMATIONS
+    ============================================================ */
       @keyframes fadeUp {
         from {
           opacity: 0;
@@ -92,6 +98,7 @@
           transform: translateY(0);
         }
       }
+
       @keyframes pulse {
         0%,
         100% {
@@ -615,6 +622,7 @@
         color: var(--primary);
       }
 
+      /* Work samples collapsible */
       .work-samples-toggle {
         display: flex;
         align-items: center;
@@ -678,13 +686,12 @@
         justify-content: space-between;
         align-items: center;
         gap: 40px;
-        cursor: pointer;
         position: relative;
         overflow: hidden;
         transition: background 0.25s;
-        /* Reset any link styles */
         text-decoration: none;
         color: inherit;
+        cursor: pointer;
       }
       .case-study-card:hover {
         background: #5e5047;
@@ -780,11 +787,17 @@
         position: relative;
       }
 
+      /* Clip wrapper — border-radius without clipping the arrows */
+      .cs-carousel-clip {
+        overflow: hidden;
+        border-radius: 16px;
+        background: var(--bg);
+      }
+
       .cs-carousel-track {
         display: flex;
-        transition: transform 0.4s ease;
         width: 100%;
-        /* No overflow:hidden here — we control clipping on the section */
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
       .cs-carousel-slide {
@@ -793,19 +806,7 @@
         flex: 0 0 100%;
       }
 
-      /* Clipping wrapper — separate from position:relative so arrows
-       can be positioned relative to cs-carousel-wrap without being clipped */
-      .cs-carousel-clip {
-        overflow: hidden;
-        border-radius: 16px;
-        background: var(--bg);
-      }
-      .cs-carousel-track {
-        display: flex;
-        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        width: 100%;
-      }
-
+      /* Arrows sit outside the clip so they're never hidden */
       .cs-arrow {
         position: absolute;
         top: 50%;
@@ -867,220 +868,6 @@
       }
 
       /* ============================================================
-       CASE STUDY FULLSCREEN MODAL
-    ============================================================ */
-      .cs-modal-overlay {
-        position: fixed;
-        inset: 0;
-        background: var(--bg);
-        z-index: 600;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.3s ease;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
-        overscroll-behavior: contain;
-        touch-action: pan-y;
-      }
-      .cs-modal-overlay.open {
-        opacity: 1;
-        pointer-events: all;
-      }
-
-      .cs-modal-inner {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 100px 40px 80px;
-        min-height: 100%;
-        touch-action: pan-y;
-      }
-
-      .cs-modal-close {
-        position: fixed;
-        top: 24px;
-        right: 24px;
-        width: 44px;
-        height: 44px;
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 10px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--muted);
-        font-size: 20px;
-        z-index: 601;
-        transition:
-          color 0.2s,
-          border-color 0.2s,
-          background 0.2s;
-      }
-      .cs-modal-close:hover {
-        color: var(--text);
-        border-color: var(--primary);
-        background: var(--surface2);
-      }
-
-      .cs-intro {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
-        margin-bottom: 12px;
-      }
-
-      .cs-hero {
-        background: var(--tertiary);
-        border-radius: 16px;
-        padding: 32px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        min-height: 260px;
-      }
-
-      .cs-meta {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-      }
-      .cs-meta-card {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 16px;
-        padding: 28px 32px;
-      }
-      .cs-meta-label {
-        font-size: 11px;
-        font-weight: 600;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--secondary);
-        margin-bottom: 8px;
-      }
-      .cs-meta-value {
-        font-family: var(--display);
-        font-size: 15px;
-        font-weight: 600;
-        color: var(--text);
-      }
-      .cs-meta-value p {
-        font-family: var(--body);
-        font-size: 13px;
-        font-weight: 400;
-        color: var(--muted);
-        line-height: 1.7;
-        margin-top: 4px;
-      }
-
-      .cs-steps {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 12px;
-        margin-bottom: 12px;
-      }
-      .cs-step {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 16px;
-        padding: 32px;
-      }
-      .cs-step-num {
-        font-family: var(--display);
-        font-size: 48px;
-        font-weight: 700;
-        color: rgba(255, 255, 255, 0.04);
-        line-height: 1;
-        margin-bottom: 16px;
-      }
-      .cs-step-title {
-        font-family: var(--display);
-        font-size: 16px;
-        font-weight: 700;
-        color: var(--primary);
-        margin-bottom: 10px;
-      }
-      .cs-step-body {
-        font-size: 13px;
-        color: var(--muted);
-        line-height: 1.7;
-      }
-
-      .cs-images-top {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
-        margin-bottom: 12px;
-      }
-      .cs-images-bottom {
-        margin-bottom: 12px;
-      }
-      .cs-images-bottom .cs-img-card .cs-img {
-        min-height: 400px;
-        object-fit: cover;
-      }
-
-      .cs-img-card {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 16px;
-        overflow: hidden;
-      }
-      .cs-img {
-        width: 100%;
-        height: 100%;
-        min-height: 280px;
-        object-fit: cover;
-        display: block;
-      }
-      .cs-img-placeholder {
-        width: 100%;
-        min-height: 280px;
-        background: var(--surface2);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        color: var(--muted);
-        font-size: 11px;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        border: 1px dashed rgba(255, 255, 255, 0.08);
-        border-radius: 16px;
-      }
-
-      .cs-outcome {
-        background: var(--primary);
-        border-radius: 16px;
-        padding: 48px;
-        display: grid;
-        grid-template-columns: 1fr auto 1fr auto 1fr;
-        align-items: center;
-        text-align: center;
-      }
-      .cs-outcome-num {
-        font-family: var(--display);
-        font-size: 48px;
-        font-weight: 700;
-        letter-spacing: -0.03em;
-        color: var(--secondary);
-        line-height: 1;
-        margin-bottom: 8px;
-      }
-      .cs-outcome-label {
-        font-size: 13px;
-        color: rgba(240, 236, 230, 0.7);
-        font-weight: 500;
-      }
-      .cs-outcome-divider {
-        width: 1px;
-        height: 60px;
-        background: rgba(255, 255, 255, 0.15);
-        margin: 0 24px;
-      }
-
-      /* ============================================================
        SKILLS
     ============================================================ */
       .skills-card h3 {
@@ -1121,7 +908,7 @@
       }
 
       /* ============================================================
-       CRAFT & CAPABILITIES
+       CRAFT & CAPABILITIES — Print cards
     ============================================================ */
       .print-scroll-row {
         display: grid;
@@ -1205,6 +992,7 @@
         opacity: 1;
       }
 
+      /* Mobile carousel controls — hidden on desktop */
       .carousel-controls {
         display: none;
         justify-content: center;
@@ -1232,6 +1020,7 @@
         border-color: var(--primary);
       }
 
+      /* Email card */
       .email-card-inner {
         display: grid;
         grid-template-columns: 1fr auto;
@@ -1747,7 +1536,7 @@
       }
 
       /* ============================================================
-       RESPONSIVE
+       RESPONSIVE — Tablet / Mobile (max 900px)
     ============================================================ */
       @media (max-width: 900px) {
         nav {
@@ -1859,6 +1648,7 @@
           font-size: 20px;
         }
 
+        /* Craft section — zero padding so carousel bleeds edge to edge */
         #craft {
           padding-left: 0;
           padding-right: 0;
@@ -1870,6 +1660,7 @@
           margin-right: 20px;
         }
 
+        /* Print carousel */
         .print-scroll-row {
           display: flex;
           overflow-x: auto;
@@ -1906,6 +1697,7 @@
           display: flex;
         }
 
+        /* Email card stacks on mobile */
         .email-card-inner {
           grid-template-columns: 1fr;
           gap: 20px;
@@ -1917,7 +1709,7 @@
           width: 100%;
         }
 
-        /* Case study card stacks on mobile */
+        /* Case study carousel — cards stack, arrows hidden */
         .case-study-card {
           flex-direction: column;
           align-items: flex-start;
@@ -1926,34 +1718,11 @@
           grid-template-columns: 1fr;
           gap: 12px;
         }
-        /* Hide carousel arrows on mobile — card is full width */
         .cs-arrow {
           display: none;
         }
 
-        .cs-modal-inner {
-          padding: 80px 20px 60px;
-        }
-        .cs-intro {
-          grid-template-columns: 1fr;
-        }
-        .cs-steps {
-          grid-template-columns: 1fr;
-        }
-        .cs-images-top {
-          grid-template-columns: 1fr;
-        }
-        .cs-outcome {
-          grid-template-columns: 1fr;
-          gap: 24px;
-          padding: 32px;
-        }
-        .cs-outcome-divider {
-          width: 60px;
-          height: 1px;
-          margin: 0 auto;
-        }
-
+        /* Contact */
         .contact-headshot-row {
           grid-template-columns: 1fr;
         }
@@ -1986,11 +1755,11 @@
   </head>
   <body>
     <!-- NAVIGATION -->
-    <nav>
-      <a href="#" class="nav-logo">
+    <nav aria-label="Site navigation">
+      <a href="#" class="nav-logo" aria-label="John Masulonis — home">
         <img
           src="img/logo_nav_jm.svg"
-          alt="John Masulonis"
+          alt=""
           class="nav-logo-img"
           onerror="this.style.display = 'none'"
         />
@@ -1998,21 +1767,33 @@
           >John<span class="nav-logo-dot">.</span>Masulonis</span
         >
       </a>
-      <div class="nav-links" id="navLinks">
-        <button class="nav-menu-close" onclick="toggleNav()">✕</button>
+      <div class="nav-links" id="navLinks" role="navigation">
+        <button
+          class="nav-menu-close"
+          onclick="toggleNav()"
+          aria-label="Close menu"
+        >
+          ✕
+        </button>
         <a href="#work">Recent Career</a>
         <a href="#casestudy">Case Study</a>
         <a href="#craft">Craft</a>
         <a href="#skills">Skills</a>
         <a href="#contact" class="nav-cta">Get in touch</a>
       </div>
-      <button class="nav-hamburger" id="navHamburger" onclick="toggleNav()">
+      <button
+        class="nav-hamburger"
+        id="navHamburger"
+        onclick="toggleNav()"
+        aria-label="Open menu"
+        aria-expanded="false"
+      >
         <span></span><span></span><span></span>
       </button>
     </nav>
 
     <!-- HERO -->
-    <section id="hero">
+    <section id="hero" aria-label="Introduction">
       <div class="hero-img-wrap">
         <img
           src="img/hero_bw.jpg"
@@ -2020,13 +1801,13 @@
           class="hero-img"
           onerror="this.style.display = 'none'"
         />
-        <div class="hero-img-fade"></div>
+        <div class="hero-img-fade" aria-hidden="true"></div>
       </div>
       <div class="hero-content">
-        <div class="hero-eyebrow">
-          <span class="eyebrow-dot"></span>Open to remote full-time
-          opportunities
-        </div>
+        <p class="hero-eyebrow">
+          <span class="eyebrow-dot" aria-hidden="true"></span>Open to remote
+          full-time opportunities
+        </p>
         <h1 class="hero-title">
           John Masulonis<br /><span class="line2"
             >Designer &amp; Developer</span
@@ -2046,12 +1827,16 @@
       </div>
     </section>
 
-    <!-- CAREER -->
-    <section class="bento-section" id="work">
-      <div class="bento-label">Recent Career</div>
+    <!-- RECENT CAREER -->
+    <section class="bento-section" id="work" aria-labelledby="work-label">
+      <h2 class="bento-label" id="work-label">Recent Career</h2>
       <div class="bento-grid">
-        <div class="bento-card col-7 job-card" onclick="openModal('job1')">
-          <div class="proj-arrow">↗</div>
+        <article
+          class="bento-card col-7 job-card"
+          onclick="openModal('job1')"
+          aria-label="Open Sidearm Sports details"
+        >
+          <div class="proj-arrow" aria-hidden="true">↗</div>
           <div class="project-card-inner">
             <img
               src="img/portfolio_img_sidearm-sports.png"
@@ -2065,14 +1850,14 @@
             <span class="proj-num">2022 — 2026</span>
             <h3>Web Designer</h3>
             <p>SIDEARM Sports · Remote Full-time</p>
-            <div class="proj-tags">
-              <span class="proj-tag">UI Design</span
-              ><span class="proj-tag">Figma</span
-              ><span class="proj-tag">Design Systems</span
-              ><span class="proj-tag">Accessibility</span>
-            </div>
+            <ul class="proj-tags" aria-label="Skills">
+              <li class="proj-tag">UI Design</li>
+              <li class="proj-tag">Figma</li>
+              <li class="proj-tag">Design Systems</li>
+              <li class="proj-tag">Accessibility</li>
+            </ul>
           </div>
-        </div>
+        </article>
 
         <div class="bento-card col-5 about-card">
           <blockquote>
@@ -2082,12 +1867,16 @@
         </div>
 
         <div class="bento-card col-3 stat-card">
-          <div class="stat-num">15+</div>
-          <div class="stat-label">Years of experience</div>
+          <p class="stat-num">15+</p>
+          <p class="stat-label">Years of experience</p>
         </div>
 
-        <div class="bento-card col-5 job-card" onclick="openModal('job2')">
-          <div class="proj-arrow">↗</div>
+        <article
+          class="bento-card col-5 job-card"
+          onclick="openModal('job2')"
+          aria-label="Open IBM details"
+        >
+          <div class="proj-arrow" aria-hidden="true">↗</div>
           <div class="project-card-inner">
             <img
               src="img/portfolio_img_IBM.png"
@@ -2101,13 +1890,13 @@
             <span class="proj-num">2021 — 2022</span>
             <h3>Visual Designer</h3>
             <p>IBM · Full-time</p>
-            <div class="proj-tags">
-              <span class="proj-tag">Branding</span
-              ><span class="proj-tag">Web Design</span
-              ><span class="proj-tag">Sketch</span>
-            </div>
+            <ul class="proj-tags" aria-label="Skills">
+              <li class="proj-tag">Branding</li>
+              <li class="proj-tag">Web Design</li>
+              <li class="proj-tag">Sketch</li>
+            </ul>
           </div>
-        </div>
+        </article>
 
         <div class="bento-card col-4 card-accent">
           <h3>Open to Contract &amp; Full-Time roles</h3>
@@ -2117,8 +1906,12 @@
           </p>
         </div>
 
-        <div class="bento-card col-6 job-card" onclick="openModal('job3')">
-          <div class="proj-arrow">↗</div>
+        <article
+          class="bento-card col-6 job-card"
+          onclick="openModal('job3')"
+          aria-label="Open Cisco details"
+        >
+          <div class="proj-arrow" aria-hidden="true">↗</div>
           <div class="project-card-inner">
             <img
               src="img/portfolio_img_cisco.png"
@@ -2132,20 +1925,24 @@
             <span class="proj-num">2020 — 2020</span>
             <h3>Digital Designer</h3>
             <p>Cisco · Remote Full-time</p>
-            <div class="proj-tags">
-              <span class="proj-tag">HTML 5 Banners</span
-              ><span class="proj-tag">Visual Design</span>
-            </div>
+            <ul class="proj-tags" aria-label="Skills">
+              <li class="proj-tag">HTML 5 Banners</li>
+              <li class="proj-tag">Visual Design</li>
+            </ul>
           </div>
-        </div>
+        </article>
 
         <div class="bento-card col-3 stat-card">
-          <div class="stat-num">20+</div>
-          <div class="stat-label">Projects shipped</div>
+          <p class="stat-num">20+</p>
+          <p class="stat-label">Projects shipped</p>
         </div>
 
-        <div class="bento-card col-3 job-card" onclick="openModal('job4')">
-          <div class="proj-arrow">↗</div>
+        <article
+          class="bento-card col-3 job-card"
+          onclick="openModal('job4')"
+          aria-label="Open Trimark Digital details"
+        >
+          <div class="proj-arrow" aria-hidden="true">↗</div>
           <div class="project-card-inner">
             <img
               src="img/portfolio_img_trimark-digital.png"
@@ -2159,30 +1956,39 @@
             <span class="proj-num">2018 — 2019</span>
             <h3>Senior Designer</h3>
             <p>Trimark Digital · Full-time</p>
-            <div class="proj-tags">
-              <span class="proj-tag">Print</span
-              ><span class="proj-tag">Branding</span>
-            </div>
+            <ul class="proj-tags" aria-label="Skills">
+              <li class="proj-tag">Print</li>
+              <li class="proj-tag">Branding</li>
+            </ul>
           </div>
-        </div>
+        </article>
       </div>
     </section>
 
     <!-- CASE STUDY -->
-    <section class="bento-section" id="casestudy">
-      <div class="bento-label">Case Study</div>
+    <section
+      class="bento-section"
+      id="casestudy"
+      aria-labelledby="casestudy-label"
+    >
+      <h2 class="bento-label" id="casestudy-label">Case Study</h2>
 
       <div class="cs-carousel-wrap">
-        <!-- Clip wrapper keeps border-radius clean without clipping arrows -->
         <div class="cs-carousel-clip">
-          <div class="cs-carousel-track" id="csCarouselTrack">
-            <!-- Slide 1: University of Alberta — opens fullscreen modal -->
+          <div
+            class="cs-carousel-track"
+            id="csCarouselTrack"
+            role="region"
+            aria-label="Case study carousel"
+            aria-live="polite"
+          >
+            <!-- Slide 1: University of Alberta -->
             <div class="cs-carousel-slide">
               <a href="alberta-case-study.html" class="case-study-card">
                 <div class="case-study-card-left">
-                  <div class="case-study-eyebrow">
+                  <p class="case-study-eyebrow">
                     UX/UI Redesign · 2025 · SIDEARM Sports
-                  </div>
+                  </p>
                   <div class="case-study-title-row">
                     <img
                       src="img/logo_main.svg"
@@ -2190,36 +1996,32 @@
                       class="case-study-logo"
                       onerror="this.style.display = 'none'"
                     />
-                    <div class="case-study-title">
+                    <h3 class="case-study-title">
                       Redesigning
                       <span>University Of Alberta Athletics</span> for a Better
                       Fan Experience
-                    </div>
+                    </h3>
                   </div>
-                  <div class="case-study-tags">
-                    <span class="case-study-tag">UX Research</span>
-                    <span class="case-study-tag">UI Design</span>
-                    <span class="case-study-tag">Wireframing</span>
-                    <span class="case-study-tag">Prototyping</span>
-                  </div>
+                  <ul class="case-study-tags" aria-label="Tags">
+                    <li class="case-study-tag">UX Research</li>
+                    <li class="case-study-tag">UI Design</li>
+                    <li class="case-study-tag">Wireframing</li>
+                    <li class="case-study-tag">Prototyping</li>
+                  </ul>
                 </div>
                 <div class="case-study-card-right">
-                  <div class="case-study-cta">Read Case Study →</div>
+                  <p class="case-study-cta">Read Case Study →</p>
                 </div>
               </a>
             </div>
 
-            <!-- Slide 2: Fishin' Pig — links to dedicated page -->
+            <!-- Slide 2: Fishin' Pig -->
             <div class="cs-carousel-slide">
-              <a
-                href="fishin-bbq-case-study.html"
-                target="_blank"
-                class="case-study-card"
-              >
+              <a href="fishin-bbq-case-study.html" class="case-study-card">
                 <div class="case-study-card-left">
-                  <div class="case-study-eyebrow">
+                  <p class="case-study-eyebrow">
                     UX/UI Redesign · 2026 · Self-Initiated
-                  </div>
+                  </p>
                   <div class="case-study-title-row">
                     <img
                       src="img/logo_pigfish_wbbq-sf-sc_horizontal_nosubtext.png"
@@ -2227,33 +2029,32 @@
                       class="case-study-logo"
                       onerror="this.style.display = 'none'"
                     />
-                    <div class="case-study-title">
+                    <h3 class="case-study-title">
                       Redesigning <span>The Fishin' Pig</span> — A Full UX
                       Process from Research to High Fidelity
-                    </div>
+                    </h3>
                   </div>
-                  <div class="case-study-tags">
-                    <span class="case-study-tag">UX Research</span>
-                    <span class="case-study-tag">Design System</span>
-                    <span class="case-study-tag">Wireframing</span>
-                    <span class="case-study-tag">High Fidelity</span>
-                    <span class="case-study-tag">Prototyping</span>
-                  </div>
+                  <ul class="case-study-tags" aria-label="Tags">
+                    <li class="case-study-tag">UX Research</li>
+                    <li class="case-study-tag">Design System</li>
+                    <li class="case-study-tag">Wireframing</li>
+                    <li class="case-study-tag">High Fidelity</li>
+                    <li class="case-study-tag">Prototyping</li>
+                  </ul>
                 </div>
                 <div class="case-study-card-right">
-                  <div class="case-study-cta">Read Case Study →</div>
+                  <p class="case-study-cta">Read Case Study →</p>
                 </div>
               </a>
             </div>
           </div>
         </div>
 
-        <!-- Arrows outside the clip wrapper so they aren't clipped -->
         <button
           class="cs-arrow cs-arrow-prev cs-arrow-hidden"
           id="csPrev"
           onclick="csMove(-1)"
-          aria-label="Previous"
+          aria-label="Previous case study"
         >
           ‹
         </button>
@@ -2261,35 +2062,49 @@
           class="cs-arrow cs-arrow-next"
           id="csNext"
           onclick="csMove(1)"
-          aria-label="Next"
+          aria-label="Next case study"
         >
           ›
         </button>
       </div>
 
-      <!-- Dots -->
-      <div class="cs-dots">
+      <div class="cs-dots" role="tablist" aria-label="Case study indicators">
         <button
           class="cs-dot cs-dot-active"
           id="csDot0"
           onclick="csGoTo(0)"
-          aria-label="Alberta case study"
+          role="tab"
+          aria-selected="true"
+          aria-label="Slide 1"
         ></button>
         <button
           class="cs-dot"
           id="csDot1"
           onclick="csGoTo(1)"
-          aria-label="Fishin Pig case study"
+          role="tab"
+          aria-selected="false"
+          aria-label="Slide 2"
         ></button>
       </div>
     </section>
 
     <!-- CRAFT & CAPABILITIES -->
-    <section class="bento-section" id="craft">
-      <div class="bento-label">Craft & Capabilities</div>
+    <section class="bento-section" id="craft" aria-labelledby="craft-label">
+      <h2 class="bento-label" id="craft-label">Craft &amp; Capabilities</h2>
       <div style="display: flex; flex-direction: column; gap: 12px">
-        <div class="print-scroll-row" id="print-row">
-          <div class="print-card" onclick="openPrintModal('print1')">
+        <!-- Print / brand cards -->
+        <div
+          class="print-scroll-row"
+          id="print-row"
+          role="list"
+          aria-label="Brand and print work"
+        >
+          <article
+            class="print-card"
+            onclick="openPrintModal('print1')"
+            role="listitem"
+            aria-label="Brand Identity — view project"
+          >
             <img
               src="img/brand_jerrys-concept.jpg"
               alt="Brand Identity"
@@ -2299,13 +2114,19 @@
                   '<div class=print-card-img-placeholder>Add image</div>'
               "
             />
-            <div class="print-card-hover">View project</div>
+            <div class="print-card-hover" aria-hidden="true">View project</div>
             <div class="print-card-info">
-              <div class="print-card-type">Branding</div>
-              <div class="print-card-title">Brand Identity</div>
+              <p class="print-card-type">Branding</p>
+              <p class="print-card-title">Brand Identity</p>
             </div>
-          </div>
-          <div class="print-card" onclick="openPrintModal('print2')">
+          </article>
+
+          <article
+            class="print-card"
+            onclick="openPrintModal('print2')"
+            role="listitem"
+            aria-label="Editorial Design — view project"
+          >
             <img
               src="img/editorial_petsupermarket.jpg"
               alt="Editorial Design"
@@ -2315,13 +2136,19 @@
                   '<div class=print-card-img-placeholder>Add image</div>'
               "
             />
-            <div class="print-card-hover">View project</div>
+            <div class="print-card-hover" aria-hidden="true">View project</div>
             <div class="print-card-info">
-              <div class="print-card-type">Print</div>
-              <div class="print-card-title">Editorial Design</div>
+              <p class="print-card-type">Print</p>
+              <p class="print-card-title">Editorial Design</p>
             </div>
-          </div>
-          <div class="print-card" onclick="openPrintModal('print3')">
+          </article>
+
+          <article
+            class="print-card"
+            onclick="openPrintModal('print3')"
+            role="listitem"
+            aria-label="Logo Design — view project"
+          >
             <img
               src="img/logo_vayuwellness.jpg"
               alt="Logo Design"
@@ -2331,13 +2158,19 @@
                   '<div class=print-card-img-placeholder>Add image</div>'
               "
             />
-            <div class="print-card-hover">View project</div>
+            <div class="print-card-hover" aria-hidden="true">View project</div>
             <div class="print-card-info">
-              <div class="print-card-type">Branding</div>
-              <div class="print-card-title">Logo Design</div>
+              <p class="print-card-type">Branding</p>
+              <p class="print-card-title">Logo Design</p>
             </div>
-          </div>
-          <div class="print-card" onclick="openPrintModal('print4')">
+          </article>
+
+          <article
+            class="print-card"
+            onclick="openPrintModal('print4')"
+            role="listitem"
+            aria-label="Campaign Design — view project"
+          >
             <img
               src="img/campaign_petsupermarket_event.jpg"
               alt="Campaign Design"
@@ -2347,13 +2180,19 @@
                   '<div class=print-card-img-placeholder>Add image</div>'
               "
             />
-            <div class="print-card-hover">View project</div>
+            <div class="print-card-hover" aria-hidden="true">View project</div>
             <div class="print-card-info">
-              <div class="print-card-type">Print</div>
-              <div class="print-card-title">Campaign Design</div>
+              <p class="print-card-type">Print</p>
+              <p class="print-card-title">Campaign Design</p>
             </div>
-          </div>
-          <div class="print-card" onclick="openPrintModal('print5')">
+          </article>
+
+          <article
+            class="print-card"
+            onclick="openPrintModal('print5')"
+            role="listitem"
+            aria-label="Brand Collateral — view project"
+          >
             <img
               src="img/brand_2015-lakefest.jpg"
               alt="Brand Collateral"
@@ -2363,19 +2202,33 @@
                   '<div class=print-card-img-placeholder>Add image</div>'
               "
             />
-            <div class="print-card-hover">View project</div>
+            <div class="print-card-hover" aria-hidden="true">View project</div>
             <div class="print-card-info">
-              <div class="print-card-type">Branding</div>
-              <div class="print-card-title">Brand Collateral</div>
+              <p class="print-card-type">Branding</p>
+              <p class="print-card-title">Brand Collateral</p>
             </div>
-          </div>
+          </article>
         </div>
 
-        <div class="carousel-controls">
-          <button class="carousel-btn" onclick="scrollCarousel(-1)">‹</button>
-          <button class="carousel-btn" onclick="scrollCarousel(1)">›</button>
+        <!-- Mobile carousel controls -->
+        <div class="carousel-controls" aria-label="Scroll controls">
+          <button
+            class="carousel-btn"
+            onclick="scrollCarousel(-1)"
+            aria-label="Previous"
+          >
+            ‹
+          </button>
+          <button
+            class="carousel-btn"
+            onclick="scrollCarousel(1)"
+            aria-label="Next"
+          >
+            ›
+          </button>
         </div>
 
+        <!-- Email card -->
         <div class="bento-card">
           <div class="email-card-inner">
             <div class="project-card-inner">
@@ -2386,10 +2239,10 @@
                 e-commerce clients — combining layout, typography, and brand to
                 drive engagement across inboxes.
               </p>
-              <div class="proj-tags">
-                <span class="proj-tag">HTML Email</span
-                ><span class="proj-tag">Promotional</span>
-              </div>
+              <ul class="proj-tags" aria-label="Skills">
+                <li class="proj-tag">HTML Email</li>
+                <li class="proj-tag">Promotional</li>
+              </ul>
             </div>
             <div class="email-links-row">
               <a
@@ -2407,7 +2260,7 @@
                   <span class="link-platform">Global Golf</span
                   ><span class="link-handle">Christmas Club Sale</span>
                 </div>
-                <span class="link-arrow">↗</span>
+                <span class="link-arrow" aria-hidden="true">↗</span>
               </a>
               <a
                 href="javascript:void(0)"
@@ -2424,7 +2277,7 @@
                   <span class="link-platform">Advance Auto Parts</span
                   ><span class="link-handle">Loyalty Program Email</span>
                 </div>
-                <span class="link-arrow">↗</span>
+                <span class="link-arrow" aria-hidden="true">↗</span>
               </a>
               <a
                 href="javascript:void(0)"
@@ -2441,7 +2294,7 @@
                   <span class="link-platform">Savile Row Company</span
                   ><span class="link-handle">Cyber Monday Email</span>
                 </div>
-                <span class="link-arrow">↗</span>
+                <span class="link-arrow" aria-hidden="true">↗</span>
               </a>
             </div>
           </div>
@@ -2450,8 +2303,8 @@
     </section>
 
     <!-- SKILLS -->
-    <section class="bento-section" id="skills">
-      <div class="bento-label">Skills & Tools</div>
+    <section class="bento-section" id="skills" aria-labelledby="skills-label">
+      <h2 class="bento-label" id="skills-label">Skills &amp; Tools</h2>
       <div class="bento-grid">
         <div class="bento-card col-6 skills-card">
           <h3>Design</h3>
@@ -2489,6 +2342,7 @@
             </div>
           </div>
         </div>
+
         <div class="bento-card col-6 skills-card">
           <h3>Development</h3>
           <div class="skill-bar-row">
@@ -2528,8 +2382,8 @@
     </section>
 
     <!-- CONTACT -->
-    <section id="contact">
-      <div class="bento-label">Get In Touch</div>
+    <section id="contact" aria-labelledby="contact-label">
+      <h2 class="bento-label" id="contact-label">Get In Touch</h2>
       <div class="contact-grid">
         <div class="contact-headshot-row">
           <div class="contact-headshot-card">
@@ -2558,79 +2412,107 @@
             </div>
           </div>
         </div>
-        <div class="contact-links-grid">
-          <a
-            href="img/John-Masulonis_Resume.pdf"
-            class="contact-link-card"
-            target="_blank"
-          >
-            <div class="link-card-left">
-              <span class="link-platform">Resume</span
-              ><span class="link-handle">Download PDF</span>
-            </div>
-            <span class="link-arrow">↗</span>
-          </a>
-          <a
-            href="https://www.linkedin.com/in/johnmasulonis/"
-            class="contact-link-card"
-            target="_blank"
-          >
-            <div class="link-card-left">
-              <span class="link-platform">LinkedIn</span
-              ><span class="link-handle">linkedin.com/in/johnmasulonis</span>
-            </div>
-            <span class="link-arrow">↗</span>
-          </a>
-          <a
-            href="https://jmasulonis.github.io/john-masulonis-resume/index.html"
-            class="contact-link-card"
-            target="_blank"
-          >
-            <div class="link-card-left">
-              <span class="link-platform">Resume Landing Page</span
-              ><span class="link-handle">github.com/johnmasulonis</span>
-            </div>
-            <span class="link-arrow">↗</span>
-          </a>
-          <a
-            href="https://dribbble.com/jmasulonis"
-            class="contact-link-card"
-            target="_blank"
-          >
-            <div class="link-card-left">
-              <span class="link-platform">Dribbble</span
-              ><span class="link-handle">dribbble.com/jmasulonis</span>
-            </div>
-            <span class="link-arrow">↗</span>
-          </a>
-        </div>
+
+        <nav aria-label="Social and contact links">
+          <ul class="contact-links-grid" style="list-style: none">
+            <li>
+              <a
+                href="img/John-Masulonis_Resume.pdf"
+                class="contact-link-card"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><div class="link-card-left">
+                  <span class="link-platform">Resume</span
+                  ><span class="link-handle">Download PDF</span>
+                </div>
+                <span class="link-arrow" aria-hidden="true">↗</span></a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.linkedin.com/in/johnmasulonis/"
+                class="contact-link-card"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><div class="link-card-left">
+                  <span class="link-platform">LinkedIn</span
+                  ><span class="link-handle"
+                    >linkedin.com/in/johnmasulonis</span
+                  >
+                </div>
+                <span class="link-arrow" aria-hidden="true">↗</span></a
+              >
+            </li>
+            <li>
+              <a
+                href="https://jmasulonis.github.io/john-masulonis-resume/index.html"
+                class="contact-link-card"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><div class="link-card-left">
+                  <span class="link-platform">Resume Landing Page</span
+                  ><span class="link-handle">github.com/johnmasulonis</span>
+                </div>
+                <span class="link-arrow" aria-hidden="true">↗</span></a
+              >
+            </li>
+            <li>
+              <a
+                href="https://dribbble.com/jmasulonis"
+                class="contact-link-card"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><div class="link-card-left">
+                  <span class="link-platform">Dribbble</span
+                  ><span class="link-handle">dribbble.com/jmasulonis</span>
+                </div>
+                <span class="link-arrow" aria-hidden="true">↗</span></a
+              >
+            </li>
+          </ul>
+        </nav>
       </div>
     </section>
 
     <!-- FOOTER -->
     <footer>
-      <span>© 2026 John Masulonis</span>
-      <span>Designed & developed with care</span>
+      <small>© 2026 John Masulonis</small>
+      <small>Designed &amp; developed with care</small>
     </footer>
 
     <!-- JOB / PRINT MODAL -->
     <div
       class="modal-overlay"
       id="modalOverlay"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Job details"
       onclick="handleOverlayClick(event)"
     >
       <div class="modal" id="modal">
-        <button class="modal-close" onclick="closeModal()">✕</button>
+        <button class="modal-close" onclick="closeModal()" aria-label="Close">
+          ✕
+        </button>
         <div id="modal-content"></div>
       </div>
     </div>
 
     <!-- EMAIL MODAL -->
-    <div class="email-modal-overlay" id="emailModal">
+    <div
+      class="email-modal-overlay"
+      id="emailModal"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Email preview"
+    >
       <div class="email-modal">
         <div class="email-modal-header">
           <span class="email-modal-title" id="emailModalTitle"></span>
-          <button class="email-modal-close" onclick="closeEmailModal()">
+          <button
+            class="email-modal-close"
+            onclick="closeEmailModal()"
+            aria-label="Close"
+          >
             ✕
           </button>
         </div>
@@ -2640,7 +2522,7 @@
 
     <script>
       // ============================================================
-      // SCROLL LOCK
+      // SCROLL LOCK — iOS Safari compatible
       // ============================================================
       let _scrollY = 0;
 
@@ -2669,10 +2551,10 @@
           summary:
             "As Web Designer for Sidearm Sports, I led the design of NCAA athletics platforms reaching millions of fans. I translated university brands into scalable web systems for 20+ varsity teams, collaborated with product, UX, and engineering to evolve design patterns and UI standards, and presented concepts to stakeholders to refine direction. I also ensured accessibility through thoughtful typography, contrast, and structured layouts.",
           highlights: [
-            '<a href="https://suriverhawks.com/index.aspx" target="_blank">Susquehanna River Hawks</a>',
-            '<a href="https://bearsandpandas.ca/index.aspx" target="_blank">University Of Alberta Golden Bears & Pandas</a>',
-            '<a href="https://athletics.augustana.edu/" target="_blank">Augustana College</a>',
-            '<a href="https://gswcanes.com" target="_blank">Georgia Southwestern State University</a>',
+            '<a href="https://suriverhawks.com/index.aspx" target="_blank" rel="noopener noreferrer">Susquehanna River Hawks</a>',
+            '<a href="https://bearsandpandas.ca/index.aspx" target="_blank" rel="noopener noreferrer">University Of Alberta Golden Bears & Pandas</a>',
+            '<a href="https://athletics.augustana.edu/" target="_blank" rel="noopener noreferrer">Augustana College</a>',
+            '<a href="https://gswcanes.com" target="_blank" rel="noopener noreferrer">Georgia Southwestern State University</a>',
           ],
           tags: ["UI Design", "Figma", "Design Systems", "Accessibility"],
         },
@@ -2701,8 +2583,8 @@
           summary:
             "At Cisco Systems, I led the visual design of enterprise web pages in collaboration with information architecture, UX, and front-end development teams, ensuring usability and brand consistency at scale. I designed a range of digital assets — including HTML5 banners, icons, infographics, and social media visuals — to support both organic and paid campaigns across multiple platforms.",
           highlights: [
-            '<a href="https://jmasulonis.github.io/cisco-infographic/index.html" target="_blank">6 use cases for Cisco Secure Network Access</a>',
-            '<a href="https://jmasulonis.github.io/cisco-sdwan-160x600/index.html" target="_blank">HTML 5 Banners</a>',
+            '<a href="https://jmasulonis.github.io/cisco-infographic/index.html" target="_blank" rel="noopener noreferrer">6 use cases for Cisco Secure Network Access</a>',
+            '<a href="https://jmasulonis.github.io/cisco-sdwan-160x600/index.html" target="_blank" rel="noopener noreferrer">HTML 5 Banners</a>',
           ],
           tags: ["HTML 5 Banners", "HTML/CSS", "WordPress"],
         },
@@ -2830,7 +2712,7 @@
         <div class="modal-section-label">Overview</div>
         <div class="modal-body">${job.summary}</div>
         ${highlightsHtml}
-        <div class="modal-section-label">Skills & tools</div>
+        <div class="modal-section-label">Skills &amp; tools</div>
         <div class="modal-tags">${job.tags.map((t) => `<span class="proj-tag">${t}</span>`).join("")}</div>
         ${workSamplesHtml}`;
 
@@ -2891,8 +2773,8 @@
         const arrowsHtml =
           images.length > 1
             ? `
-        <button class="slider-arrow prev hidden" id="sliderPrev" onclick="slideMove(-1)">‹</button>
-        <button class="slider-arrow next" id="sliderNext" onclick="slideMove(1)">›</button>`
+        <button class="slider-arrow prev hidden" id="sliderPrev" onclick="slideMove(-1)" aria-label="Previous image">‹</button>
+        <button class="slider-arrow next" id="sliderNext" onclick="slideMove(1)" aria-label="Next image">›</button>`
             : "";
 
         document.getElementById("modal-content").innerHTML = `
@@ -2960,7 +2842,7 @@
       }
 
       // ============================================================
-      // PRINT CAROUSEL
+      // PRINT CAROUSEL (mobile scroll controls)
       // ============================================================
       function scrollCarousel(dir) {
         const row = document.getElementById("print-row");
@@ -3000,11 +2882,17 @@
           .getElementById("csDot0")
           .classList.toggle("cs-dot-active", index === 0);
         document
+          .getElementById("csDot0")
+          .setAttribute("aria-selected", index === 0);
+        document
           .getElementById("csDot1")
           .classList.toggle("cs-dot-active", index === 1);
+        document
+          .getElementById("csDot1")
+          .setAttribute("aria-selected", index === 1);
       }
 
-      // Touch swipe on case study carousel
+      // Touch swipe support for case study carousel
       const csCarousel = document.querySelector(".cs-carousel-clip");
       let csTouchStartX = 0;
       if (csCarousel) {
@@ -3023,31 +2911,6 @@
           },
           { passive: true },
         );
-      }
-
-      // ============================================================
-      // CASE STUDY FULLSCREEN MODAL
-      // ============================================================
-      function openCaseStudy() {
-        const modal = document.getElementById("csModal");
-        modal.scrollTop = 0;
-        modal.classList.add("open");
-        document.body.style.overflow = "hidden";
-
-        document.querySelectorAll(".cs-img").forEach((img) => {
-          img.style.cursor = "zoom-in";
-          img.addEventListener("click", function () {
-            document.getElementById("modal-content").innerHTML =
-              `<img src="${this.src}" alt="${this.alt}" style="width:100%; border-radius:12px; display:block;">`;
-            document.querySelector(".modal").style.maxWidth = "1000px";
-            document.getElementById("modalOverlay").classList.add("open");
-          });
-        });
-      }
-
-      function closeCaseStudy() {
-        document.getElementById("csModal").classList.remove("open");
-        document.body.style.overflow = "";
       }
 
       // ============================================================
@@ -3074,6 +2937,7 @@
         const burger = document.getElementById("navHamburger");
         nav.classList.toggle("open");
         burger.classList.toggle("open");
+        burger.setAttribute("aria-expanded", nav.classList.contains("open"));
         nav.classList.contains("open") ? lockScroll() : unlockScroll();
       }
 
@@ -3086,28 +2950,28 @@
           .addEventListener("click", function (e) {
             if (e.target === this) closeModal();
           });
-        document
-          .getElementById("csModal")
-          .addEventListener("click", function (e) {
-            if (e.target === this) closeCaseStudy();
-          });
+
         document
           .getElementById("emailModal")
           .addEventListener("click", function (e) {
             if (e.target === this) closeEmailModal();
           });
+
         document.addEventListener("keydown", function (e) {
           if (e.key !== "Escape") return;
           closeModal();
-          closeCaseStudy();
           closeEmailModal();
           if (document.getElementById("navLinks").classList.contains("open"))
             toggleNav();
         });
+
         document.querySelectorAll("#navLinks a").forEach((link) => {
           link.addEventListener("click", function () {
             document.getElementById("navLinks").classList.remove("open");
             document.getElementById("navHamburger").classList.remove("open");
+            document
+              .getElementById("navHamburger")
+              .setAttribute("aria-expanded", "false");
             unlockScroll();
           });
         });
