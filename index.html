@@ -2178,7 +2178,7 @@
           <div class="cs-carousel-track" id="csCarouselTrack">
             <!-- Slide 1: University of Alberta — opens fullscreen modal -->
             <div class="cs-carousel-slide">
-              <div class="case-study-card" onclick="openCaseStudy()">
+              <a href="alberta-case-study.html" class="case-study-card">
                 <div class="case-study-card-left">
                   <div class="case-study-eyebrow">
                     UX/UI Redesign · 2025 · SIDEARM Sports
@@ -2206,7 +2206,7 @@
                 <div class="case-study-card-right">
                   <div class="case-study-cta">Read Case Study →</div>
                 </div>
-              </div>
+              </a>
             </div>
 
             <!-- Slide 2: Fishin' Pig — links to dedicated page -->
@@ -2622,175 +2622,6 @@
       <div class="modal" id="modal">
         <button class="modal-close" onclick="closeModal()">✕</button>
         <div id="modal-content"></div>
-      </div>
-    </div>
-
-    <!-- CASE STUDY FULLSCREEN MODAL -->
-    <div class="cs-modal-overlay" id="csModal">
-      <button class="cs-modal-close" onclick="closeCaseStudy()">✕</button>
-      <div class="cs-modal-inner">
-        <div class="cs-intro">
-          <div class="cs-hero">
-            <div>
-              <div class="case-study-eyebrow">
-                UX/UI Redesign · 2025 · SIDEARM Sports
-              </div>
-              <img
-                src="img/logo_main.svg"
-                alt="University of Alberta Athletics"
-                style="
-                  height: 60px;
-                  width: auto;
-                  margin-bottom: 20px;
-                  display: block;
-                  opacity: 0.85;
-                "
-              />
-              <div class="case-study-title">
-                Redesigning <span>University Of Alberta Athletics</span> for a
-                Better Fan Experience
-              </div>
-            </div>
-            <a
-              href="https://bearsandpandas.ca/index.aspx"
-              target="_blank"
-              class="btn-ghost"
-              style="
-                display: inline-block;
-                width: fit-content;
-                margin-bottom: 24px;
-                font-size: 13px;
-                padding: 10px 20px;
-              "
-              >View Live Site →</a
-            >
-            <div class="case-study-tags">
-              <span class="case-study-tag">UX Research</span>
-              <span class="case-study-tag">UI Design</span>
-              <span class="case-study-tag">Wireframing</span>
-              <span class="case-study-tag">Prototyping</span>
-            </div>
-          </div>
-          <div class="cs-meta">
-            <div class="cs-meta-card">
-              <div class="cs-meta-label">The Problem</div>
-              <div class="cs-meta-value">
-                The previous website for the University of Alberta Golden Bears
-                and Pandas made it difficult for fans, students, and recruits to
-                quickly access essential content like schedules, scores, and
-                team information — particularly on mobile.
-                <p>
-                  Its fragmented structure and inconsistent visual system
-                  created friction in navigation and weakened alignment with the
-                  broader university brand.
-                </p>
-              </div>
-            </div>
-            <div class="cs-meta-card">
-              <div class="cs-meta-label">My Role</div>
-              <div class="cs-meta-value">
-                Solo Designer
-                <p>
-                  Research, wireframing, UI design, and prototyping — end to
-                  end.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="cs-steps">
-          <div class="cs-step">
-            <div class="cs-step-num">01</div>
-            <div class="cs-step-title">Problem</div>
-            <div class="cs-step-body">
-              To identify core pain points, I worked with stakeholders from the
-              University of Alberta to define audience needs and project goals,
-              then benchmarked against leading collegiate programs like Alabama,
-              Georgia, and Ohio State.
-            </div>
-          </div>
-          <div class="cs-step">
-            <div class="cs-step-num">02</div>
-            <div class="cs-step-title">Research</div>
-            <div class="cs-step-body">
-              Research focused on how users access collegiate athletics content,
-              highlighting the importance of fast access to schedules, scores,
-              and team information — especially on mobile.
-            </div>
-          </div>
-          <div class="cs-step">
-            <div class="cs-step-num">03</div>
-            <div class="cs-step-title">Wireframes</div>
-            <div class="cs-step-body">
-              Wireframes focused on restructuring the site around primary user
-              goals, prioritizing quick access to schedules, scores, and team
-              information while simplifying navigation.
-            </div>
-          </div>
-          <div class="cs-step">
-            <div class="cs-step-num">04</div>
-            <div class="cs-step-title">Final Design</div>
-            <div class="cs-step-body">
-              The final design aligned with the university brand and streamlined
-              access to schedules, scores, and team pages with a full-window
-              slide-out menu, scrolling schedule card module, and animated
-              featured stories section.
-            </div>
-          </div>
-        </div>
-        <div class="cs-images-top">
-          <div class="cs-img-card">
-            <img
-              src="img/color_type.jpg"
-              alt="Color & Type System"
-              class="cs-img"
-              onerror="
-                this.outerHTML =
-                  '<div class=cs-img-placeholder><span>Color & Type System</span></div>'
-              "
-            />
-          </div>
-          <div class="cs-img-card">
-            <img
-              src="img/alberta_case-study_wireframe.jpg"
-              alt="Wireframes"
-              class="cs-img"
-              onerror="
-                this.outerHTML =
-                  '<div class=cs-img-placeholder><span>Wireframes</span></div>'
-              "
-            />
-          </div>
-        </div>
-        <div class="cs-images-bottom">
-          <div class="cs-img-card">
-            <img
-              src="img/alberta_case-study_mockup2.jpg"
-              alt="Final Design"
-              class="cs-img"
-              onerror="
-                this.outerHTML =
-                  '<div class=cs-img-placeholder><span>Final Mockup</span></div>'
-              "
-            />
-          </div>
-        </div>
-        <div class="cs-outcome">
-          <div class="outcome-stat">
-            <div class="cs-outcome-num">3</div>
-            <div class="cs-outcome-label">Core fan tasks simplified</div>
-          </div>
-          <div class="cs-outcome-divider"></div>
-          <div class="outcome-stat">
-            <div class="cs-outcome-num">Mobile</div>
-            <div class="cs-outcome-label">First design approach</div>
-          </div>
-          <div class="cs-outcome-divider"></div>
-          <div class="outcome-stat">
-            <div class="cs-outcome-num">1</div>
-            <div class="cs-outcome-label">Scalable component system</div>
-          </div>
-        </div>
       </div>
     </div>
 
