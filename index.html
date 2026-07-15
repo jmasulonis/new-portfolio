@@ -2572,9 +2572,7 @@
           showHighlights: false,
           image: "img/portfolio_img_IBM.png",
           workSamples: [
-            "img/ibm_leadspace.png",
-            "img/ibm_product-page.jpg",
-            "img/ibm_sample3.jpg",
+            "img/ibm_sample3.png",
           ],
           summary:
             "As a Visual Designer on the in-house Blue Studio team, I collaborated in an agile environment to design consumer-facing web and product pages, crafting layouts with typography, illustration, iconography, and photography. I also contributed to the Carbon design system, UI toolkits, wireframes, and other design assets to ensure consistency and scalability across products.",
@@ -2862,61 +2860,6 @@
           maxScroll,
         );
         row.scrollTo({ left: newPos, behavior: "smooth" });
-      }
-
-      // ============================================================
-      // CASE STUDY CAROUSEL
-      // ============================================================
-      let csCurrent = 0;
-      const csTotal = 2;
-
-      function csMove(dir) {
-        csGoTo(Math.max(0, Math.min(csCurrent + dir, csTotal - 1)));
-      }
-
-      function csGoTo(index) {
-        csCurrent = index;
-        document.getElementById("csCarouselTrack").style.transform =
-          `translateX(-${index * 100}%)`;
-        document
-          .getElementById("csPrev")
-          .classList.toggle("cs-arrow-hidden", index === 0);
-        document
-          .getElementById("csNext")
-          .classList.toggle("cs-arrow-hidden", index === csTotal - 1);
-        document
-          .getElementById("csDot0")
-          .classList.toggle("cs-dot-active", index === 0);
-        document
-          .getElementById("csDot0")
-          .setAttribute("aria-selected", index === 0);
-        document
-          .getElementById("csDot1")
-          .classList.toggle("cs-dot-active", index === 1);
-        document
-          .getElementById("csDot1")
-          .setAttribute("aria-selected", index === 1);
-      }
-
-      // Touch swipe support for case study carousel
-      const csCarousel = document.querySelector(".cs-carousel-clip");
-      let csTouchStartX = 0;
-      if (csCarousel) {
-        csCarousel.addEventListener(
-          "touchstart",
-          (e) => {
-            csTouchStartX = e.touches[0].clientX;
-          },
-          { passive: true },
-        );
-        csCarousel.addEventListener(
-          "touchend",
-          (e) => {
-            const diff = csTouchStartX - e.changedTouches[0].clientX;
-            if (Math.abs(diff) > 40) csMove(diff > 0 ? 1 : -1);
-          },
-          { passive: true },
-        );
       }
 
       // ============================================================
