@@ -731,17 +731,19 @@
       }
 
       .case-study-title-row {
-        display: grid;
-        grid-template-columns: auto 1fr;
-        gap: 20px;
-        align-items: center;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
         margin-bottom: 24px;
+        text-align: left;
       }
       .case-study-logo {
         height: 56px;
         width: auto;
         display: block;
         opacity: 0.85;
+        align-self: flex-start;
+        max-width: 200px;
       }
 
       .case-study-eyebrow {
@@ -755,12 +757,14 @@
 
       .case-study-title {
         font-family: var(--display);
-        font-size: clamp(20px, 2.5vw, 34px);
+        font-size: clamp(20px, 2.5vw, 26px);
         font-weight: 700;
         letter-spacing: -0.02em;
         line-height: 1.1;
         margin-bottom: 0;
+        max-width: 280px;
       }
+
       .case-study-title span {
         color: var(--secondary);
       }
@@ -1992,118 +1996,101 @@
     >
       <h2 class="bento-label" id="casestudy-label">Case Study</h2>
 
-      <div class="cs-carousel-wrap">
-        <div class="cs-carousel-clip">
-          <div
-            class="cs-carousel-track"
-            id="csCarouselTrack"
-            role="region"
-            aria-label="Case study carousel"
-            aria-live="polite"
-          >
-            <!-- Slide 1: University of Alberta -->
-            <div class="cs-carousel-slide">
-              <a href="alberta-case-study.html" class="case-study-card">
-                <div class="case-study-card-left">
-                  <p class="case-study-eyebrow">
-                    UX/UI Redesign · 2025 · SIDEARM Sports
-                  </p>
-                  <div class="case-study-title-row">
-                    <img
-                      src="img/logo_main.svg"
-                      alt="University of Alberta Athletics"
-                      class="case-study-logo"
-                      onerror="this.style.display = 'none'"
-                    />
-                    <h3 class="case-study-title">
-                      Redesigning
-                      <span>University Of Alberta Athletics</span> for a Better
-                      Fan Experience
-                    </h3>
-                  </div>
-                  <ul class="case-study-tags" aria-label="Tags">
-                    <li class="case-study-tag">UX Research</li>
-                    <li class="case-study-tag">UI Design</li>
-                    <li class="case-study-tag">Wireframing</li>
-                    <li class="case-study-tag">Prototyping</li>
-                  </ul>
-                </div>
-                <div class="case-study-card-right">
-                  <p class="case-study-cta">Read Case Study →</p>
-                </div>
-              </a>
+      <div
+        style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px"
+      >
+        <!-- University of Alberta -->
+        <a
+          href="alberta-case-study.html"
+          class="case-study-card"
+          style="flex-direction: column; align-items: flex-start; gap: 20px"
+        >
+          <div class="case-study-card-left">
+            <p class="case-study-eyebrow">
+              UX/UI Redesign · 2025 · SIDEARM Sports
+            </p>
+            <div class="case-study-title-row">
+              <img
+                src="img/logo_main.svg"
+                alt="University of Alberta Athletics"
+                class="case-study-logo"
+                onerror="this.style.display = 'none'"
+              />
+              <h4 class="case-study-title">
+                Redesigning <span>University Of Alberta Athletics</span>
+              </h4>
             </div>
-
-            <!-- Slide 2: Fishin' Pig -->
-            <div class="cs-carousel-slide">
-              <a href="fishin-bbq-case-study.html" class="case-study-card">
-                <div class="case-study-card-left">
-                  <p class="case-study-eyebrow">
-                    UX/UI Redesign · 2026 · Self-Initiated
-                  </p>
-                  <div class="case-study-title-row">
-                    <img
-                      src="img/logo_pigfish_wbbq-sf-sc_horizontal_nosubtext.png"
-                      alt="The Fishin' Pig"
-                      class="case-study-logo"
-                      onerror="this.style.display = 'none'"
-                    />
-                    <h3 class="case-study-title">
-                      Redesigning <span>The Fishin' Pig</span> — A Full UX
-                      Process from Research to High Fidelity
-                    </h3>
-                  </div>
-                  <ul class="case-study-tags" aria-label="Tags">
-                    <li class="case-study-tag">UX Research</li>
-                    <li class="case-study-tag">Design System</li>
-                    <li class="case-study-tag">Wireframing</li>
-                    <li class="case-study-tag">High Fidelity</li>
-                    <li class="case-study-tag">Prototyping</li>
-                  </ul>
-                </div>
-                <div class="case-study-card-right">
-                  <p class="case-study-cta">Read Case Study →</p>
-                </div>
-              </a>
-            </div>
+            <ul class="case-study-tags" aria-label="Tags">
+              <li class="case-study-tag">UX Research</li>
+              <li class="case-study-tag">UI Design</li>
+              <li class="case-study-tag">Wireframing</li>
+              <li class="case-study-tag">Prototyping</li>
+            </ul>
           </div>
-        </div>
+          <p class="case-study-cta">Read Case Study →</p>
+        </a>
 
-        <button
-          class="cs-arrow cs-arrow-prev cs-arrow-hidden"
-          id="csPrev"
-          onclick="csMove(-1)"
-          aria-label="Previous case study"
+        <!-- Fishin' Pig -->
+        <a
+          href="fishin-bbq-case-study.html"
+          class="case-study-card"
+          style="flex-direction: column; align-items: flex-start; gap: 20px"
         >
-          ‹
-        </button>
-        <button
-          class="cs-arrow cs-arrow-next"
-          id="csNext"
-          onclick="csMove(1)"
-          aria-label="Next case study"
-        >
-          ›
-        </button>
-      </div>
+          <div class="case-study-card-left">
+            <p class="case-study-eyebrow">
+              UX/UI Redesign · 2026 · Self-Initiated
+            </p>
+            <div class="case-study-title-row">
+              <img
+                src="img/logo_pigfish_wbbq-sf-sc_horizontal_nosubtext.png"
+                alt="The Fishin' Pig"
+                class="case-study-logo"
+                onerror="this.style.display = 'none'"
+              />
+              <h3 class="case-study-title">
+                Redesigning <span>The Fishin' Pig</span>
+              </h3>
+            </div>
+            <ul class="case-study-tags" aria-label="Tags">
+              <li class="case-study-tag">UX Research</li>
+              <li class="case-study-tag">Design System</li>
+              <li class="case-study-tag">Wireframing</li>
+              <li class="case-study-tag">High Fidelity</li>
+            </ul>
+          </div>
+          <p class="case-study-cta">Read Case Study →</p>
+        </a>
 
-      <div class="cs-dots" role="tablist" aria-label="Case study indicators">
-        <button
-          class="cs-dot cs-dot-active"
-          id="csDot0"
-          onclick="csGoTo(0)"
-          role="tab"
-          aria-selected="true"
-          aria-label="Slide 1"
-        ></button>
-        <button
-          class="cs-dot"
-          id="csDot1"
-          onclick="csGoTo(1)"
-          role="tab"
-          aria-selected="false"
-          aria-label="Slide 2"
-        ></button>
+        <!-- Lakeside Fitness 247 -->
+        <a
+          href="lakeside-fitness-case-study.html"
+          class="case-study-card"
+          style="flex-direction: column; align-items: flex-start; gap: 20px"
+        >
+          <div class="case-study-card-left">
+            <p class="case-study-eyebrow">
+              UX/UI Redesign + App · 2026 · Self-Initiated
+            </p>
+            <div class="case-study-title-row">
+              <img
+                src="img/lf_logo.png"
+                alt="Lakeside Fitness 247"
+                class="case-study-logo"
+                onerror="this.style.display = 'none'"
+              />
+              <h3 class="case-study-title">
+                Redesigning <span>Lakeside Fitness 247</span>
+              </h3>
+            </div>
+            <ul class="case-study-tags" aria-label="Tags">
+              <li class="case-study-tag">UX Research</li>
+              <li class="case-study-tag">Design System</li>
+              <li class="case-study-tag">App Design</li>
+              <li class="case-study-tag">High Fidelity</li>
+            </ul>
+          </div>
+          <p class="case-study-cta">Read Case Study →</p>
+        </a>
       </div>
     </section>
 

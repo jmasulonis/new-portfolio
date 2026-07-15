@@ -1,0 +1,2281 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-VPS8BLRRFR"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-VPS8BLRRFR");
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:image" content="img/logo_favicon_jm_32x32-8.png" />
+    <meta property="og:url" content="https://www.johnmasulonis.com" />
+    <meta property="og:type" content="website" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="img/logo_favicon_jm_32x32-8.png"
+    />
+    <meta
+      name="description"
+      content="Lakeside Fitness 247 UX/UI Redesign + App Concept — A self-initiated case study by John Masulonis covering research, IA, design system, website and native app design."
+    />
+    <title>
+      Lakeside Fitness 247 — UX/UI Redesign + App Concept | John Masulonis
+    </title>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Big+Shoulders:opsz,wght@10..72,100..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Manrope:wght@200..800&family=Space+Grotesk:wght@300..700&display=swap");
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #0e0d0c;
+        --surface: #161412;
+        --surface2: #1e1b18;
+        --border: rgba(255, 255, 255, 0.07);
+        --primary: #347f6f;
+        --primary-light: #3d9680;
+        --secondary: #f8992c;
+        --tertiary: #534840;
+        --text: #f0ece6;
+        --muted: #6b6560;
+        --display: "Space Grotesk", sans-serif;
+        --body: "Manrope", sans-serif;
+        /* Lakeside brand */
+        --lf-forest: #1c2620;
+        --lf-charcoal: #26211c;
+        --lf-brass: #b8915a;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--body);
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.6;
+        min-height: 100vh;
+      }
+
+      /* ============================================================
+       DISCLAIMER
+    ============================================================ */
+      .disclaimer-banner {
+        background: var(--surface2);
+        border-bottom: 1px solid var(--border);
+        padding: 10px 40px;
+        text-align: center;
+        font-size: 12px;
+        color: var(--muted);
+        letter-spacing: 0.02em;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 200;
+      }
+
+      /* ============================================================
+       NAV
+    ============================================================ */
+      nav {
+        position: fixed;
+        top: 37px;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        padding: 20px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: rgba(14, 13, 12, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+      }
+      .nav-logo-img {
+        height: 32px;
+        width: auto;
+        display: block;
+      }
+      .nav-logo-text {
+        font-family: var(--display);
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--text);
+      }
+      .nav-logo-dot {
+        color: var(--secondary);
+      }
+
+      .nav-back {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+      .nav-back:hover {
+        color: var(--text);
+      }
+
+      /* ============================================================
+       LAYOUT
+    ============================================================ */
+      .page-wrap {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 157px 40px 80px;
+      }
+
+      .page-wrap > section,
+      .page-wrap > header {
+        margin-bottom: 60px;
+      }
+
+      .section-label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--secondary);
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .section-label::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--border);
+      }
+
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 40px;
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .grid-3 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 12px;
+      }
+
+      /* ============================================================
+       HERO
+    ============================================================ */
+      .hero {
+        background: var(--lf-forest);
+        border-radius: 16px;
+        padding: 64px 48px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: -80px;
+        right: -80px;
+        width: 320px;
+        height: 320px;
+        border-radius: 50%;
+        background: rgba(184, 145, 90, 0.06);
+        pointer-events: none;
+      }
+
+      .hero-eyebrow {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--lf-brass);
+        margin-bottom: 20px;
+      }
+
+      .hero-title-row {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        margin-bottom: 24px;
+        flex-wrap: wrap;
+      }
+
+      .hero-logo {
+        height: 64px;
+        width: auto;
+        display: block;
+        opacity: 0.9;
+      }
+
+      h1.hero-title {
+        font-family: var(--display);
+        font-size: clamp(36px, 4.5vw, 64px);
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        line-height: 1;
+        margin-bottom: 0;
+      }
+      h1.hero-title span {
+        color: var(--lf-brass);
+      }
+
+      .hero-sub {
+        color: rgba(240, 236, 230, 0.75);
+        font-size: 16px;
+        line-height: 1.7;
+        max-width: 680px;
+        margin-bottom: 40px;
+      }
+
+      .meta-row {
+        display: flex;
+        gap: 32px;
+        flex-wrap: wrap;
+      }
+      .meta-item {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .meta-label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .meta-value {
+        font-family: var(--display);
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text);
+      }
+
+      .btn-proto {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--lf-brass);
+        color: var(--lf-forest);
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-family: var(--display);
+        font-size: 13px;
+        font-weight: 700;
+        text-decoration: none;
+        margin-top: 4px;
+        transition: opacity 0.2s;
+      }
+      .btn-proto:hover {
+        opacity: 0.85;
+      }
+
+      /* ============================================================
+       PROBLEM
+    ============================================================ */
+      .problem-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+        align-items: start;
+      }
+
+      h2.problem-title {
+        font-family: var(--display);
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1.2;
+        margin-bottom: 20px;
+      }
+
+      .problem-body {
+        color: rgba(240, 236, 230, 0.75);
+        font-size: 14px;
+        line-height: 1.8;
+      }
+
+      .problem-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .problem-list li {
+        display: flex;
+        gap: 12px;
+        color: rgba(240, 236, 230, 0.75);
+        font-size: 14px;
+        line-height: 1.6;
+        padding: 14px 16px;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+      }
+
+      .problem-list li::before {
+        content: "→";
+        color: var(--lf-brass);
+        flex-shrink: 0;
+        font-weight: 600;
+      }
+
+      /* ============================================================
+       RESEARCH CARDS
+    ============================================================ */
+      article.research-card h3 {
+        font-family: var(--display);
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin-bottom: 16px;
+        color: var(--primary-light);
+      }
+
+      article.research-card p {
+        color: rgba(240, 236, 230, 0.75);
+        font-size: 13px;
+        line-height: 1.8;
+        margin-bottom: 16px;
+      }
+
+      article.research-card ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      article.research-card ul li {
+        display: flex;
+        gap: 10px;
+        color: rgba(240, 236, 230, 0.7);
+        font-size: 13px;
+        line-height: 1.5;
+      }
+
+      article.research-card ul li::before {
+        content: "·";
+        color: var(--lf-brass);
+        flex-shrink: 0;
+        font-weight: 700;
+      }
+
+      .research-callout {
+        margin-top: 16px;
+        font-size: 12px;
+        color: var(--lf-brass);
+      }
+      article.research-card p.research-callout {
+        color: var(--secondary);
+      }
+
+      /* ============================================================
+       IA SECTION
+    ============================================================ */
+      .ia-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        align-items: start;
+      }
+
+      .ia-nav-group {
+        margin-bottom: 24px;
+      }
+      .ia-nav-label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 10px;
+      }
+
+      .ia-nav-items {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        list-style: none;
+      }
+
+      .ia-nav-item {
+        background: rgba(184, 145, 90, 0.1);
+        color: var(--lf-brass);
+        border: 1px solid rgba(184, 145, 90, 0.2);
+        padding: 6px 14px;
+        border-radius: 6px;
+        font-family: var(--display);
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .ia-nav-item.app {
+        background: rgba(52, 127, 111, 0.12);
+        color: var(--primary-light);
+        border-color: rgba(52, 127, 111, 0.2);
+      }
+
+      .ia-decisions {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        list-style: none;
+      }
+
+      .ia-decision {
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 16px 20px;
+      }
+
+      h3.ia-decision-title {
+        font-family: var(--display);
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 6px;
+      }
+
+      .ia-decision-body {
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      /* ============================================================
+       WIREFRAMES
+    ============================================================ */
+      .img-placeholder {
+        width: 100%;
+        background: var(--surface2);
+        border: 1px dashed rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 12px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      .img-placeholder.tall {
+        min-height: 480px;
+      }
+
+      .wireframe-decisions {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+        margin-top: 12px;
+        list-style: none;
+      }
+
+      .wireframe-decision {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 24px;
+      }
+
+      .wireframe-decision-num {
+        font-family: var(--display);
+        font-size: 36px;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.04);
+        line-height: 1;
+        margin-bottom: 12px;
+      }
+
+      h3.wireframe-decision-title {
+        font-family: var(--display);
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--primary-light);
+        margin-bottom: 8px;
+      }
+
+      .wireframe-decision-body {
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      /* ============================================================
+       DESIGN SYSTEM
+    ============================================================ */
+      h3.ds-section-title {
+        font-family: var(--display);
+        font-size: 16px;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        margin-bottom: 16px;
+        color: var(--text);
+      }
+
+      .color-swatches {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+        list-style: none;
+      }
+
+      .swatch {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+      }
+      .swatch-dot {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .swatch-label {
+        font-size: 10px;
+        color: var(--muted);
+        letter-spacing: 0.04em;
+        text-align: center;
+      }
+
+      .type-sample {
+        margin-bottom: 16px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid var(--border);
+      }
+      .type-sample:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+      .type-name {
+        font-size: 11px;
+        color: var(--muted);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+      }
+      .type-display {
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+        color: var(--text);
+      }
+      .type-body-sample {
+        font-size: 14px;
+        color: rgba(240, 236, 230, 0.75);
+        line-height: 1.6;
+      }
+
+      .ds-stat-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+      .ds-stat {
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+      }
+      .ds-stat-num {
+        font-family: var(--display);
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--lf-brass);
+        line-height: 1;
+        margin-bottom: 6px;
+      }
+      .ds-stat-label {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      /* ============================================================
+       HI-FI CAROUSEL
+    ============================================================ */
+      .hifi-carousel {
+        position: relative;
+        border-radius: 16px;
+        overflow: hidden;
+        background: var(--surface2);
+      }
+
+      .hifi-track {
+        display: flex;
+        transition: transform 0.4s ease;
+      }
+      .hifi-slide {
+        min-width: 100%;
+        position: relative;
+      }
+
+      .hifi-slide-inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        padding: 40px;
+        align-items: center;
+      }
+
+      .hifi-slide-info {
+        padding-right: 20px;
+      }
+
+      .hifi-slide-num {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--lf-brass);
+        margin-bottom: 12px;
+      }
+
+      h3.hifi-slide-title {
+        font-family: var(--display);
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin-bottom: 16px;
+        line-height: 1.1;
+      }
+
+      .hifi-slide-body {
+        color: rgba(240, 236, 230, 0.7);
+        font-size: 13px;
+        line-height: 1.8;
+      }
+
+      .hifi-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 44px;
+        height: 44px;
+        background: rgba(14, 13, 12, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        color: white;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          border-color 0.2s;
+        z-index: 10;
+      }
+      .hifi-arrow:hover {
+        background: var(--lf-brass);
+        border-color: var(--lf-brass);
+      }
+      .hifi-arrow.prev {
+        left: 16px;
+      }
+      .hifi-arrow.next {
+        right: 16px;
+      }
+      .hifi-arrow.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .hifi-dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        padding: 20px 0 8px;
+      }
+      .hifi-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--muted);
+        cursor: pointer;
+        border: none;
+        padding: 0;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+      }
+      .hifi-dot.active {
+        background: var(--lf-brass);
+        transform: scale(1.3);
+      }
+
+      /* ============================================================
+       RESULTS TABLE
+    ============================================================ */
+      .results-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .results-table tr {
+        border-bottom: 1px solid var(--border);
+      }
+      .results-table tr:last-child {
+        border-bottom: none;
+      }
+      .results-table td {
+        padding: 14px 16px;
+        font-size: 13px;
+        line-height: 1.6;
+        vertical-align: top;
+      }
+      .results-table td:first-child {
+        color: rgba(240, 236, 230, 0.5);
+        width: 45%;
+        border-right: 1px solid var(--border);
+      }
+      .results-table td:last-child {
+        color: var(--text);
+        padding-left: 24px;
+      }
+      .results-table td:last-child::before {
+        content: "→ ";
+        color: var(--primary);
+        font-weight: 600;
+      }
+
+      /* ============================================================
+       RECOMMENDATIONS
+    ============================================================ */
+      .rec-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        list-style: none;
+      }
+
+      article.rec-card {
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 24px;
+      }
+
+      .rec-num {
+        font-family: var(--display);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--lf-brass);
+        margin-bottom: 10px;
+      }
+      h3.rec-title {
+        font-family: var(--display);
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        margin-bottom: 8px;
+        color: var(--text);
+      }
+      .rec-body {
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      /* ============================================================
+       REFLECTION
+    ============================================================ */
+      .reflection-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        list-style: none;
+      }
+
+      article.reflection-item {
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 28px;
+        height: 100%;
+      }
+
+      .reflection-grid li {
+        display: contents;
+      }
+
+      h3.reflection-title {
+        font-family: var(--display);
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--primary-light);
+        margin-bottom: 10px;
+      }
+      .reflection-body {
+        font-size: 13px;
+        color: rgba(240, 236, 230, 0.7);
+        line-height: 1.8;
+      }
+
+      /* ============================================================
+       FINAL THOUGHT
+    ============================================================ */
+      .final-thought {
+        background: var(--lf-forest);
+        border-radius: 16px;
+        padding: 56px 48px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .final-thought::before {
+        content: '"';
+        position: absolute;
+        top: -40px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: var(--display);
+        font-size: 320px;
+        font-weight: 700;
+        color: rgba(184, 145, 90, 0.05);
+        line-height: 1;
+        pointer-events: none;
+      }
+
+      .final-thought blockquote {
+        font-family: var(--display);
+        font-size: clamp(20px, 2.5vw, 30px);
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        line-height: 1.4;
+        color: var(--text);
+        max-width: 800px;
+        margin: 0 auto 24px;
+        position: relative;
+        z-index: 1;
+      }
+      .final-thought blockquote span {
+        color: var(--lf-brass);
+      }
+      .final-thought cite {
+        font-size: 12px;
+        color: rgba(240, 236, 230, 0.5);
+        font-style: normal;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      /* ============================================================
+       FOOTER
+    ============================================================ */
+      .page-footer {
+        display: flex;
+        justify-content: center;
+        padding: 0;
+      }
+
+      .btn-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        color: var(--text);
+        padding: 14px 28px;
+        border-radius: 10px;
+        font-family: var(--display);
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        transition:
+          border-color 0.2s,
+          background 0.2s;
+      }
+      .btn-back:hover {
+        border-color: var(--primary);
+        background: rgba(52, 127, 111, 0.08);
+      }
+
+      /* Visually hidden */
+      .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+      @media (max-width: 900px) {
+        nav {
+          padding: 16px 20px;
+        }
+        .disclaimer-banner {
+          padding: 10px 20px;
+          font-size: 11px;
+        }
+        .page-wrap {
+          padding: 157px 20px 60px;
+        }
+
+        .grid-2,
+        .grid-3,
+        .problem-grid,
+        .ia-grid,
+        .reflection-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .wireframe-decisions {
+          grid-template-columns: 1fr 1fr;
+        }
+        .rec-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .ds-stat-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        .hifi-slide-inner {
+          grid-template-columns: 1fr;
+        }
+        .hifi-slide-info {
+          padding-right: 0;
+        }
+
+        .hero {
+          padding: 40px 24px;
+        }
+        .card {
+          padding: 24px;
+        }
+        .final-thought {
+          padding: 40px 24px;
+        }
+        .hero-title-row {
+          gap: 16px;
+        }
+        .hero-logo {
+          height: 48px;
+        }
+        .meta-row {
+          gap: 20px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .wireframe-decisions,
+        .rec-grid {
+          grid-template-columns: 1fr;
+        }
+        .ds-stat-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- DISCLAIMER -->
+    <p class="disclaimer-banner" role="note">
+      This is a self-initiated concept project. It is not affiliated with,
+      endorsed by, or connected to Lakeside Fitness 247 or any of its ownership.
+    </p>
+
+    <!-- NAV -->
+    <nav aria-label="Site navigation">
+      <a href="#" class="nav-logo">
+        <img
+          src="img/logo_nav_jm.svg"
+          alt="John Masulonis"
+          class="nav-logo-img"
+          onerror="this.style.display = 'none'"
+        />
+        <span class="nav-logo-text"
+          >John<span class="nav-logo-dot">.</span>Masulonis</span
+        >
+      </a>
+      <a
+        href="index.html#casestudy"
+        class="nav-back"
+        aria-label="Back to portfolio"
+        >← Back to Portfolio</a
+      >
+    </nav>
+
+    <main class="page-wrap">
+      <!-- HERO -->
+      <header class="hero">
+        <p class="hero-eyebrow">
+          UX/UI Redesign + App Concept · 2026 · Self-Initiated
+        </p>
+        <div class="hero-title-row">
+          <img
+            src="img/lf_logo.png"
+            alt="Lakeside Fitness 247"
+            class="hero-logo"
+            onerror="this.style.display = 'none'"
+          />
+          <h1 class="hero-title">Lakeside <span>Fitness 247</span></h1>
+        </div>
+        <p class="hero-sub">
+          A self-initiated concept redesign of Lakeside Fitness 247 — a premium
+          24/7 gym with three locations across Virginia and North Carolina. The
+          project spans the full UX process from competitive research and
+          information architecture through a token-based design system,
+          responsive website and a branded native app concept.
+        </p>
+        <dl class="meta-row">
+          <div class="meta-item">
+            <dt class="meta-label">Role</dt>
+            <dd class="meta-value">Solo UX/UI Designer</dd>
+          </div>
+          <div class="meta-item">
+            <dt class="meta-label">Timeline</dt>
+            <dd class="meta-value">8 Weeks</dd>
+          </div>
+          <div class="meta-item">
+            <dt class="meta-label">Tools</dt>
+            <dd class="meta-value">
+              Figma · Phosphor Icons · Google Fonts · Unsplash · Pexels
+            </dd>
+          </div>
+          <div class="meta-item">
+            <dt class="meta-label">Scope</dt>
+            <dd class="meta-value">Research → High Fidelity · Web + App</dd>
+          </div>
+          <div class="meta-item">
+            <dt class="meta-label">Website Prototype</dt>
+            <dd>
+              <a
+                href="https://www.figma.com/proto/dTjlbPSDjI8FqGI45pB1Zu/Lakeside-Fitness-%E2%80%94-UX-UI-Redesign-Concept?node-id=195-1697&p=f&viewport=-1963%2C-396%2C0.25&t=fii3Bd2lp7WPQF9E-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=195%3A1697&page-id=1%3A6"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-proto"
+                >View Prototype →</a
+              >
+            </dd>
+          </div>
+          <div class="meta-item">
+            <dt class="meta-label">App Prototype</dt>
+            <dd>
+              <a
+                href="https://www.figma.com/proto/dTjlbPSDjI8FqGI45pB1Zu/Lakeside-Fitness-%E2%80%94-UX-UI-Redesign-Concept?node-id=327-8614&p=f&viewport=-1441%2C310%2C0.5&t=gwWg1pLkXbDsMMW2-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=327%3A8614&page-id=327%3A8374"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-proto"
+                >View Prototype →</a
+              >
+            </dd>
+          </div>
+        </dl>
+      </header>
+
+      <!-- THE PROBLEM -->
+      <section aria-labelledby="problem-heading">
+        <h2 class="section-label" id="problem-heading">The Problem</h2>
+        <div class="card">
+          <div class="problem-grid">
+            <div>
+              <h2 class="problem-title">
+                A premium gym hiding behind a budget digital experience.
+              </h2>
+              <p class="problem-body">
+                Lakeside Fitness 247 positions itself as a premium
+                transformation experience — "Not Just a Gym. A Transformation
+                Experience." — yet the digital experience significantly
+                undersells that promise.<br /><br />The existing website is
+                built on Wix with a generic template aesthetic that reads closer
+                to a budget gym than an elite training facility. More
+                critically, members are handed a generic third-party Gymmaster
+                app — unbranded, feature-heavy and used almost exclusively for
+                Bluetooth door access. The brand promise of transformation
+                evaporates the moment a member opens the app.<br /><br />A
+                competitive analysis of the Wilmington, NC market revealed that
+                Lakeside is the only gym attempting premium positioning in the
+                region — Planet Fitness, Anytime Fitness, Fit4Life and Unleashed
+                Fitness all occupy budget or no-frills territory. That
+                whitespace opportunity is being undermined by a digital
+                experience that doesn't communicate premium.
+              </p>
+              <div style="display: flex; gap: 12px; margin-top: 20px">
+                <div style="flex: 1">
+                  <p
+                    style="
+                      font-size: 11px;
+                      font-weight: 600;
+                      letter-spacing: 0.08em;
+                      text-transform: uppercase;
+                      color: var(--muted);
+                      margin-bottom: 8px;
+                    "
+                  >
+                    Before — lakesidefitness.com
+                  </p>
+                  <figure
+                    style="height: 240px; overflow: hidden; border-radius: 10px"
+                  >
+                    <img
+                      src="img/lakeside-fitness.png"
+                      alt="Existing Lakeside Fitness website"
+                      style="
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        object-position: center top;
+                      "
+                    />
+                  </figure>
+                </div>
+                <div style="flex: 1">
+                  <p
+                    style="
+                      font-size: 11px;
+                      font-weight: 600;
+                      letter-spacing: 0.08em;
+                      text-transform: uppercase;
+                      color: var(--muted);
+                      margin-bottom: 8px;
+                    "
+                  >
+                    Before — Gymmaster App
+                  </p>
+                  <figure
+                    style="height: 240px; overflow: hidden; border-radius: 10px"
+                  >
+                    <img
+                      src="img/gymmaster-app.png"
+                      alt="Existing Gymmaster app"
+                      style="
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        object-position: center top;
+                      "
+                    />
+                  </figure>
+                </div>
+              </div>
+            </div>
+            <ul class="problem-list" aria-label="Key problems identified">
+              <li>
+                Website built on Wix — generic template aesthetic, no brand
+                personality
+              </li>
+              <li>
+                Third-party Gymmaster app — no Lakeside branding, generic UI,
+                feature overload
+              </li>
+              <li>
+                App used almost exclusively for door access — zero member
+                engagement beyond entry
+              </li>
+              <li>
+                No unified design language across web and mobile touchpoints
+              </li>
+              <li>
+                Wilmington flagship positioning not reflected anywhere in the
+                digital experience
+              </li>
+              <li>
+                Three separate Instagram accounts with no unified brand strategy
+              </li>
+              <li>
+                Photography focused on empty equipment shots — no human energy
+                or transformation narrative
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- RESEARCH -->
+      <section aria-labelledby="research-heading">
+        <h2 class="section-label" id="research-heading">Research</h2>
+        <div class="grid-3">
+          <article class="card research-card">
+            <h3>Member Research</h3>
+            <p>
+              As a real Lakeside Fitness member at the Clarksville location,
+              firsthand observation provided genuine insight that no competitive
+              analysis could replicate.
+            </p>
+            <ul>
+              <li>
+                The app is used for one thing — Bluetooth door access. Nothing
+                else
+              </li>
+              <li>
+                Classes are communicated via Instagram stories — no in-app
+                schedule
+              </li>
+              <li>
+                The check-in experience creates no brand moment — generic
+                loading screen, generic UI
+              </li>
+              <li>
+                Members who want to engage with the brand go to Instagram, not
+                the app
+              </li>
+            </ul>
+            <p class="research-callout">
+              Key insight: The gap between the in-person experience and the
+              digital experience is enormous — and fixable.
+            </p>
+          </article>
+
+          <article class="card research-card">
+            <h3>Competitive Analysis</h3>
+            <p>
+              Benchmarked against four direct and indirect competitors to
+              understand the regional market and identify positioning
+              opportunities.
+            </p>
+            <ul>
+              <li>
+                Planet Fitness — budget, judgment-free, no premium signals
+              </li>
+              <li>Anytime Fitness — mid-tier, no digital differentiation</li>
+              <li>Fit4Life — family-focused, local, no app</li>
+              <li>Unleashed Fitness — performance-focused, no premium UX</li>
+              <li>
+                Equinox — aspirational benchmark — editorial photography,
+                premium app experience
+              </li>
+            </ul>
+            <p class="research-callout">
+              Key takeaway: Lakeside is the only gym in the market attempting
+              premium positioning. No competitor is owning that space digitally.
+            </p>
+          </article>
+
+          <article class="card research-card">
+            <h3>User Personas</h3>
+            <p>
+              Five personas identified based on member observation, competitive
+              research and the gym's three-location context.
+            </p>
+            <ul>
+              <li>
+                The Committed Regular — daily member, needs quick access and
+                progress tracking
+              </li>
+              <li>
+                The Class Attendee — schedule-driven, needs clear class
+                visibility
+              </li>
+              <li>
+                The Prospective Member — evaluating, needs trust signals and
+                tour booking
+              </li>
+              <li>
+                The Day Pass Visitor — passing through, needs quick access and
+                pricing
+              </li>
+              <li>
+                The Returning Lapsed Member — needs re-engagement and a reason
+                to come back
+              </li>
+            </ul>
+          </article>
+        </div>
+
+        <!-- Research image strip -->
+        <div
+          style="
+            display: flex;
+            overflow-x: auto;
+            gap: 12px;
+            margin-top: 12px;
+            padding-bottom: 8px;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+          "
+          aria-label="Research screenshots"
+        >
+          <figure
+            style="
+              flex: 0 0 calc(33.333% - 8px);
+              height: 240px;
+              overflow: hidden;
+              border-radius: 12px;
+              background: var(--surface2);
+            "
+          >
+            <img
+              src="img/lf_research_01.png"
+              alt="Competitive analysis research"
+              style="
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center top;
+              "
+            />
+          </figure>
+          <figure
+            style="
+              flex: 0 0 calc(33.333% - 8px);
+              height: 240px;
+              overflow: hidden;
+              border-radius: 12px;
+              background: var(--surface2);
+            "
+          >
+            <img
+              src="img/lf_research_02.png"
+              alt="User personas"
+              style="
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center top;
+              "
+            />
+          </figure>
+          <figure
+            style="
+              flex: 0 0 calc(33.333% - 8px);
+              height: 240px;
+              overflow: hidden;
+              border-radius: 12px;
+              background: var(--surface2);
+            "
+          >
+            <img
+              src="img/lf_research_03.png"
+              alt="Asset audit"
+              style="
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center top;
+              "
+            />
+          </figure>
+        </div>
+      </section>
+
+      <!-- INFORMATION ARCHITECTURE -->
+      <section aria-labelledby="ia-heading">
+        <h2 class="section-label" id="ia-heading">Information Architecture</h2>
+        <div class="card">
+          <div class="ia-grid">
+            <div>
+              <p
+                style="
+                  color: rgba(240, 236, 230, 0.75);
+                  font-size: 14px;
+                  line-height: 1.8;
+                  margin-bottom: 28px;
+                "
+              >
+                The IA covered two separate products — the website and the app —
+                each with distinct user needs, interaction patterns and
+                navigation logic. Both were mapped before any wireframes were
+                drawn.
+              </p>
+
+              <div class="ia-nav-group">
+                <p class="ia-nav-label">Website — Primary Navigation</p>
+                <ul class="ia-nav-items">
+                  <li class="ia-nav-item">Home</li>
+                  <li class="ia-nav-item">Locations</li>
+                  <li class="ia-nav-item">Membership</li>
+                  <li class="ia-nav-item">The Experience</li>
+                  <li class="ia-nav-item">The App</li>
+                </ul>
+              </div>
+
+              <div class="ia-nav-group">
+                <p class="ia-nav-label">App — Bottom Navigation (5 tabs)</p>
+                <ul class="ia-nav-items">
+                  <li class="ia-nav-item app">Progress</li>
+                  <li class="ia-nav-item app">Classes</li>
+                  <li class="ia-nav-item app">Home</li>
+                  <li class="ia-nav-item app">Access</li>
+                  <li class="ia-nav-item app">Account</li>
+                </ul>
+              </div>
+              <figure
+                style="
+                  margin-top: 20px;
+                  height: 240px;
+                  overflow: hidden;
+                  border-radius: 10px;
+                  background: var(--surface2);
+                "
+              >
+                <img
+                  src="img/lf_ia.png"
+                  alt="Lakeside Fitness information architecture"
+                  style="
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center top;
+                  "
+                />
+              </figure>
+            </div>
+
+            <ul class="ia-decisions" aria-label="Key IA decisions">
+              <li class="ia-decision">
+                <h3 class="ia-decision-title">
+                  Home tab as the daily dashboard
+                </h3>
+                <p class="ia-decision-body">
+                  The app Home tab surfaces today's class schedule, streak, and
+                  location context — the most relevant information for a
+                  returning member opening the app.
+                </p>
+              </li>
+              <li class="ia-decision">
+                <h3 class="ia-decision-title">
+                  Access requires a deliberate tap
+                </h3>
+                <p class="ia-decision-body">
+                  Door access is on its own dedicated tab, requiring a
+                  deliberate action rather than a persistent background process
+                  — preventing accidental unlocks.
+                </p>
+              </li>
+              <li class="ia-decision">
+                <h3 class="ia-decision-title">
+                  Location-aware context switching
+                </h3>
+                <p class="ia-decision-body">
+                  Home and Access screens automatically surface the nearest
+                  location — removing the need to manually select a gym every
+                  visit.
+                </p>
+              </li>
+              <li class="ia-decision">
+                <h3 class="ia-decision-title">
+                  Website membership — monthly only
+                </h3>
+                <p class="ia-decision-body">
+                  Monthly-only pricing displayed on the website honors the gym's
+                  no-contracts brand positioning and simplifies the decision for
+                  prospective members.
+                </p>
+              </li>
+              <li class="ia-decision">
+                <h3 class="ia-decision-title">
+                  The Experience as a dedicated page
+                </h3>
+                <p class="ia-decision-body">
+                  Amenities, equipment, coaching and the "Pray. Lift. Repeat."
+                  ethos all live on a dedicated Experience page — separate from
+                  membership — to serve prospective members at different stages
+                  of consideration.
+                </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- WIREFRAMES -->
+      <section aria-labelledby="wireframes-heading">
+        <h2 class="section-label" id="wireframes-heading">Wireframes</h2>
+        <div class="card">
+          <p
+            style="
+              color: rgba(240, 236, 230, 0.75);
+              font-size: 14px;
+              line-height: 1.8;
+              margin-bottom: 28px;
+            "
+          >
+            Low fidelity wireframes for every major screen across both the
+            website and the app before touching color, typography or
+            photography. The website homepage spans ten sections; the app covers
+            onboarding through all five core tab screens.
+          </p>
+          <div class="grid-2" style="gap: 12px">
+            <figure
+              style="
+                height: 480px;
+                overflow-y: scroll;
+                border-radius: 12px;
+                -webkit-overflow-scrolling: touch;
+                background: var(--surface2);
+              "
+            >
+              <img
+                src="img/lf_wireframe_desktop.png"
+                alt="Website wireframes"
+                style="width: 100%; display: block"
+              />
+            </figure>
+            <figure
+              style="
+                height: 480px;
+                overflow: hidden;
+                border-radius: 12px;
+                -webkit-overflow-scrolling: touch;
+                background: var(--surface2);
+              "
+            >
+              <img
+                src="img/lf_wireframe_app.png"
+                alt="App wireframes"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center top;
+                "
+              />
+            </figure>
+          </div>
+        </div>
+
+        <ul class="wireframe-decisions" aria-label="Key wireframe decisions">
+          <li class="wireframe-decision">
+            <p class="wireframe-decision-num" aria-hidden="true">01</p>
+            <h3 class="wireframe-decision-title">Ten Website Sections</h3>
+            <p class="wireframe-decision-body">
+              Hero, Credibility Strip, Brand Promise, Locations, Membership
+              Tiers, The Experience, Client Testimonials, Free Tour Callout, App
+              Download, and Footer — each mapped before any visual design began.
+            </p>
+          </li>
+          <li class="wireframe-decision">
+            <p class="wireframe-decision-num" aria-hidden="true">02</p>
+            <h3 class="wireframe-decision-title">App Onboarding Flow</h3>
+            <p class="wireframe-decision-body">
+              A five-screen onboarding flow covering welcome, goal selection,
+              membership tier, location selection and notification preferences —
+              front-loading the decisions that personalize the experience.
+            </p>
+          </li>
+          <li class="wireframe-decision">
+            <p class="wireframe-decision-num" aria-hidden="true">03</p>
+            <h3 class="wireframe-decision-title">Check In as a Hero Moment</h3>
+            <p class="wireframe-decision-body">
+              The Access tab centers a large Check In button with a subtle pulse
+              animation — making the most-used app action unmissable and turning
+              a functional moment into a brand moment.
+            </p>
+          </li>
+          <li class="wireframe-decision">
+            <p class="wireframe-decision-num" aria-hidden="true">04</p>
+            <h3 class="wireframe-decision-title">Progress Tab for Retention</h3>
+            <p class="wireframe-decision-body">
+              A dedicated Progress tab surfaces workout streaks, visit history
+              and milestones — creating an engagement loop that keeps members
+              returning and gives the app value beyond door access.
+            </p>
+          </li>
+        </ul>
+      </section>
+
+      <!-- DESIGN SYSTEM -->
+      <section aria-labelledby="ds-heading">
+        <h2 class="section-label" id="ds-heading">Design System</h2>
+        <div class="grid-2">
+          <div class="card">
+            <h3 class="ds-section-title">Color System</h3>
+            <ul class="color-swatches" aria-label="Brand color swatches">
+              <li class="swatch">
+                <span
+                  class="swatch-dot"
+                  style="background: #1c2620"
+                  role="img"
+                  aria-label="Deep Forest"
+                ></span
+                ><span class="swatch-label">Deep Forest<br />#1C2620</span>
+              </li>
+              <li class="swatch">
+                <span
+                  class="swatch-dot"
+                  style="background: #26211c"
+                  role="img"
+                  aria-label="Warm Charcoal"
+                ></span
+                ><span class="swatch-label">Warm Charcoal<br />#26211C</span>
+              </li>
+              <li class="swatch">
+                <span
+                  class="swatch-dot"
+                  style="background: #b8915a"
+                  role="img"
+                  aria-label="Classic Brass"
+                ></span
+                ><span class="swatch-label">Classic Brass<br />#B8915A</span>
+              </li>
+              <li class="swatch">
+                <span
+                  class="swatch-dot"
+                  style="background: #f2ede8; border-color: rgba(0, 0, 0, 0.1)"
+                  role="img"
+                  aria-label="Warm Off-White"
+                ></span
+                ><span class="swatch-label">Warm Off-White<br />#F2EDE8</span>
+              </li>
+              <li class="swatch">
+                <span
+                  class="swatch-dot"
+                  style="background: #ffffff; border-color: rgba(0, 0, 0, 0.1)"
+                  role="img"
+                  aria-label="White"
+                ></span
+                ><span class="swatch-label">White<br />#FFFFFF</span>
+              </li>
+            </ul>
+            <p
+              style="
+                font-size: 12px;
+                color: var(--muted);
+                margin-bottom: 20px;
+                line-height: 1.7;
+              "
+            >
+              Every color combination checked against WCAG 2.1. Dark text on
+              brass — AAA compliant. White on forest — AAA compliant. The brass
+              accent is used sparingly for maximum impact.
+            </p>
+
+            <h3 class="ds-section-title">Typography</h3>
+            <div class="type-sample">
+              <p class="type-name">Display — Big Shoulders Display</p>
+              <p
+                class="type-display"
+                style="
+                  font-family: &quot;Big Shoulders Display&quot;, sans-serif;
+                "
+              >
+                Pray. Lift. Repeat.
+              </p>
+            </div>
+            <div class="type-sample">
+              <p class="type-name">Body — DM Sans</p>
+              <p
+                class="type-body-sample"
+                style="font-family: &quot;DM Sans&quot;, sans-serif"
+              >
+                Not just a gym. A transformation experience — clean, warm and
+                readable at every size.
+              </p>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 class="ds-section-title">Token Architecture</h3>
+            <p
+              style="
+                font-size: 13px;
+                color: rgba(240, 236, 230, 0.7);
+                line-height: 1.8;
+                margin-bottom: 24px;
+              "
+            >
+              A two-layer token system — primitive tokens (raw hex values)
+              referenced by semantic tokens (named purposes). Forest, Charcoal
+              and Brass scales built as primitives; backgrounds, text, borders
+              and buttons mapped as semantics on top.
+            </p>
+
+            <dl class="ds-stat-grid" style="margin-bottom: 24px">
+              <div class="ds-stat">
+                <dt class="ds-stat-label">Text styles</dt>
+                <dd class="ds-stat-num">20+</dd>
+              </div>
+              <div class="ds-stat">
+                <dt class="ds-stat-label">Color tokens</dt>
+                <dd class="ds-stat-num">40+</dd>
+              </div>
+              <div class="ds-stat">
+                <dt class="ds-stat-label">Components</dt>
+                <dd class="ds-stat-num">30+</dd>
+              </div>
+              <div class="ds-stat">
+                <dt class="ds-stat-label">Web pages</dt>
+                <dd class="ds-stat-num">5</dd>
+              </div>
+              <div class="ds-stat">
+                <dt class="ds-stat-label">App screens</dt>
+                <dd class="ds-stat-num">15+</dd>
+              </div>
+              <div class="ds-stat">
+                <dt class="ds-stat-label">Card radius</dt>
+                <dd class="ds-stat-num">0px web · 8px app</dd>
+              </div>
+            </dl>
+
+            <h3 class="ds-section-title">Design Decisions</h3>
+            <p style="font-size: 12px; color: var(--muted); line-height: 1.7">
+              0px card radius on web for an editorial, premium feel. 8px on app
+              for a modern native iOS feel. No card shadows — depth handled
+              through color contrast between surface layers. Column-with-divider
+              layouts over card grids on web — inspired by Equinox editorial
+              direction.
+            </p>
+          </div>
+        </div>
+
+        <!-- Design system full-width image -->
+        <div
+          style="
+            margin-top: 12px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+          "
+        >
+          <img
+            src="img/lf_design_system.png"
+            alt="Lakeside Fitness design system in Figma"
+            style="width: 100%; display: block"
+          />
+        </div>
+      </section>
+
+      <!-- HIGH FIDELITY -->
+      <section aria-labelledby="hifi-heading">
+        <h2 class="section-label" id="hifi-heading">High Fidelity</h2>
+
+        <div
+          class="hifi-carousel"
+          id="hifiCarousel"
+          role="region"
+          aria-label="High fidelity mockups"
+          aria-live="polite"
+        >
+          <div class="hifi-track" id="hifiTrack">
+            <article class="hifi-slide">
+              <div class="hifi-slide-inner">
+                <div class="hifi-slide-info">
+                  <p class="hifi-slide-num">01 / 06 — Website Homepage</p>
+                  <h3 class="hifi-slide-title">
+                    Premium Positioning from the First Scroll
+                  </h3>
+                  <p class="hifi-slide-body">
+                    The homepage opens with a full-bleed editorial hero — dark
+                    forest background, brass accent type, athletic photography.
+                    Ten sections tell the complete Lakeside brand story from the
+                    hero through the app download CTA, with alternating light
+                    and dark section rhythm throughout.
+                  </p>
+                </div>
+                <figure
+                  style="
+                    height: 480px;
+                    overflow-y: scroll;
+                    border-radius: 12px;
+                    -webkit-overflow-scrolling: touch;
+                    background: var(--surface2);
+                  "
+                >
+                  <img
+                    src="img/lf_homepage.png"
+                    alt="Lakeside Fitness homepage desktop and mobile"
+                    style="width: 100%; display: block"
+                  />
+                </figure>
+              </div>
+            </article>
+
+            <article class="hifi-slide">
+              <div class="hifi-slide-inner">
+                <div class="hifi-slide-info">
+                  <p class="hifi-slide-num">02 / 06 — Locations Page</p>
+                  <h3 class="hifi-slide-title">
+                    Three Locations, One Unified Experience
+                  </h3>
+                  <p class="hifi-slide-body">
+                    The Locations page surfaces all three gyms — Clarksville VA,
+                    Danville VA, and Wilmington NC — with hours, amenities and a
+                    Get Directions CTA for each. An embedded map anchors the
+                    page spatially. Consistent card structure across all three
+                    locations reinforces brand unity.
+                  </p>
+                </div>
+                <figure
+                  style="
+                    height: 480px;
+                    overflow-y: scroll;
+                    border-radius: 12px;
+                    -webkit-overflow-scrolling: touch;
+                    background: var(--surface2);
+                  "
+                >
+                  <img
+                    src="img/lf_locations.png"
+                    alt="Locations page desktop and mobile"
+                    style="width: 100%; display: block"
+                  />
+                </figure>
+              </div>
+            </article>
+
+            <article class="hifi-slide">
+              <div class="hifi-slide-inner">
+                <div class="hifi-slide-info">
+                  <p class="hifi-slide-num">03 / 06 — Membership Page</p>
+                  <h3 class="hifi-slide-title">Simple Tiers, No Contracts</h3>
+                  <p class="hifi-slide-body">
+                    Monthly-only pricing presented in a clean three-column
+                    comparison — Standard, Premium and VIP. The no-contracts
+                    positioning is a feature not a footnote. A day pass tier is
+                    surfaced below for visitors and trial members. Each tier
+                    links directly to a sign-up flow.
+                  </p>
+                </div>
+                <figure
+                  style="
+                    height: 480px;
+                    overflow-y: scroll;
+                    border-radius: 12px;
+                    -webkit-overflow-scrolling: touch;
+                    background: var(--surface2);
+                  "
+                >
+                  <img
+                    src="img/lf_membership.png"
+                    alt="Membership page desktop and mobile"
+                    style="width: 100%; display: block"
+                  />
+                </figure>
+              </div>
+            </article>
+
+            <article class="hifi-slide">
+              <div class="hifi-slide-inner">
+                <div class="hifi-slide-info">
+                  <p class="hifi-slide-num">04 / 06 — App Onboarding</p>
+                  <h3 class="hifi-slide-title">
+                    A Brand Moment from the First Screen
+                  </h3>
+                  <p class="hifi-slide-body">
+                    Five onboarding screens establish the Lakeside brand before
+                    the member ever opens the door — welcome screen, goal
+                    selection, membership tier, location selection and
+                    notification preferences. Each screen is a deliberate brand
+                    moment in forest and brass.
+                  </p>
+                </div>
+                <figure
+                  style="
+                    height: 480px;
+                    overflow-y: scroll;
+                    border-radius: 12px;
+                    -webkit-overflow-scrolling: touch;
+                    background: var(--surface2);
+                  "
+                >
+                  <img
+                    src="img/lf_app_screens.png"
+                    alt="App onboarding screens"
+                    style="
+                      width: 100%;
+                      height: 100%;
+                      object-fit: cover;
+                      object-position: 40% top;
+                    "
+                  />
+                </figure>
+              </div>
+            </article>
+
+            <article class="hifi-slide">
+              <div class="hifi-slide-inner">
+                <div class="hifi-slide-info">
+                  <p class="hifi-slide-num">05 / 06 — App Core Screens</p>
+                  <h3 class="hifi-slide-title">
+                    Five Tabs. Every Member Need Covered.
+                  </h3>
+                  <p class="hifi-slide-body">
+                    Progress surfaces streaks and visit history. Classes shows
+                    today's schedule with one-tap booking. Home is the daily
+                    dashboard with location-aware context. Access centers the
+                    Check In button with a pulse animation. Account manages
+                    membership, settings and personal details.
+                  </p>
+                </div>
+                <figure
+                  style="
+                    height: 480px;
+                    overflow: hidden;
+                    border-radius: 12px;
+                    background: var(--surface2);
+                  "
+                >
+                  <img
+                    src="img/lf_app_onboarding.png"
+                    alt="App onboarding screens"
+                    style="
+                      width: 100%;
+                      height: 100%;
+                      object-fit: cover;
+                      object-position: 46% 30%;
+                    "
+                  />
+                </figure>
+              </div>
+            </article>
+
+            <article class="hifi-slide">
+              <div class="hifi-slide-inner">
+                <div class="hifi-slide-info">
+                  <p class="hifi-slide-num">06 / 06 — The Experience Page</p>
+                  <h3 class="hifi-slide-title">
+                    Sell the Transformation, Not the Equipment
+                  </h3>
+                  <p class="hifi-slide-body">
+                    The Experience page leads with the "Pray. Lift. Repeat."
+                    ethos before listing a single piece of equipment. Amenities,
+                    coaching profiles, recovery facilities and class types are
+                    all presented in a dark editorial layout that matches the
+                    intensity of the brand.
+                  </p>
+                </div>
+                <figure
+                  style="
+                    height: 480px;
+                    overflow-y: scroll;
+                    border-radius: 12px;
+                    -webkit-overflow-scrolling: touch;
+                    background: var(--surface2);
+                  "
+                >
+                  <img
+                    src="img/lf_experience.png"
+                    alt="The Experience page desktop and mobile"
+                    style="width: 100%; display: block"
+                  />
+                </figure>
+              </div>
+            </article>
+          </div>
+
+          <button
+            class="hifi-arrow prev hidden"
+            id="hifiPrev"
+            onclick="hifiMove(-1)"
+            aria-label="Previous slide"
+          >
+            ‹
+          </button>
+          <button
+            class="hifi-arrow next"
+            id="hifiNext"
+            onclick="hifiMove(1)"
+            aria-label="Next slide"
+          >
+            ›
+          </button>
+        </div>
+
+        <div class="hifi-dots" role="tablist" aria-label="Slide indicators">
+          <button
+            class="hifi-dot active"
+            onclick="hifiGoTo(0)"
+            role="tab"
+            aria-selected="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            class="hifi-dot"
+            onclick="hifiGoTo(1)"
+            role="tab"
+            aria-selected="false"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            class="hifi-dot"
+            onclick="hifiGoTo(2)"
+            role="tab"
+            aria-selected="false"
+            aria-label="Slide 3"
+          ></button>
+          <button
+            class="hifi-dot"
+            onclick="hifiGoTo(3)"
+            role="tab"
+            aria-selected="false"
+            aria-label="Slide 4"
+          ></button>
+          <button
+            class="hifi-dot"
+            onclick="hifiGoTo(4)"
+            role="tab"
+            aria-selected="false"
+            aria-label="Slide 5"
+          ></button>
+          <button
+            class="hifi-dot"
+            onclick="hifiGoTo(5)"
+            role="tab"
+            aria-selected="false"
+            aria-label="Slide 6"
+          ></button>
+        </div>
+      </section>
+
+      <!-- RESULTS -->
+      <section aria-labelledby="results-heading">
+        <h2 class="section-label" id="results-heading">Results</h2>
+        <div class="grid-2">
+          <div class="card">
+            <h3 class="ds-section-title" style="margin-bottom: 20px">
+              Problem → Solution
+            </h3>
+            <table class="results-table">
+              <caption class="visually-hidden">
+                Problems identified and solutions designed
+              </caption>
+              <tbody>
+                <tr>
+                  <td>Generic Wix website with no brand personality</td>
+                  <td>
+                    Custom design system with editorial premium direction across
+                    five pages
+                  </td>
+                </tr>
+                <tr>
+                  <td>Unbranded third-party Gymmaster app</td>
+                  <td>
+                    Fully branded native app concept with Lakeside identity
+                    throughout
+                  </td>
+                </tr>
+                <tr>
+                  <td>App used only for door access</td>
+                  <td>
+                    Five-tab app with progress tracking, class scheduling and
+                    member account
+                  </td>
+                </tr>
+                <tr>
+                  <td>No unified design language</td>
+                  <td>
+                    Single token-based design system spanning both web and app
+                  </td>
+                </tr>
+                <tr>
+                  <td>Premium positioning not reflected digitally</td>
+                  <td>
+                    Editorial aesthetic inspired by Equinox — dark, warm,
+                    confident
+                  </td>
+                </tr>
+                <tr>
+                  <td>Three Instagram accounts, no strategy</td>
+                  <td>
+                    Unified brand account recommended with location-tagged
+                    content
+                  </td>
+                </tr>
+                <tr>
+                  <td>Empty equipment photography</td>
+                  <td>
+                    Human-centered photography direction with transformation
+                    narrative
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="card">
+            <h3 class="ds-section-title" style="margin-bottom: 20px">
+              Metrics to Track Post-Launch
+            </h3>
+            <ul class="problem-list" aria-label="Metrics to track">
+              <li>App daily active users beyond door access</li>
+              <li>Class booking rate via app</li>
+              <li>Membership sign-up conversion rate from website</li>
+              <li>Day pass inquiry volume</li>
+              <li>Member retention rate vs. pre-launch baseline</li>
+              <li>Instagram follower growth under unified account</li>
+              <li>Tour booking submissions from The Experience page</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- REFLECTION -->
+      <section aria-labelledby="reflection-heading">
+        <h2 class="section-label" id="reflection-heading">Reflection</h2>
+        <ul class="reflection-grid">
+          <li>
+            <article class="reflection-item">
+              <h3 class="reflection-title">
+                Being a real user changes everything
+              </h3>
+              <p class="reflection-body">
+                Designing for a gym I'm actually a member of gave the research
+                phase a depth that competitive analysis alone couldn't provide.
+                Firsthand observation of the Gymmaster app in daily use —
+                understanding exactly how and why members interact with it —
+                directly shaped the app architecture in a way that persona
+                creation from research alone wouldn't have.
+              </p>
+            </article>
+          </li>
+          <li>
+            <article class="reflection-item">
+              <h3 class="reflection-title">
+                Design systems compound across projects
+              </h3>
+              <p class="reflection-body">
+                Having built a full token-based design system for the Fishin'
+                Pig project first made the Lakeside system significantly faster
+                to build. The two-layer architecture — primitives then semantics
+                — was already a proven pattern. The time investment from the
+                first project paid dividends on the second.
+              </p>
+            </article>
+          </li>
+          <li>
+            <article class="reflection-item">
+              <h3 class="reflection-title">
+                Web and app are two different design problems
+              </h3>
+              <p class="reflection-body">
+                Designing both simultaneously required constantly switching
+                mental models — editorial column layouts for web, native iOS
+                patterns for app. The decision to give the app 8px card radius
+                while keeping web at 0px wasn't arbitrary — it reflects the
+                different aesthetic expectations of each platform and the
+                different relationship users have with each.
+              </p>
+            </article>
+          </li>
+          <li>
+            <article class="reflection-item">
+              <h3 class="reflection-title">What I would do differently</h3>
+              <p class="reflection-body">
+                User testing on the app onboarding flow — specifically the day
+                pass tier pricing and the goal selection screen — would validate
+                or challenge decisions made from competitive research and design
+                intuition. Earlier photography art direction would also have
+                improved the high fidelity phase, replacing the
+                section-by-section hunt for placeholder imagery with a coherent
+                visual direction from the start.
+              </p>
+            </article>
+          </li>
+        </ul>
+      </section>
+
+      <!-- FINAL THOUGHT -->
+      <section aria-labelledby="final-heading">
+        <h2 class="visually-hidden" id="final-heading">Final Thought</h2>
+        <div class="final-thought">
+          <blockquote>
+            Lakeside Fitness 247 is a genuinely serious gym hiding behind a
+            digital experience that doesn't take it seriously. The equipment,
+            the coaching, the recovery amenities, the 24/7 access —
+            <span>all of it is there.</span> The "Pray. Lift. Repeat." ethos is
+            real. It just needed a design system, a unified experience and
+            someone willing to make it look as premium as it actually is.
+          </blockquote>
+          <cite>John Masulonis — UX/UI Designer</cite>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="page-footer">
+        <a href="index.html#casestudy" class="btn-back">← Back to Portfolio</a>
+      </footer>
+    </main>
+
+    <script>
+      let hifiCurrent = 0;
+      const hifiTotal = 6;
+
+      function hifiMove(dir) {
+        hifiGoTo(Math.max(0, Math.min(hifiCurrent + dir, hifiTotal - 1)));
+      }
+
+      function hifiGoTo(index) {
+        hifiCurrent = index;
+        document.getElementById("hifiTrack").style.transform =
+          `translateX(-${index * 100}%)`;
+        document
+          .getElementById("hifiPrev")
+          .classList.toggle("hidden", index === 0);
+        document
+          .getElementById("hifiNext")
+          .classList.toggle("hidden", index === hifiTotal - 1);
+        document.querySelectorAll(".hifi-dot").forEach((dot, i) => {
+          dot.classList.toggle("active", i === index);
+          dot.setAttribute("aria-selected", i === index ? "true" : "false");
+        });
+      }
+
+      // Touch swipe
+      const carousel = document.getElementById("hifiCarousel");
+      let touchStartX = 0;
+      carousel.addEventListener(
+        "touchstart",
+        (e) => {
+          touchStartX = e.touches[0].clientX;
+        },
+        { passive: true },
+      );
+      carousel.addEventListener(
+        "touchend",
+        (e) => {
+          const diff = touchStartX - e.changedTouches[0].clientX;
+          if (Math.abs(diff) > 40) hifiMove(diff > 0 ? 1 : -1);
+        },
+        { passive: true },
+      );
+    </script>
+  </body>
+</html>

@@ -96,14 +96,21 @@
       .nav-logo {
         display: flex;
         align-items: center;
-        gap: 0;
+        gap: 10px;
         text-decoration: none;
+      }
+      .nav-logo-img {
+        height: 32px;
+        width: auto;
+        display: block;
+      }
+      .nav-logo-text {
         font-family: var(--display);
         font-size: 16px;
         font-weight: 600;
         color: var(--text);
       }
-      .nav-logo span {
+      .nav-logo-dot {
         color: var(--secondary);
       }
 
@@ -511,14 +518,24 @@
   </head>
   <body>
     <!-- NAV -->
-    <nav>
+    <nav aria-label="Site navigation">
+      <a href="#" class="nav-logo">
+        <img
+          src="img/logo_nav_jm.svg"
+          alt="John Masulonis"
+          class="nav-logo-img"
+          onerror="this.style.display = 'none'"
+        />
+        <span class="nav-logo-text"
+          >John<span class="nav-logo-dot">.</span>Masulonis</span
+        >
+      </a>
       <a
-        href="index.html"
-        class="nav-logo"
-        aria-label="John Masulonis — back to portfolio"
-        >John<span>.</span>Masulonis</a
+        href="index.html#casestudy"
+        class="nav-back"
+        aria-label="Back to portfolio"
+        >← Back to Portfolio</a
       >
-      <a href="index.html#casestudy" class="nav-back">← Back to Portfolio</a>
     </nav>
 
     <main class="page-wrap">
