@@ -676,16 +676,17 @@
         margin-top: 8px;
       }
       .work-samples-grid.open {
-        display: grid;
+        display: block;
+        max-height: 320px;
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
       }
       .work-samples-grid img {
-        overflow: scroll;
-        object-position: center top;
         width: 100%;
-        aspect-ratio: 4/3;
-        object-fit: cover;
+        height: auto;
+        object-fit: unset;
         border-radius: 8px;
-        transition: opacity 0.2s;
+        display: block;
       }
       .work-samples-grid img:hover {
         opacity: 0.85;
