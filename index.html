@@ -1732,6 +1732,7 @@
           src="img/hero_bw.jpg"
           alt="John Masulonis"
           class="hero-img"
+          fetchpriority="high"
           onerror="this.style.display = 'none'"
         />
         <div class="hero-img-fade" aria-hidden="true"></div>
@@ -2763,7 +2764,7 @@
         if (!row) return;
         const card = row.querySelector(".print-card");
         if (!card) return;
-        const cardWidth = card.offsetWidth + 12;
+        const cardWidth = card.getBoundingClientRect().width + 12;
         const maxScroll = row.scrollWidth - row.clientWidth;
         const newPos = Math.min(
           Math.max(row.scrollLeft + dir * cardWidth, 0),
