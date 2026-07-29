@@ -2859,6 +2859,23 @@
           });
         });
       });
+      // Fire once when the case study section scrolls into view
+      (function () {
+        const target = document.getElementById("casestudy");
+        if (!target) return;
+        let fired = false;
+        const obs = new IntersectionObserver(
+          function (entries) {
+            if (entries[0].isIntersecting && !fired) {
+              fired = true;
+              gtag("event", "reached_case_studies");
+              obs.disconnect();
+            }
+          },
+          { threshold: 0.3 },
+        ); // fires when 30% of the section is visible
+        obs.observe(target);
+      })();
     </script>
   </body>
 </html>
