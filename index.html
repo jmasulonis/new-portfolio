@@ -2609,6 +2609,8 @@
         const job = jobs[id];
         if (!job) return;
 
+        gtag("event", "career_modal_open", { company: job.company });
+
         const imgHtml = job.image
           ? `<img src="${job.image}" alt="${job.company}" class="modal-img" onerror="this.outerHTML='<div class=modal-img-placeholder>Image not found</div>'">`
           : `<div class="modal-img-placeholder">No image</div>`;
