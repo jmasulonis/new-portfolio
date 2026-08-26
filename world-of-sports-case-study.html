@@ -1,0 +1,2202 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="World of Sports UX/UI Redesign — A self-initiated concept case study by John Masulonis covering research, IA, design system and high fidelity across five pages."
+    />
+    <title>World of Sports — UX/UI Redesign | John Masulonis</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&family=Nunito+Sans:wght@400;500;600&family=Outfit:wght@400;500;600;700&family=Manrope:wght@400;500;600&display=swap"
+      media="print"
+      onload="this.media = 'all'"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #0e0d0c;
+        --surface: #161412;
+        --surface2: #1e1b18;
+        --border: rgba(255, 255, 255, 0.07);
+        --primary: #347f6f;
+        --primary-light: #3d9680;
+        --secondary: #f8992c;
+        --text: #f0ece6;
+        --muted: #6b6560;
+        --display: "Outfit", sans-serif;
+        --body: "Manrope", sans-serif;
+        /* WoS brand */
+        --wos-navy: #1a2236;
+        --wos-navy-dark: #111827;
+        --wos-cream: #f7f4ec;
+        --wos-play: #e85d8a;
+        --wos-bowl: #d4a84b;
+        --wos-party: #4caf7d;
+        --wos-eat: #4a90d9;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--body);
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.6;
+        min-height: 100vh;
+      }
+
+      /* ============================================================
+       DISCLAIMER
+    ============================================================ */
+      .disclaimer-banner {
+        background: var(--surface2);
+        border-bottom: 1px solid var(--border);
+        padding: 10px 40px;
+        text-align: center;
+        font-size: 12px;
+        color: var(--muted);
+        letter-spacing: 0.02em;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 200;
+      }
+
+      /* ============================================================
+       NAV
+    ============================================================ */
+      nav {
+        position: fixed;
+        top: 37px;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        padding: 20px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: rgba(14, 13, 12, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        text-decoration: none;
+        font-family: var(--display);
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--text);
+      }
+      .nav-logo span {
+        color: var(--secondary);
+      }
+
+      .nav-back {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+      .nav-back:hover {
+        color: var(--text);
+      }
+
+      /* ============================================================
+       LAYOUT
+    ============================================================ */
+      .page-wrap {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 157px 40px 80px;
+      }
+      .page-wrap > section,
+      .page-wrap > header {
+        margin-bottom: 60px;
+      }
+
+      .section-label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--secondary);
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .section-label::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--border);
+      }
+
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 40px;
+      }
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .grid-3 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 12px;
+      }
+
+      /* ============================================================
+       HERO
+    ============================================================ */
+      .hero {
+        background: var(--wos-navy);
+        border-radius: 16px;
+        padding: 64px 48px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: -80px;
+        right: -80px;
+        width: 320px;
+        height: 320px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.03);
+        pointer-events: none;
+      }
+
+      .hero-eyebrow {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--wos-bowl);
+        margin-bottom: 20px;
+      }
+
+      .hero-title-row {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        margin-bottom: 24px;
+        flex-wrap: wrap;
+      }
+      .hero-logo {
+        height: 64px;
+        width: auto;
+        display: block;
+        opacity: 0.9;
+      }
+
+      h1.hero-title {
+        font-family: "Bricolage Grotesque", var(--display);
+        font-size: clamp(36px, 4.5vw, 64px);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        line-height: 1;
+        margin-bottom: 0;
+      }
+      h1.hero-title span {
+        color: var(--wos-bowl);
+      }
+
+      .hero-sub {
+        color: rgba(240, 236, 230, 0.75);
+        font-size: 16px;
+        line-height: 1.7;
+        max-width: 680px;
+        margin-bottom: 40px;
+      }
+
+      .meta-row {
+        display: flex;
+        gap: 32px;
+        flex-wrap: wrap;
+      }
+      .meta-item {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .meta-label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .meta-value {
+        font-family: var(--display);
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text);
+      }
+
+      .btn-proto {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--wos-bowl);
+        color: var(--wos-navy-dark);
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-family: var(--display);
+        font-size: 13px;
+        font-weight: 700;
+        text-decoration: none;
+        margin-top: 4px;
+        transition: opacity 0.2s;
+      }
+      .btn-proto:hover {
+        opacity: 0.85;
+      }
+
+      /* ============================================================
+       PROBLEM
+    ============================================================ */
+      .problem-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+        align-items: start;
+      }
+      h2.problem-title {
+        font-family: var(--display);
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1.2;
+        margin-bottom: 20px;
+      }
+      .problem-body {
+        color: rgba(240, 236, 230, 0.75);
+        font-size: 14px;
+        line-height: 1.8;
+      }
+
+      .problem-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .problem-list li {
+        display: flex;
+        gap: 12px;
+        color: rgba(240, 236, 230, 0.75);
+        font-size: 14px;
+        line-height: 1.6;
+        padding: 14px 16px;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+      }
+      .problem-list li::before {
+        content: "→";
+        color: var(--wos-bowl);
+        flex-shrink: 0;
+        font-weight: 600;
+      }
+
+      /* ============================================================
+       RESEARCH
+    ============================================================ */
+      article.research-card h3 {
+        font-family: var(--display);
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin-bottom: 16px;
+        color: var(--primary-light);
+      }
+      article.research-card p {
+        color: rgba(240, 236, 230, 0.75);
+        font-size: 13px;
+        line-height: 1.8;
+        margin-bottom: 16px;
+      }
+      article.research-card ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      article.research-card ul li {
+        display: flex;
+        gap: 10px;
+        color: rgba(240, 236, 230, 0.7);
+        font-size: 13px;
+        line-height: 1.5;
+      }
+      article.research-card ul li::before {
+        content: "·";
+        color: var(--wos-bowl);
+        flex-shrink: 0;
+        font-weight: 700;
+      }
+      .research-callout {
+        margin-top: 16px;
+        font-size: 12px;
+        color: var(--wos-bowl);
+      }
+
+      /* ============================================================
+       IA — COLOR WAYFINDING
+    ============================================================ */
+      .ia-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        align-items: start;
+      }
+
+      .ia-intent-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin-bottom: 24px;
+      }
+
+      .ia-intent-pill {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 16px;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .ia-intent-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+      .ia-intent-label {
+        font-family: var(--display);
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text);
+      }
+      .ia-intent-sub {
+        font-size: 11px;
+        color: var(--muted);
+        margin-top: 2px;
+      }
+
+      .ia-decisions {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        list-style: none;
+      }
+      .ia-decision {
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 16px 20px;
+      }
+      h3.ia-decision-title {
+        font-family: var(--display);
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 6px;
+      }
+      .ia-decision-body {
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      /* Two-tier color system visual */
+      .color-tier {
+        margin-bottom: 20px;
+      }
+      .color-tier-label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 10px;
+      }
+      .color-swatches {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        list-style: none;
+      }
+      .swatch {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+      }
+      .swatch-dot {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .swatch-label {
+        font-size: 10px;
+        color: var(--muted);
+        letter-spacing: 0.04em;
+        text-align: center;
+      }
+
+      /* ============================================================
+       WIREFRAMES
+    ============================================================ */
+      .wireframe-decisions {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+        margin-top: 12px;
+        list-style: none;
+      }
+      .wireframe-decision {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 24px;
+      }
+      .wireframe-decision-num {
+        font-family: var(--display);
+        font-size: 36px;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.04);
+        line-height: 1;
+        margin-bottom: 12px;
+      }
+      h3.wireframe-decision-title {
+        font-family: var(--display);
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--primary-light);
+        margin-bottom: 8px;
+      }
+      .wireframe-decision-body {
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      /* ============================================================
+       DESIGN SYSTEM
+    ============================================================ */
+      h3.ds-section-title {
+        font-family: var(--display);
+        font-size: 16px;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        margin-bottom: 16px;
+        color: var(--text);
+      }
+      .type-sample {
+        margin-bottom: 16px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid var(--border);
+      }
+      .type-sample:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+      .type-name {
+        font-size: 11px;
+        color: var(--muted);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+      }
+      .type-display {
+        font-size: 28px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+        color: var(--text);
+      }
+      .type-body-sample {
+        font-size: 14px;
+        color: rgba(240, 236, 230, 0.75);
+        line-height: 1.6;
+      }
+
+      .ds-stat-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+      .ds-stat {
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+      }
+      .ds-stat-num {
+        font-family: var(--display);
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--wos-bowl);
+        line-height: 1;
+        margin-bottom: 6px;
+      }
+      .ds-stat-label {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      /* ============================================================
+       HI-FI CAROUSEL
+    ============================================================ */
+      .hifi-carousel {
+        position: relative;
+        border-radius: 16px;
+        overflow: hidden;
+        background: var(--surface2);
+      }
+      .hifi-track {
+        display: flex;
+        transition: transform 0.4s ease;
+      }
+      .hifi-slide {
+        min-width: 100%;
+        position: relative;
+      }
+
+      .hifi-slide-inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        padding: 40px;
+        align-items: center;
+      }
+      .hifi-slide-info {
+        padding-right: 20px;
+      }
+
+      .hifi-slide-num {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--wos-bowl);
+        margin-bottom: 12px;
+      }
+      h3.hifi-slide-title {
+        font-family: var(--display);
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin-bottom: 16px;
+        line-height: 1.1;
+      }
+      .hifi-slide-body {
+        color: rgba(240, 236, 230, 0.7);
+        font-size: 13px;
+        line-height: 1.8;
+      }
+
+      .hifi-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 44px;
+        height: 44px;
+        background: rgba(14, 13, 12, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        color: white;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          border-color 0.2s;
+        z-index: 10;
+      }
+      .hifi-arrow:hover {
+        background: var(--wos-navy);
+        border-color: var(--wos-bowl);
+      }
+      .hifi-arrow.prev {
+        left: 16px;
+      }
+      .hifi-arrow.next {
+        right: 16px;
+      }
+      .hifi-arrow.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .hifi-dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        padding: 20px 0 8px;
+      }
+      .hifi-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--muted);
+        cursor: pointer;
+        border: none;
+        padding: 0;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+      }
+      .hifi-dot.active {
+        background: var(--wos-bowl);
+        transform: scale(1.3);
+      }
+
+      /* ============================================================
+       RESULTS TABLE
+    ============================================================ */
+      .results-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .results-table tr {
+        border-bottom: 1px solid var(--border);
+      }
+      .results-table tr:last-child {
+        border-bottom: none;
+      }
+      .results-table td {
+        padding: 14px 16px;
+        font-size: 13px;
+        line-height: 1.6;
+        vertical-align: top;
+      }
+      .results-table td:first-child {
+        color: rgba(240, 236, 230, 0.5);
+        width: 45%;
+        border-right: 1px solid var(--border);
+      }
+      .results-table td:last-child {
+        color: var(--text);
+        padding-left: 24px;
+      }
+      .results-table td:last-child::before {
+        content: "→ ";
+        color: var(--primary);
+        font-weight: 600;
+      }
+
+      /* ============================================================
+       REFLECTION
+    ============================================================ */
+      .reflection-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        list-style: none;
+      }
+      .reflection-grid li {
+        display: contents;
+      }
+      article.reflection-item {
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 28px;
+        height: 100%;
+      }
+      h3.reflection-title {
+        font-family: var(--display);
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--primary-light);
+        margin-bottom: 10px;
+      }
+      .reflection-body {
+        font-size: 13px;
+        color: rgba(240, 236, 230, 0.7);
+        line-height: 1.8;
+      }
+
+      /* ============================================================
+       FINAL THOUGHT
+    ============================================================ */
+      .final-thought {
+        background: var(--wos-navy);
+        border-radius: 16px;
+        padding: 56px 48px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .final-thought::before {
+        content: '"';
+        position: absolute;
+        top: -40px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: var(--display);
+        font-size: 320px;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.03);
+        line-height: 1;
+        pointer-events: none;
+      }
+      .final-thought blockquote {
+        font-family: var(--display);
+        font-size: clamp(20px, 2.5vw, 30px);
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        line-height: 1.4;
+        color: var(--text);
+        max-width: 800px;
+        margin: 0 auto 24px;
+        position: relative;
+        z-index: 1;
+      }
+      .final-thought blockquote span {
+        color: var(--wos-bowl);
+      }
+      .final-thought cite {
+        font-size: 12px;
+        color: rgba(240, 236, 230, 0.5);
+        font-style: normal;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      /* ============================================================
+       FOOTER
+    ============================================================ */
+      .page-footer {
+        display: flex;
+        justify-content: center;
+        padding: 0;
+      }
+      .btn-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        color: var(--text);
+        padding: 14px 28px;
+        border-radius: 10px;
+        font-family: var(--display);
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        transition:
+          border-color 0.2s,
+          background 0.2s;
+      }
+      .btn-back:hover {
+        border-color: var(--primary);
+        background: rgba(52, 127, 111, 0.08);
+      }
+
+      .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+      @media (max-width: 900px) {
+        nav {
+          padding: 16px 20px;
+        }
+        .disclaimer-banner {
+          padding: 10px 20px;
+          font-size: 11px;
+        }
+        .page-wrap {
+          padding: 157px 20px 60px;
+        }
+        .grid-2,
+        .grid-3,
+        .problem-grid,
+        .ia-grid,
+        .reflection-grid {
+          grid-template-columns: 1fr;
+        }
+        .wireframe-decisions {
+          grid-template-columns: 1fr 1fr;
+        }
+        .ds-stat-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .hifi-slide-inner {
+          grid-template-columns: 1fr;
+        }
+        .hifi-slide-info {
+          padding-right: 0;
+        }
+        .hero {
+          padding: 40px 24px;
+        }
+        .card {
+          padding: 24px;
+        }
+        .final-thought {
+          padding: 40px 24px;
+        }
+        .hero-title-row {
+          gap: 16px;
+        }
+        .hero-logo {
+          height: 48px;
+        }
+        .meta-row {
+          gap: 20px;
+        }
+        .ia-intent-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .wireframe-decisions {
+          grid-template-columns: 1fr;
+        }
+        .ds-stat-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      /* ============================================================
+   LIGHTBOX
+============================================================ */
+      .lightbox-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 900;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s ease;
+        cursor: zoom-out;
+      }
+      .lightbox-overlay.open {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .lightbox-overlay img {
+        max-width: 100%;
+        max-height: 90vh;
+        border-radius: 8px;
+        object-fit: contain;
+        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+      }
+
+      .lightbox-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 44px;
+        height: 44px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        color: var(--text);
+        font-size: 20px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: border-color 0.2s;
+      }
+      .lightbox-close:hover {
+        border-color: var(--primary);
+      }
+
+      .lightbox-trigger {
+        cursor: zoom-in;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- DISCLAIMER -->
+    <p class="disclaimer-banner" role="note">
+      This is a self-initiated concept project. It is not affiliated with or
+      endorsed by World of Sports. Pricing, hours, and some imagery are
+      illustrative placeholders.
+    </p>
+
+    <!-- NAV -->
+    <nav aria-label="Site navigation">
+      <a
+        href="index.html#casestudy"
+        class="nav-logo"
+        aria-label="John Masulonis — back to portfolio"
+        >John<span>.</span>Masulonis</a
+      >
+      <a href="index.html#casestudy" class="nav-back">← Back to Portfolio</a>
+    </nav>
+
+    <main class="page-wrap">
+      <!-- HERO -->
+      <header class="hero">
+        <p class="hero-eyebrow">UX/UI Redesign · 2026 · Self-Initiated</p>
+        <div class="hero-title-row">
+          <img
+            src="img/wos_logo.png"
+            alt="World of Sports"
+            class="hero-logo"
+            onerror="this.style.display = 'none'"
+          />
+          <h1 class="hero-title">World of <span>Sports</span></h1>
+        </div>
+        <p class="hero-sub">
+          A self-initiated concept redesign of World of Sports — a family-owned
+          entertainment center in South Boston, Virginia with eleven attractions
+          under one roof. The project spans the full UX process from competitive
+          research and information architecture through a token-based design
+          system and a responsive website across five desktop and five mobile
+          pages.
+        </p>
+        <dl class="meta-row">
+          <div class="meta-item">
+            <dt class="meta-label">Role</dt>
+            <dd class="meta-value">Solo UX/UI Designer</dd>
+          </div>
+          <div class="meta-item">
+            <dt class="meta-label">Timeline</dt>
+            <dd class="meta-value">3–4 Weeks</dd>
+          </div>
+          <div class="meta-item">
+            <dt class="meta-label">Tools</dt>
+            <dd class="meta-value">
+              Figma · Phosphor Icons · Pexels · Unsplash
+            </dd>
+          </div>
+          <div class="meta-item">
+            <dt class="meta-label">Scope</dt>
+            <dd class="meta-value">
+              Research → High Fidelity · Desktop + Mobile
+            </dd>
+          </div>
+          <div class="meta-item">
+            <dt class="meta-label">Prototype</dt>
+            <dd>
+              <a
+                href="https://www.figma.com/proto/sOeuYHr9tD1Os7NpwJ9dkS/World-of-Sports-%E2%80%94-UX-UI-Redesign-Concept?node-id=285-7393&p=f&viewport=54%2C180%2C0.18&t=erYmr1HF02nvr4C7-1&scaling=min-zoom&content-scaling=fixed&page-id=285%3A4940"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-proto"
+                >View Prototype →</a
+              >
+            </dd>
+          </div>
+        </dl>
+      </header>
+
+      <!-- THE PROBLEM -->
+      <section aria-labelledby="problem-heading">
+        <h2 class="section-label" id="problem-heading">The Problem</h2>
+        <div class="card">
+          <div class="problem-grid">
+            <div>
+              <h2 class="problem-title">
+                Eleven attractions. Zero hierarchy. A venue that undersells
+                itself.
+              </h2>
+              <p class="problem-body">
+                World of Sports is a genuine local institution — family-owned
+                since 1980, packing eleven different attractions into a single
+                South Boston location. But its website badly undersells it.<br /><br />The
+                existing site runs on a dated WordPress/Elementor build that
+                buries the venue's biggest strength — its variety — under flat
+                navigation and walls of text. For a business whose whole appeal
+                is "there's something here for everyone," the site makes it hard
+                to find any one thing.
+              </p>
+
+              <!-- Before screenshot -->
+              <div style="display: flex; gap: 12px; margin-top: 20px">
+                <div style="flex: 1">
+                  <p
+                    style="
+                      font-size: 11px;
+                      font-weight: 600;
+                      letter-spacing: 0.08em;
+                      text-transform: uppercase;
+                      color: var(--muted);
+                      margin-bottom: 8px;
+                    "
+                  >
+                    Before — worldofsportsfun.com
+                  </p>
+                  <figure
+                    style="height: 240px; overflow: hidden; border-radius: 10px"
+                  >
+                    <img
+                      src="img/wos_before.png"
+                      alt="Existing World of Sports website"
+                      class="lightbox-trigger"
+                      onclick="openLightbox(this.src, this.alt)"
+                      style="
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        object-position: center top;
+                      "
+                    />
+                  </figure>
+                </div>
+              </div>
+            </div>
+            <ul class="problem-list" aria-label="Key problems identified">
+              <li>
+                Variety is buried — eleven attractions hidden behind flat
+                navigation and walls of text
+              </li>
+              <li>
+                Practical info scattered or missing — prices, height
+                requirements, durations not surfaced clearly
+              </li>
+              <li>
+                No information hierarchy — IA organized around an operational
+                list rather than guest intent
+              </li>
+              <li>
+                Fragmented, unbranded booking — jumps to third-party system with
+                no brand continuity
+              </li>
+              <li>
+                Confusing hours — entertainment center and JB's Axe & Tap hours
+                not distinguished
+              </li>
+              <li>
+                Dated, templated presentation — makes a fun, local venue look
+                generic
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- RESEARCH -->
+      <section aria-labelledby="research-heading">
+        <h2 class="section-label" id="research-heading">Research</h2>
+        <div class="grid-3">
+          <article class="card research-card">
+            <h3>Competitive Landscape</h3>
+            <p>
+              Studied regional family entertainment centers and national chains
+              to understand the category and identify positioning opportunities.
+            </p>
+            <ul>
+              <li>Ryan Family Amusements — regional, strong local trust</li>
+              <li>Spare Time — mid-tier, decent digital presence</li>
+              <li>Dave & Buster's — national, energetic, loyalty-forward</li>
+              <li>Main Event — national, polished, activity-card model</li>
+            </ul>
+            <p class="research-callout">
+              Key insight: National chains lean on a "bright interior" aesthetic
+              with prominent loyalty integration. The category is saturated with
+              duotone photo treatments — which I deliberately avoided.
+            </p>
+          </article>
+
+          <article class="card research-card">
+            <h3>Positioning Thesis</h3>
+            <p>
+              World of Sports occupies a defensible middle ground that national
+              chains can't replicate.
+            </p>
+            <ul>
+              <li>All-ages, everything-under-one-roof venue</li>
+              <li>Genuine local warmth and family-owned character</li>
+              <li>Family-owned since 1980 — real community roots</li>
+              <li>
+                Goal: lift the polish (dated-local to national-slick) without
+                losing the authenticity
+              </li>
+            </ul>
+            <p class="research-callout">
+              The redesign's job was to make World of Sports look as good as the
+              chains — while keeping what the chains can't replicate.
+            </p>
+          </article>
+
+          <article class="card research-card">
+            <h3>Operational Constraints</h3>
+            <p>
+              Two fixed third-party systems were designed around rather than
+              replaced — a feasibility-aware decision throughout.
+            </p>
+            <ul>
+              <li>CenterEdge — booking, waivers, showtimes</li>
+              <li>pfestore — arcade cards</li>
+              <li>Both treated as fixed handoff points</li>
+              <li>Focus on everything the brand actually controls</li>
+              <li>Mapping handoffs became the backbone of the user flows</li>
+            </ul>
+            <p class="research-callout">
+              Designing around constraints, not pretending they don't exist,
+              keeps the redesign grounded in what the venue could realistically
+              ship.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- INFORMATION ARCHITECTURE -->
+      <section aria-labelledby="ia-heading">
+        <h2 class="section-label" id="ia-heading">Information Architecture</h2>
+        <div class="card">
+          <div class="ia-grid">
+            <div>
+              <p
+                style="
+                  color: rgba(240, 236, 230, 0.75);
+                  font-size: 14px;
+                  line-height: 1.8;
+                  margin-bottom: 28px;
+                "
+              >
+                The original site organized around an operational model — a flat
+                list of attractions with no hierarchy. I restructured it around
+                guest intent. Everything a guest can do maps to one of four
+                questions.
+              </p>
+
+              <!-- Four intent groups -->
+              <div class="ia-intent-grid" style="margin-bottom: 24px">
+                <div
+                  class="ia-intent-pill"
+                  style="
+                    background: rgba(232, 93, 138, 0.08);
+                    border-color: rgba(232, 93, 138, 0.2);
+                  "
+                >
+                  <span
+                    class="ia-intent-dot"
+                    style="background: var(--wos-play)"
+                  ></span>
+                  <div>
+                    <div class="ia-intent-label">Play</div>
+                    <div class="ia-intent-sub">
+                      Go-karts, laser tag, axe throwing, bumper cars, arcade,
+                      sim bays
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="ia-intent-pill"
+                  style="
+                    background: rgba(212, 168, 75, 0.08);
+                    border-color: rgba(212, 168, 75, 0.2);
+                  "
+                >
+                  <span
+                    class="ia-intent-dot"
+                    style="background: var(--wos-bowl)"
+                  ></span>
+                  <div>
+                    <div class="ia-intent-label">Bowl</div>
+                    <div class="ia-intent-sub">
+                      Leagues, standings, youth programs, pro shop
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="ia-intent-pill"
+                  style="
+                    background: rgba(76, 175, 125, 0.08);
+                    border-color: rgba(76, 175, 125, 0.2);
+                  "
+                >
+                  <span
+                    class="ia-intent-dot"
+                    style="background: var(--wos-party)"
+                  ></span>
+                  <div>
+                    <div class="ia-intent-label">Party</div>
+                    <div class="ia-intent-sub">
+                      Birthdays, groups, events, corporate
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="ia-intent-pill"
+                  style="
+                    background: rgba(74, 144, 217, 0.08);
+                    border-color: rgba(74, 144, 217, 0.2);
+                  "
+                >
+                  <span
+                    class="ia-intent-dot"
+                    style="background: var(--wos-eat)"
+                  ></span>
+                  <div>
+                    <div class="ia-intent-label">Eat & Watch</div>
+                    <div class="ia-intent-sub">
+                      JB's Axe & Tap bar, cinemas, menus
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- IA image -->
+              <figure
+                style="
+                  margin-top: 20px;
+                  height: 240px;
+                  overflow: hidden;
+                  border-radius: 10px;
+                  background: var(--surface2);
+                "
+              >
+                <img
+                  src="img/wos_ia.png"
+                  alt="World of Sports information architecture sitemap"
+                  class="lightbox-trigger"
+                  onclick="openLightbox(this.src, this.alt)"
+                  style="
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center top;
+                  "
+                />
+              </figure>
+            </div>
+
+            <ul class="ia-decisions" aria-label="Key IA decisions">
+              <li class="ia-decision">
+                <h3 class="ia-decision-title">Axe throwing stays under Play</h3>
+                <p class="ia-decision-body">
+                  Despite being a lane-rental attraction operationally similar
+                  to bowling, guests think of axe throwing as an activity — so
+                  it's grouped by intent, not operational model.
+                </p>
+              </li>
+              <li class="ia-decision">
+                <h3 class="ia-decision-title">
+                  Bowl earns its own top-level section
+                </h3>
+                <p class="ia-decision-body">
+                  As a recurring-community destination (leagues, standings,
+                  youth programs, pro shop), bowling is structurally different
+                  from a one-off activity and warrants its own nav section.
+                </p>
+              </li>
+              <li class="ia-decision">
+                <h3 class="ia-decision-title">
+                  A utility bar that earned its way out
+                </h3>
+                <p class="ia-decision-body">
+                  An initial persistent utility bar (booking, wait times,
+                  showtimes, account) proved redundant through the process — its
+                  functions redistributed to where guests actually look. A
+                  simpler, less cluttered structure emerged.
+                </p>
+              </li>
+              <li class="ia-decision">
+                <h3 class="ia-decision-title">
+                  Plan as a fifth neutral section
+                </h3>
+                <p class="ia-decision-body">
+                  Practical reference information — hours, pricing, FAQs,
+                  directions — lives in a dedicated Plan section, separate from
+                  the intent-based navigation.
+                </p>
+              </li>
+              <li class="ia-decision">
+                <h3 class="ia-decision-title">Four user flows documented</h3>
+                <p class="ia-decision-body">
+                  Booking a lane, booking a birthday, checking a movie, and
+                  reloading an arcade card — each mapping how guests move
+                  between the WoS-designed experience and the fixed third-party
+                  systems.
+                </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- WIREFRAMES -->
+      <section aria-labelledby="wireframes-heading">
+        <h2 class="section-label" id="wireframes-heading">Wireframes</h2>
+        <div class="card">
+          <p
+            style="
+              color: rgba(240, 236, 230, 0.75);
+              font-size: 14px;
+              line-height: 1.8;
+              margin-bottom: 28px;
+            "
+          >
+            Working structure-before-skin, five desktop templates were built in
+            grayscale before touching any visual design: Homepage, Attraction
+            Detail, Group Landing, Party Hub, and Plan. The most-reused template
+            — Attraction Detail — drove the key layout decisions.
+          </p>
+          <div class="grid-2" style="gap: 12px">
+            <figure
+              style="
+                height: 480px;
+                overflow-y: scroll;
+                border-radius: 12px;
+                -webkit-overflow-scrolling: touch;
+                background: var(--surface2);
+              "
+            >
+              <img
+                src="img/wos_wireframe_homepage.png"
+                alt="World of Sports homepage wireframe"
+                style="width: 100%; display: block"
+              />
+            </figure>
+            <figure
+              style="
+                height: 480px;
+                overflow-y: scroll;
+                border-radius: 12px;
+                -webkit-overflow-scrolling: touch;
+                background: var(--surface2);
+              "
+            >
+              <img
+                src="img/wos_wireframe_amusement.png"
+                alt="Attraction detail wireframe"
+                style="width: 100%; display: block"
+              />
+            </figure>
+          </div>
+        </div>
+
+        <ul class="wireframe-decisions" aria-label="Key wireframe decisions">
+          <li class="wireframe-decision">
+            <p class="wireframe-decision-num" aria-hidden="true">01</p>
+            <h3 class="wireframe-decision-title">Quick-Facts Strip First</h3>
+            <p class="wireframe-decision-body">
+              Price, height requirement, duration, and capacity placed
+              immediately under the hero on every attraction detail page —
+              surfacing practical info instantly rather than burying it in
+              prose.
+            </p>
+          </li>
+          <li class="wireframe-decision">
+            <p class="wireframe-decision-num" aria-hidden="true">02</p>
+            <h3 class="wireframe-decision-title">Flexible Optional Modules</h3>
+            <p class="wireframe-decision-body">
+              The Attraction Detail template handles eleven very different
+              attractions via optional modules rather than a rigid one-size
+              shape — some with height requirements, some with packages, some
+              walk-up only.
+            </p>
+          </li>
+          <li class="wireframe-decision">
+            <p class="wireframe-decision-num" aria-hidden="true">03</p>
+            <h3 class="wireframe-decision-title">Status Ticker Module</h3>
+            <p class="wireframe-decision-body">
+              A venue-wide "Right now" status strip surfaces live wait times,
+              lane availability, and showtimes — the amusement-park status board
+              made concrete, without requiring a native app.
+            </p>
+          </li>
+          <li class="wireframe-decision">
+            <p class="wireframe-decision-num" aria-hidden="true">04</p>
+            <h3 class="wireframe-decision-title">
+              Mobile as a System, Not a Shrink
+            </h3>
+            <p class="wireframe-decision-body">
+              Mobile wasn't designed as a compressed desktop layout — it's the
+              same system flexing. Type compresses via mobile styles, cards
+              stack or become swipe carousels, utility functions relocate to
+              native patterns.
+            </p>
+          </li>
+        </ul>
+      </section>
+
+      <!-- DESIGN SYSTEM -->
+      <section aria-labelledby="ds-heading">
+        <h2 class="section-label" id="ds-heading">Design System</h2>
+        <div class="grid-2">
+          <div class="card">
+            <h3 class="ds-section-title">The Two-Tier Color System</h3>
+            <p
+              style="
+                font-size: 13px;
+                color: rgba(240, 236, 230, 0.7);
+                line-height: 1.8;
+                margin-bottom: 20px;
+              "
+            >
+              The most distinctive piece — a wayfinding model with two semantic
+              layers pointing at the same primitive palette. The two tiers never
+              compete in the same view.
+            </p>
+
+            <div class="color-tier">
+              <p class="color-tier-label">
+                Tier 1 — Group Level (Site Navigation)
+              </p>
+              <ul class="color-swatches">
+                <li class="swatch">
+                  <span
+                    class="swatch-dot"
+                    style="background: var(--wos-play)"
+                    role="img"
+                    aria-label="Play pink"
+                  ></span
+                  ><span class="swatch-label">Play<br />Pink</span>
+                </li>
+                <li class="swatch">
+                  <span
+                    class="swatch-dot"
+                    style="background: var(--wos-bowl)"
+                    role="img"
+                    aria-label="Bowl gold"
+                  ></span
+                  ><span class="swatch-label">Bowl<br />Gold</span>
+                </li>
+                <li class="swatch">
+                  <span
+                    class="swatch-dot"
+                    style="background: var(--wos-party)"
+                    role="img"
+                    aria-label="Party green"
+                  ></span
+                  ><span class="swatch-label">Party<br />Green</span>
+                </li>
+                <li class="swatch">
+                  <span
+                    class="swatch-dot"
+                    style="background: var(--wos-eat)"
+                    role="img"
+                    aria-label="Eat and Watch blue"
+                  ></span
+                  ><span class="swatch-label">Eat &amp; Watch<br />Blue</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="color-tier">
+              <p class="color-tier-label">
+                Tier 2 — Attraction Level (Inside Play)
+              </p>
+              <ul class="color-swatches">
+                <li class="swatch">
+                  <span
+                    class="swatch-dot"
+                    style="background: #e85d8a"
+                    role="img"
+                    aria-label="Go-karts"
+                  ></span
+                  ><span class="swatch-label">Go-Karts<br />Pink</span>
+                </li>
+                <li class="swatch">
+                  <span
+                    class="swatch-dot"
+                    style="background: #9b59b6"
+                    role="img"
+                    aria-label="Laser tag"
+                  ></span
+                  ><span class="swatch-label">Laser Tag<br />Purple</span>
+                </li>
+                <li class="swatch">
+                  <span
+                    class="swatch-dot"
+                    style="background: #e67e22"
+                    role="img"
+                    aria-label="Bumper cars"
+                  ></span
+                  ><span class="swatch-label">Bumper Cars<br />Orange</span>
+                </li>
+                <li class="swatch">
+                  <span
+                    class="swatch-dot"
+                    style="background: #e74c3c"
+                    role="img"
+                    aria-label="Axe throwing"
+                  ></span
+                  ><span class="swatch-label">Axe Throwing<br />Red</span>
+                </li>
+                <li class="swatch">
+                  <span
+                    class="swatch-dot"
+                    style="background: #f1c40f"
+                    role="img"
+                    aria-label="Arcade"
+                  ></span
+                  ><span class="swatch-label">Arcade<br />Yellow</span>
+                </li>
+                <li class="swatch">
+                  <span
+                    class="swatch-dot"
+                    style="background: #1abc9c"
+                    role="img"
+                    aria-label="Sim bays"
+                  ></span
+                  ><span class="swatch-label">Sim Bays<br />Teal</span>
+                </li>
+              </ul>
+            </div>
+
+            <p
+              style="
+                font-size: 12px;
+                color: var(--muted);
+                line-height: 1.7;
+                margin: 16px 0px 16px;
+              "
+            >
+              Navy reserved for chrome only — nav, footer, ticker widget. Never
+              fills large content sections. This discipline keeps an energetic,
+              colorful site from feeling chaotic.
+            </p>
+
+            <h3 class="ds-section-title">Typography</h3>
+            <div class="type-sample">
+              <p class="type-name">Display — Bricolage Grotesque</p>
+              <p
+                class="type-display"
+                style="
+                  font-family: &quot;Bricolage Grotesque&quot;, sans-serif;
+                  text-transform: uppercase;
+                "
+              >
+                World of Sports
+              </p>
+            </div>
+            <div class="type-sample">
+              <p class="type-name">Body — Nunito Sans</p>
+              <p
+                class="type-body-sample"
+                style="font-family: &quot;Nunito Sans&quot;, sans-serif"
+              >
+                Eleven attractions under one roof — warm, readable, and
+                approachable at every size.
+              </p>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 class="ds-section-title">Token Architecture</h3>
+            <p
+              style="
+                font-size: 13px;
+                color: rgba(240, 236, 230, 0.7);
+                line-height: 1.8;
+                margin-bottom: 24px;
+              "
+            >
+              Three tiers: primitive → semantic → component. Every color in the
+              design references a token — nothing is hand-typed. 117 color
+              variables total.
+            </p>
+
+            <dl class="ds-stat-grid" style="margin-bottom: 24px">
+              <div class="ds-stat">
+                <dt class="ds-stat-label">Color variables</dt>
+                <dd class="ds-stat-num">117</dd>
+              </div>
+              <div class="ds-stat">
+                <dt class="ds-stat-label">Components</dt>
+                <dd class="ds-stat-num">8</dd>
+              </div>
+              <div class="ds-stat">
+                <dt class="ds-stat-label">Button variants</dt>
+                <dd class="ds-stat-num">24</dd>
+              </div>
+              <div class="ds-stat">
+                <dt class="ds-stat-label">Desktop pages</dt>
+                <dd class="ds-stat-num">5</dd>
+              </div>
+              <div class="ds-stat">
+                <dt class="ds-stat-label">Mobile pages</dt>
+                <dd class="ds-stat-num">5</dd>
+              </div>
+              <div class="ds-stat">
+                <dt class="ds-stat-label">User flows</dt>
+                <dd class="ds-stat-num">4</dd>
+              </div>
+            </dl>
+
+            <h3 class="ds-section-title" style="margin-top: 20px">
+              Components (all token-bound)
+            </h3>
+            <p style="font-size: 12px; color: var(--muted); line-height: 1.7">
+              Button (24 variants) · Nav · Attraction card · Pricing card ·
+              Status pill · CTA band · Quick-facts strip · Venue-wide status
+              ticker — each built with variants and swappable properties so one
+              component flexes across every context.
+            </p>
+          </div>
+        </div>
+
+        <!-- Design system full-width image -->
+        <div
+          style="
+            margin-top: 12px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+          "
+        >
+          <img
+            src="img/wos_design_system.png"
+            alt="World of Sports design system in Figma"
+            class="lightbox-trigger"
+            onclick="openLightbox(this.src, this.alt)"
+            style="width: 100%; display: block"
+          />
+        </div>
+      </section>
+
+      <!-- HIGH FIDELITY -->
+      <section aria-labelledby="hifi-heading">
+        <h2 class="section-label" id="hifi-heading">High Fidelity</h2>
+
+        <div
+          class="hifi-carousel"
+          id="hifiCarousel"
+          role="region"
+          aria-label="High fidelity mockups"
+          aria-live="polite"
+        >
+          <div class="hifi-track" id="hifiTrack">
+            <article class="hifi-slide">
+              <div class="hifi-slide-inner">
+                <div class="hifi-slide-info">
+                  <p class="hifi-slide-num">01 / 05 — Homepage</p>
+                  <h3 class="hifi-slide-title">
+                    Navy Frame, Color in the Content
+                  </h3>
+                  <p class="hifi-slide-body">
+                    The homepage establishes the visual principle immediately:
+                    navy holds the chrome, the four group hues live in the
+                    content. Intent cards use real photography with a thin hue
+                    top-border and a subtle bottom scrim — the photos carry the
+                    energy, the color codes the wayfinding. A family-owned story
+                    section and Instagram wall reinforce the local-not-franchise
+                    positioning.
+                  </p>
+                </div>
+                <figure
+                  style="
+                    height: 480px;
+                    overflow-y: scroll;
+                    border-radius: 12px;
+                    -webkit-overflow-scrolling: touch;
+                    background: var(--surface2);
+                  "
+                >
+                  <img
+                    src="img/wos_homepage.png"
+                    alt="World of Sports homepage desktop and mobile"
+                    style="width: 100%; display: block"
+                  />
+                </figure>
+              </div>
+            </article>
+
+            <article class="hifi-slide">
+              <div class="hifi-slide-inner">
+                <div class="hifi-slide-info">
+                  <p class="hifi-slide-num">02 / 05 — Attraction Detail</p>
+                  <h3 class="hifi-slide-title">
+                    Practical Info, Instantly Surfaced
+                  </h3>
+                  <p class="hifi-slide-body">
+                    The quick-facts strip — price, height requirement, duration,
+                    capacity — sits immediately under the hero, directly solving
+                    the audit's biggest problem. The attraction hue (Tier 2)
+                    appears in the strip and accent elements, making each
+                    attraction visually distinct while staying within the
+                    system.
+                  </p>
+                </div>
+                <figure
+                  style="
+                    height: 480px;
+                    overflow-y: scroll;
+                    border-radius: 12px;
+                    -webkit-overflow-scrolling: touch;
+                    background: var(--surface2);
+                  "
+                >
+                  <img
+                    src="img/wos_attraction.png"
+                    alt="Attraction detail page desktop and mobile"
+                    style="width: 100%; display: block"
+                  />
+                </figure>
+              </div>
+            </article>
+
+            <article class="hifi-slide">
+              <div class="hifi-slide-inner">
+                <div class="hifi-slide-info">
+                  <p class="hifi-slide-num">03 / 05 — Play Landing</p>
+                  <h3 class="hifi-slide-title">
+                    Every Attraction, One Entry Point
+                  </h3>
+                  <p class="hifi-slide-body">
+                    The Play Landing page is the entry point for every
+                    attraction at World of Sports — go-karts, laser tag, axe
+                    throwing, bumper cars, arcade, and sim bays. Each attraction
+                    is surfaced as a card with its Tier 2 hue, photo, and a
+                    direct link to the full attraction detail page. Guests can
+                    scan everything available in one view befores committing to
+                    anything.
+                  </p>
+                </div>
+                <figure
+                  style="
+                    height: 480px;
+                    overflow-y: scroll;
+                    border-radius: 12px;
+                    -webkit-overflow-scrolling: touch;
+                    background: var(--surface2);
+                  "
+                >
+                  <img
+                    src="img/wos_group.png"
+                    alt="Group landing page desktop and mobile"
+                    style="width: 100%; display: block"
+                  />
+                </figure>
+              </div>
+            </article>
+
+            <article class="hifi-slide">
+              <div class="hifi-slide-inner">
+                <div class="hifi-slide-info">
+                  <p class="hifi-slide-num">04 / 05 — Party Hub</p>
+                  <h3 class="hifi-slide-title">Birthdays Made Easy</h3>
+                  <p class="hifi-slide-body">
+                    The Party Hub walks prospective birthday planners through
+                    the full decision journey — What's included, how it works,
+                    and a clear path to booking. Individual package detail lives
+                    on dedicated package pages rather than a comparison grid —
+                    keeping the hub focused and the decision simple. Booking
+                    hands off cleanly to CenterEdge with a branded transition
+                    moment.
+                  </p>
+                </div>
+                <figure
+                  style="
+                    height: 480px;
+                    overflow-y: scroll;
+                    border-radius: 12px;
+                    -webkit-overflow-scrolling: touch;
+                    background: var(--surface2);
+                  "
+                >
+                  <img
+                    src="img/wos_party.png"
+                    alt="Party hub page desktop and mobile"
+                    style="width: 100%; display: block"
+                  />
+                </figure>
+              </div>
+            </article>
+
+            <article class="hifi-slide">
+              <div class="hifi-slide-inner">
+                <div class="hifi-slide-info">
+                  <p class="hifi-slide-num">05 / 05 — Plan</p>
+                  <h3 class="hifi-slide-title">
+                    Everything a Guest Needs Before They Arrive
+                  </h3>
+                  <p class="hifi-slide-body">
+                    The Plan page is a practical reference hub — hours
+                    (entertainment center and JB's Axe & Tap separately),
+                    pricing by attraction, FAQs, and directions. The Right Now
+                    ticker appears here surfacing live wait times and lane
+                    availability. Hours for both venues are clearly
+                    distinguished, directly solving the original site's most
+                    confusing feature.
+                  </p>
+                </div>
+                <figure
+                  style="
+                    height: 480px;
+                    overflow-y: scroll;
+                    border-radius: 12px;
+                    -webkit-overflow-scrolling: touch;
+                    background: var(--surface2);
+                  "
+                >
+                  <img
+                    src="img/wos_plan.png"
+                    alt="Plan page desktop and mobile"
+                    style="width: 100%; display: block"
+                  />
+                </figure>
+              </div>
+            </article>
+          </div>
+
+          <button
+            class="hifi-arrow prev hidden"
+            id="hifiPrev"
+            onclick="hifiMove(-1)"
+            aria-label="Previous slide"
+          >
+            ‹
+          </button>
+          <button
+            class="hifi-arrow next"
+            id="hifiNext"
+            onclick="hifiMove(1)"
+            aria-label="Next slide"
+          >
+            ›
+          </button>
+        </div>
+
+        <div class="hifi-dots" role="tablist" aria-label="Slide indicators">
+          <button
+            class="hifi-dot active"
+            onclick="hifiGoTo(0)"
+            role="tab"
+            aria-selected="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            class="hifi-dot"
+            onclick="hifiGoTo(1)"
+            role="tab"
+            aria-selected="false"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            class="hifi-dot"
+            onclick="hifiGoTo(2)"
+            role="tab"
+            aria-selected="false"
+            aria-label="Slide 3"
+          ></button>
+          <button
+            class="hifi-dot"
+            onclick="hifiGoTo(3)"
+            role="tab"
+            aria-selected="false"
+            aria-label="Slide 4"
+          ></button>
+          <button
+            class="hifi-dot"
+            onclick="hifiGoTo(4)"
+            role="tab"
+            aria-selected="false"
+            aria-label="Slide 5"
+          ></button>
+        </div>
+      </section>
+
+      <!-- RESULTS -->
+      <section aria-labelledby="results-heading">
+        <h2 class="section-label" id="results-heading">Results</h2>
+        <div class="grid-2">
+          <div class="card">
+            <h3
+              style="
+                font-family: var(--display);
+                font-size: 16px;
+                font-weight: 700;
+                margin-bottom: 20px;
+                color: var(--text);
+              "
+            >
+              Problem → Solution
+            </h3>
+            <table class="results-table">
+              <caption class="visually-hidden">
+                Problems identified and solutions designed
+              </caption>
+              <tbody>
+                <tr>
+                  <td>Eleven attractions buried in flat navigation</td>
+                  <td>
+                    Intent-based IA and quick-facts-first attraction template
+                    put variety and practical details front and center
+                  </td>
+                </tr>
+                <tr>
+                  <td>No information hierarchy</td>
+                  <td>
+                    Four-intent model (Play / Bowl / Party / Eat & Watch)
+                    restructures the site around what guests are trying to do
+                  </td>
+                </tr>
+                <tr>
+                  <td>Fragmented, unbranded booking</td>
+                  <td>
+                    CenterEdge and pfestore mapped as fixed handoff points —
+                    designed around, not replaced
+                  </td>
+                </tr>
+                <tr>
+                  <td>Confusing hours for two venues</td>
+                  <td>
+                    Plan page clearly distinguishes entertainment center hours
+                    from JB's Axe & Tap hours
+                  </td>
+                </tr>
+                <tr>
+                  <td>Dated, templated presentation</td>
+                  <td>
+                    Real photography over duotone; navy frame keeps energetic
+                    color system ordered, not chaotic
+                  </td>
+                </tr>
+                <tr>
+                  <td>No live operational info</td>
+                  <td>
+                    Right Now ticker surfaces wait times, lane availability, and
+                    showtimes via CenterEdge API
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="card">
+            <h3
+              style="
+                font-family: var(--display);
+                font-size: 16px;
+                font-weight: 700;
+                margin-bottom: 20px;
+                color: var(--text);
+              "
+            >
+              What Was Delivered
+            </h3>
+            <ul class="problem-list" aria-label="Deliverables">
+              <li>Five desktop + five mobile high fidelity pages</li>
+              <li>117 color variables across three token tiers</li>
+              <li>Eight token-bound components with variants</li>
+              <li>
+                Two-tier color wayfinding system — group level and attraction
+                level
+              </li>
+              <li>
+                Four documented user flows mapping WoS and third-party handoffs
+              </li>
+              <li>
+                Interactive Figma prototype with auto-scrolling status ticker
+              </li>
+              <li>Full sitemap and navigation model</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- REFLECTION -->
+      <section aria-labelledby="reflection-heading">
+        <h2 class="section-label" id="reflection-heading">Reflection</h2>
+        <ul class="reflection-grid">
+          <li>
+            <article class="reflection-item">
+              <h3 class="reflection-title">
+                Design around constraints, not past them
+              </h3>
+              <p class="reflection-body">
+                The most valuable constraint was designing around CenterEdge and
+                pfestore rather than pretending they could be replaced. It
+                forced feasibility-aware decisions throughout — the ticker, the
+                booking flow, the arcade-card reload — and kept the redesign
+                grounded in what the venue could realistically ship. Constraints
+                are creative fuel when you accept them early.
+              </p>
+            </article>
+          </li>
+          <li>
+            <article class="reflection-item">
+              <h3 class="reflection-title">A scope decision I stand behind</h3>
+              <p class="reflection-body">
+                The project was initially scoped to include a companion app.
+                Through the process I concluded a native app wasn't warranted —
+                app adoption depends on visit frequency a local,
+                occasional-visit FEC simply doesn't have. The Right Now ticker
+                delivers the core on-site utility value with zero install
+                friction. Right-sizing the solution to the venue's actual scale
+                mattered more than adding an impressive-looking artifact.
+              </p>
+            </article>
+          </li>
+          <li>
+            <article class="reflection-item">
+              <h3 class="reflection-title">
+                Structure before skin pays off at the end
+              </h3>
+              <p class="reflection-body">
+                Building the responsive tokens, the two-tier color logic, and
+                the flexible components up front meant the mobile reflow became
+                a matter of the system flexing rather than redesigning from
+                scratch. Slow at the start, fast at the end — and consistent
+                throughout. The design system was the project.
+              </p>
+            </article>
+          </li>
+          <li>
+            <article class="reflection-item">
+              <h3 class="reflection-title">If I took this further</h3>
+              <p class="reflection-body">
+                Commissioned photography of the actual venue would be the single
+                biggest upgrade for the local-not-franchise positioning. A full
+                build-out of the Party subpages, live data integration for the
+                status ticker via CenterEdge's API, and WCAG-compliant
+                pause-on-interaction for the ticker animation would round out a
+                production-ready build.
+              </p>
+            </article>
+          </li>
+        </ul>
+      </section>
+
+      <!-- FINAL THOUGHT -->
+      <section aria-labelledby="final-heading">
+        <h2 class="visually-hidden" id="final-heading">Final Thought</h2>
+        <div class="final-thought">
+          <blockquote>
+            World of Sports is a genuinely great local venue hiding behind a
+            website that doesn't do it justice. Eleven attractions, family-owned
+            since 1980, a bar, cinemas, and
+            <span>something for everyone</span> — all of it was there. It just
+            needed a design system, an intent-based structure, and someone
+            willing to make it look as good as it actually is.
+          </blockquote>
+          <cite>John Masulonis — UX/UI Designer</cite>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="page-footer">
+        <a href="index.html#casestudy" class="btn-back">← Back to Portfolio</a>
+      </footer>
+      <!-- LIGHTBOX -->
+      <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+        <button
+          class="lightbox-close"
+          onclick="closeLightbox()"
+          aria-label="Close"
+        >
+          ✕
+        </button>
+        <img id="lightboxImg" src="" alt="" />
+      </div>
+    </main>
+
+    <script>
+      let hifiCurrent = 0;
+      const hifiTotal = 5;
+
+      function hifiMove(dir) {
+        hifiGoTo(Math.max(0, Math.min(hifiCurrent + dir, hifiTotal - 1)));
+      }
+
+      function hifiGoTo(index) {
+        hifiCurrent = index;
+        document.getElementById("hifiTrack").style.transform =
+          `translateX(-${index * 100}%)`;
+        document
+          .getElementById("hifiPrev")
+          .classList.toggle("hidden", index === 0);
+        document
+          .getElementById("hifiNext")
+          .classList.toggle("hidden", index === hifiTotal - 1);
+        document.querySelectorAll(".hifi-dot").forEach((dot, i) => {
+          dot.classList.toggle("active", i === index);
+          dot.setAttribute("aria-selected", i === index ? "true" : "false");
+        });
+      }
+
+      const carousel = document.getElementById("hifiCarousel");
+      let touchStartX = 0;
+      carousel.addEventListener(
+        "touchstart",
+        (e) => {
+          touchStartX = e.touches[0].clientX;
+        },
+        { passive: true },
+      );
+      carousel.addEventListener(
+        "touchend",
+        (e) => {
+          const diff = touchStartX - e.changedTouches[0].clientX;
+          if (Math.abs(diff) > 40) hifiMove(diff > 0 ? 1 : -1);
+        },
+        { passive: true },
+      );
+      // ============================================================
+      // LIGHTBOX
+      // ============================================================
+      function openLightbox(src, alt) {
+        const lb = document.getElementById("lightbox");
+        const img = document.getElementById("lightboxImg");
+        img.src = src;
+        img.alt = alt || "";
+        lb.classList.add("open");
+      }
+
+      function closeLightbox() {
+        document.getElementById("lightbox").classList.remove("open");
+      }
+
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") closeLightbox();
+      });
+    </script>
+  </body>
+</html>
