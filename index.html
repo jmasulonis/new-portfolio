@@ -1482,6 +1482,146 @@
         color: var(--muted);
         font-size: 12px;
       }
+      /* rotating featured cell — sits between hero copy and hero actions */
+      .fc-rotator {
+        position: relative;
+        max-width: 560px;
+        margin: 28px 0;
+      }
+      .fc-slides {
+        position: relative;
+      }
+
+      .fc-card {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        width: 100%;
+        padding: 16px;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        text-decoration: none;
+        text-align: left;
+        cursor: pointer;
+        font-family: var(--body);
+        transition:
+          transform 0.18s ease,
+          border-color 0.18s ease;
+      }
+      .fc-card:hover {
+        transform: translateY(-3px);
+        border-color: var(--primary);
+      }
+
+      .fc-slide {
+        display: none;
+        animation: fcFade 0.4s ease;
+      }
+      .fc-slide.is-active {
+        display: flex;
+      }
+      @keyframes fcFade {
+        from {
+          opacity: 0;
+          transform: translateY(4px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      .fc-thumb {
+        flex: 0 0 80px;
+        height: 64px;
+        border-radius: 10px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+      .fc-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        padding: 10px;
+      }
+
+      .fc-body {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        flex: 1;
+        min-width: 0;
+      }
+      .fc-kicker {
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--primary);
+      }
+      .fc-title {
+        font-family: var(--display);
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 1.15;
+        color: var(--text);
+      }
+      .fc-meta {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .fc-arrow {
+        font-size: 22px;
+        color: var(--primary);
+        flex: 0 0 auto;
+      }
+
+      .fc-dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin: 12px 0 0;
+      }
+      .fc-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--tertiary);
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        transition:
+          background 0.15s ease,
+          transform 0.15s ease;
+      }
+      .fc-dot:hover {
+        transform: scale(1.2);
+      }
+      .fc-dot.is-active {
+        background: var(--secondary);
+      }
+
+      @media (max-width: 560px) {
+        .fc-rotator {
+          margin: 24px 0;
+        }
+        .fc-card {
+          gap: 14px;
+          padding: 14px;
+        }
+        .fc-thumb {
+          flex-basis: 60px;
+          height: 52px;
+        }
+        .fc-title {
+          font-size: 17px;
+        }
+      }
       @media (max-width: 1440px) {
         .bento-section,
         #contact {
@@ -1761,7 +1901,7 @@
         </p>
         <h1 class="hero-title">
           John Masulonis
-          <span class="line2">Senior Designer, Web & UI/UX, 20 years in.</span>
+          <span class="line2">Senior Designer, Web & UI/UX, 15+ years in.</span>
         </h1>
         <p class="hero-sub">
           From print and brand design into UX, UI, and web for enterprise,
@@ -1769,6 +1909,95 @@
           Cisco. Clean, usable, on-brand. Based on the Virginia/North Carolina
           border, open to remote/hybrid.
         </p>
+
+        <!-- ===== ROTATING FEATURED CELL (new) ===== -->
+        <div
+          class="fc-rotator"
+          id="fcRotator"
+          aria-roledescription="carousel"
+          aria-label="Featured work"
+        >
+          <div class="fc-slides">
+            <!-- SLIDE 1 — SIDEARM → opens job1 modal -->
+            <button
+              class="fc-card fc-slide is-active"
+              type="button"
+              onclick="openModal('job1')"
+              aria-label="Open SIDEARM Sports details"
+            >
+              <span class="fc-thumb">
+                <img
+                  src="img/portfolio_img_sidearm-sports.webp"
+                  alt="SIDEARM Sports"
+                />
+              </span>
+              <span class="fc-body">
+                <span class="fc-kicker">Recent role</span>
+                <span class="fc-title">SIDEARM Sports — Web Designer</span>
+                <span class="fc-meta"
+                  >100+ NCAA programs · Design systems · 2022–26</span
+                >
+              </span>
+              <span class="fc-arrow" aria-hidden="true">&rarr;</span>
+            </button>
+
+            <!-- SLIDE 2 — Fishin' Pig → case study page -->
+            <a class="fc-card fc-slide" href="fishin-bbq-case-study.html">
+              <span class="fc-thumb">
+                <img
+                  src="img/logo_pigfish_wbbq-sf-sc_horizontal_nosubtext.png"
+                  alt="The Fishin' Pig"
+                />
+              </span>
+              <span class="fc-body">
+                <span class="fc-kicker">Case study</span>
+                <span class="fc-title">The Fishin' Pig — restaurant UX</span>
+                <span class="fc-meta"
+                  >End-to-end · Token-based system · Figma Prototype</span
+                >
+              </span>
+              <span class="fc-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+
+            <!-- SLIDE 3 — Alberta → case study page -->
+            <a class="fc-card fc-slide" href="alberta-case-study.html">
+              <span class="fc-thumb">
+                <img
+                  src="img/logo_main.svg"
+                  alt="University of Alberta Athletics"
+                />
+              </span>
+              <span class="fc-body">
+                <span class="fc-kicker">Case study</span>
+                <span class="fc-title">University of Alberta Athletics</span>
+                <span class="fc-meta"
+                  >Scalable Brand system · Mobile-First approach</span
+                >
+              </span>
+              <span class="fc-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+
+          <div class="fc-dots" role="tablist" aria-label="Choose featured item">
+            <button
+              class="fc-dot is-active"
+              type="button"
+              aria-label="Show SIDEARM"
+            ></button>
+            <button
+              class="fc-dot"
+              type="button"
+              aria-label="Show Fishin' Pig"
+            ></button>
+            <button
+              class="fc-dot"
+              type="button"
+              aria-label="Show Alberta"
+            ></button>
+          </div>
+        </div>
+        <!-- ===== /ROTATING FEATURED CELL ===== -->
+
         <div class="hero-actions">
           <a href="#work" class="btn-primary">View my work</a>
           <a href="#contact" class="btn-ghost">Let's talk</a>
@@ -2920,6 +3149,50 @@
           { threshold: 0.3 },
         ); // fires when 30% of the section is visible
         obs.observe(target);
+      })();
+      (function () {
+        var rotator = document.getElementById("fcRotator");
+        if (!rotator) return;
+        var slides = rotator.querySelectorAll(".fc-slide");
+        var dots = rotator.querySelectorAll(".fc-dot");
+        var i = 0,
+          timer = null,
+          DELAY = 4500;
+
+        function show(n) {
+          slides[i].classList.remove("is-active");
+          dots[i].classList.remove("is-active");
+          i = (n + slides.length) % slides.length;
+          slides[i].classList.add("is-active");
+          dots[i].classList.add("is-active");
+        }
+        function next() {
+          show(i + 1);
+        }
+        function start() {
+          stop();
+          timer = setInterval(next, DELAY);
+        }
+        function stop() {
+          if (timer) {
+            clearInterval(timer);
+            timer = null;
+          }
+        }
+
+        dots.forEach(function (dot, n) {
+          dot.addEventListener("click", function () {
+            show(n);
+            start();
+          });
+        });
+        rotator.addEventListener("mouseenter", stop);
+        rotator.addEventListener("mouseleave", start);
+        document.addEventListener("visibilitychange", function () {
+          document.hidden ? stop() : start();
+        });
+
+        start();
       })();
     </script>
   </body>
